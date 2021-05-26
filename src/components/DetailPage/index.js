@@ -65,6 +65,7 @@ function DetailPage(props) {
     // console.log('heartIdd', idd);
     var index = wished.indexOf(idd);
     // console.log('index', index);
+    //
     if (!isClick) {
       if (index === -1) {
         wished.push(idd);

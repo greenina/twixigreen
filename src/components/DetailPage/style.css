@@ -1,0 +1,187 @@
+.wrap {
+  display: flex;
+  /* align-items: center; */
+  padding: 50px;
+}
+/* .img {
+  margin-right: 100px;
+} */
+.recbox {
+  display: flex;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+}
+.row1 {
+  margin-top: 100px;
+  display: flex;
+}
+.row2 {
+  margin-left: 40px;
+  margin-top: 53px;
+  display: flex;
+}
+.row3 {
+  display: flex;
+}
+.gotobuy {
+  font-size: 20px;
+  height: 32px;
+  color: transparent;
+}
+.price {
+  font-size: 23px;
+  margin-top: -5px;
+  margin-right: 20px;
+  margin-left: 5px;
+  font-weight: bold;
+  color: rgb(88, 88, 88);
+}
+.whole {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding:50px; */
+}
+/* /* #b {
+  background-color: rgba(156, 178, 78, 0.5);
+} */
+/* #a {
+  background-color: rgba(210, 211, 212, 0.5);
+} */
+.d_companion {
+  /* margin-left: 170px; */
+  position: absolute;
+  right: 0;
+  margin-right: 80px;
+  bottom: 0;
+  margin-bottom: 40vh;
+}
+/* .feature3 {
+  align-items: center;
+  border-radius: 60px;
+} */
+.feature1 {
+  margin-right: 20px;
+  padding-top: 10px;
+  width: 110px;
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  border-radius: 60px;
+  border: solid 5px rgba(210, 211, 212, 0.5);
+  /* background-color: rgba(210, 211, 212, 0.5); */
+}
+.feature2 {
+  margin-right: 20px;
+  padding-top: 10px;
+  width: 110px;
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  border-radius: 60px;
+  border: solid 5px rgba(156, 178, 78, 0.5);
+  /* background-color: rgba(156, 178, 78, 0.5); */
+}
+.image {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.share {
+  margin-top: 37px;
+  margin-left: -12px;
+}
+.buy {
+  margin-top: 33px;
+  margin-left: 14px;
+}
+.recommendations {
+  font-size: 30px;
+}
+.icons {
+  padding-right: 10px;
+}
+.product_img {
+  margin-left: 200px;
+}
+.product_name {
+  margin-right: 150px;
+  font-weight: normal;
+  font-size: 45px;
+}
+
+.oone {
+  margin-left: 170px;
+  margin-bottom: 20px;
+}
+.one {
+  margin-left: 220px;
+  margin-bottom: 20px;
+}
+.two {
+  margin-left: 80px;
+  margin-bottom: 20px;
+}
+
+table {
+  border: 1px solid rgba(210, 211, 212, 0.3);
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid rgba(210, 211, 212, 0.3);
+  padding: 10px;
+}
+#green1 {
+  background-color: rgba(208, 230, 128, 0.1);
+}
+
+#factors {
+  background-color: rgba(205, 206, 204, 0.15);
+}
+
+.first_col {
+  padding-right: 40px;
+  padding-left: 30px;
+  width: 120px;
+}
+.second_col {
+  padding-right: 40px;
+  padding-left: 30px;
+  width: 250px;
+}
+.third_col {
+  padding-right: 40px;
+  padding-left: 30px;
+  width: 250px;
+}
+table {
+  margin-bottom: 60px;
+}
+.table3 {
+  margin-left: -50px;
+}
+.heart:hover {
+  opacity: 50%;
+}
+.share:hover {
+  opacity: 50%;
+}
+
+.buy:hover {
+  opacity: 50%;
+}
+
+.one:hover {
+  opacity: 80%;
+}
+
+.two:hover {
+  opacity: 80%;
+}
+
+.oone:hover {
+  opacity: 80%;
+}

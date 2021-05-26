@@ -1,0 +1,46 @@
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.onoff{
+    position: absolute;
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 60px;
+    background-color: #00a900;
+    transition: 0.4s;
+}
+
+.onoff:before{
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 52px;
+    box-shadow: 0 2px 4px 0 rgba(18, 29, 18, 0.2);
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .onoff:before{
+    transform: translateX(26px);
+}
+
+input:checked + .onoff{
+    background-color: #6d7b86;
+}

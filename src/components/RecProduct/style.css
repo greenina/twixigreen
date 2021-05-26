@@ -1,0 +1,36 @@
+.recBox {
+  /* position: fixed; */
+  background-color: #e9e1e1;
+  opacity: 50%;
+  width: 14vw;
+  height: 16vw;
+  margin-top: 4.5vw;
+  margin-right: 1vw;
+}
+.recommendbox {
+  /* margin: 20px; */
+  position: fixed;
+  margin-bottom: 2vw;
+  width: 14vw;
+  height: 15vw;
+  font-size: 0.9vw;
+  text-align: center;
+  margin-top: -16.5vw;
+}
+.imagee {
+  width: 12vw;
+}
+.rimage {
+  padding-top: 1vw;
+  margin-bottom: 0.2vw;
+}
+.rdes1 {
+  margin-top: 0.1vw;
+  margin-left: 1vw;
+  text-align: left;
+}
+.rdes2 {
+  margin-top: -0.6vw;
+  margin-left: 1vw;
+  text-align: left;
+}

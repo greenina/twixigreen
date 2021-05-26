@@ -1,0 +1,81 @@
+body {
+  padding-top: 6vw;
+}
+
+.NavBar {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 6vw;
+  /* min-width: 900px; */
+  justify-content: center;
+  z-index: 10;
+}
+
+.NavBar-logo {
+  height: 5vw;
+  cursor: pointer;
+  margin-right: auto;
+}
+
+li,
+a,
+button {
+  /*font-family: "---", sans-serif;
+    font-weight: 500;*/
+  font-size: 1vw;
+  color: #333333;
+  text-decoration: none;
+}
+
+.NavBar-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2vw 8%;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+}
+
+.nav__links {
+  list-style: none;
+}
+
+.nav__links li {
+  display: inline-block;
+  padding: 0vw 1vw;
+}
+
+.nav__links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+  color: #00a900;
+}
+
+.login {
+  padding: 2vw 3vw;
+  /* padding: 2vw 8%; */
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  background-color: rgba(0, 169, 0, 1);
+  border: none;
+  border-radius: 3vw;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  color: #ffffff;
+}
+
+.login:hover {
+  background-color: rgba(0, 169, 0, 0.8);
+}
+
+.cta {
+  padding-left: 2vw;
+}

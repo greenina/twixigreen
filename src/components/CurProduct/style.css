@@ -1,0 +1,35 @@
+.curBox {
+  position: fixed;
+  background-color: #e9e1e1;
+  opacity: 50%;
+  width: 14vw;
+  height: 16vw;
+  margin-top: 4.5vw;
+}
+.currentBox {
+  /* margin: 20px; */
+  position: fixed;
+  margin-bottom: 2vw;
+  width: 14vw;
+  height: 15vw;
+  font-size: 0.9vw;
+  text-align: center;
+  margin-top: 3.4vw;
+}
+.imagec {
+  width: 12vw;
+}
+.cimage {
+  margin-top: 1.6vw;
+  margin-bottom: 0.2vw;
+}
+.cdes1 {
+  margin-top: 0.1vw;
+  margin-left: 1vw;
+  text-align: left;
+}
+.cdes2 {
+  margin-top: -0.6vw;
+  margin-left: 1vw;
+  text-align: left;
+}

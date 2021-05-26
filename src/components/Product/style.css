@@ -1,0 +1,32 @@
+/* .productbox {
+  margin: 20px;
+  margin-bottom: -5px;
+  padding: 15px;
+  width: 210px;
+  
+  background-color: rgb(247, 245, 243);
+  height: 280px;
+  font-size: 15px;
+  text-align: center;
+  box-sizing: border-box;
+ 
+}
+ */
+
+.pimage {
+  position: relative;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+.des {
+  max-width: 150px;
+  padding-left: 10px;
+  text-align: left;
+  margin-bottom: -10px;
+}
+
+.heart {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 55px;
+}

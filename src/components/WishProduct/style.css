@@ -1,0 +1,75 @@
+.productbox {
+  margin: 20px;
+  margin-bottom: 50px;
+  box-sizing: border-box;
+  padding: 0.3vw;
+  width: 210px;
+  /* border: black solid 2px; */
+  /* border-radius: 10px; */
+  background-color: rgb(252, 252, 252);
+  height: 280px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.pimage {
+  margin-top: 10px;
+}
+.wdes1 {
+  padding-left: 10px;
+  text-align: left;
+  margin-bottom: -10px;
+  max-width: 200px;
+}
+.wdes2 {
+  padding-left: 10px;
+  text-align: left;
+  padding-bottom: 20px;
+  max-width: 200px;
+}
+.myheart {
+  padding-top: 15px;
+}
+.eco1 {
+  border: 0.3vw solid rgb(85, 141, 85);
+  padding: 0;
+}
+
+.eco0 {
+  border: 0.3vw solid #4d4d4d;
+  padding: 0;
+}
+.eco2 {
+  border: 0.3vw solid #2d9b5d;
+  padding: 0;
+}
+.eco3 {
+  border: 0.3vw solid #97c592;
+  padding: 0;
+}
+
+.checkin {
+  margin-right: 20px;
+}
+
+.productbox :hover {
+  opacity: 90%;
+}
+
+.ecoo0 {
+  border: 0.3vw solid #4d4d4d;
+  padding: 0;
+}
+.ecoo2 {
+  border: 0.3vw solid #2d9b5d;
+  padding: 0;
+}
+.ecoo3 {
+  border: 0.3vw solid #97c592;
+  padding: 0;
+}
+
+.ecoo1 {
+  border: 0.3vw solid rgb(85, 141, 85);
+  padding: 0;
+}

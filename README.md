@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Igreen
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**CS374 HCI team TWIX Design Project**
 
-## Available Scripts
+Gyewon Kim(20190061)
 
-In the project directory, you can run:
+Inhwa Song(20190325)
 
-### `yarn start`
+Taeyang Yoon(20190432)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Seungyeon Choi(20190656)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This service is for newcomers of eco-friendly product consumption which supports them to be supported in continuously being motivated to the environment without being discouraged by personal gain(price, functionality, etc)
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Page description
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Main Page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The main page of the website. Here, you can see four pictures of parts of home(living room, dining room, bathroom, ) including several households. Some of them are drawn and overlaid on the picture, and some are not. If you click the drawn households, it links to Category Page showing related products. Bukkuk, the companion is also shown with its state applied. Furthermore, you can directly move to MyPage and each Category Pages of Living, Kitchen, Bathroom, Bedroom through NavBar on the top. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Category Page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This is the page where list of products of certain category appears. It has filter options to select. Eco-friendly, Save environment, Protect Animal, Stay healthy, You can filter by selecting those options. "In a Glance" button views all the borders of each item which implies the econess of each item(It is determined by how many filter options they have). Bukkuk is also viewed in Category Page as well. 
 
-## Learn More
+### Detail Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+It shows detail of each item. It contains heart icon(putting to wish list), share button(which copies link), and shopping icon(which directly links to the shopping link). Three icons are shown which implies the econess of the lifecycle of the product(production, useage, afterwards). For eco-friendly products, items which are not ecofriendly are compared in several features via table. And for non eco-friendly items, some eco-friendly items which functions same are explained via table. Bukkuk is also viewed here. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h3>My Page</h3>
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+My page shows the wish list of the user. Hovering on the non-eco-friendly item, Bukkuk recommends some other eco-friendly items with same function. For eco-friendly item, Bukkuk saids he likes the product. You can cancel heart in the wish list directly, and the items in the wish list determines the status of Bukkuk(such as dancing)

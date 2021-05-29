@@ -71,8 +71,13 @@
   align-items: center;
   text-align: center;
   border-radius: 60px;
-  border: solid 5px rgba(210, 211, 212, 0.5);
+  border: solid 7px rgba(210, 211, 212, 0.5);
   /* background-color: rgba(210, 211, 212, 0.5); */
+
+  opacity: 0.2;
+}
+.feature1:hover {
+  opacity: 1;
 }
 .feature2 {
   margin-right: 20px;
@@ -82,7 +87,7 @@
   align-items: center;
   text-align: center;
   border-radius: 60px;
-  border: solid 5px rgba(156, 178, 78, 0.5);
+  border: solid 7px rgba(156, 178, 78, 0.5);
   /* background-color: rgba(156, 178, 78, 0.5); */
 }
 .image {
@@ -101,7 +106,9 @@
   font-size: 30px;
 }
 .icons {
+  margin-top: 5px;
   padding-right: 10px;
+  margin-bottom: 5px;
 }
 .product_img {
   margin-left: 200px;
@@ -138,6 +145,9 @@ td {
   background-color: rgba(208, 230, 128, 0.1);
 }
 
+#notgreen {
+}
+
 #factors {
   background-color: rgba(205, 206, 204, 0.15);
 }
@@ -164,24 +174,66 @@ table {
   margin-left: -50px;
 }
 .heart:hover {
-  opacity: 50%;
+  opacity: 0.5;
 }
 .share:hover {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .buy:hover {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .one:hover {
-  opacity: 80%;
+  -webkit-transition: all 0.5s ease;
+  opacity: 0.6;
 }
 
 .two:hover {
-  opacity: 80%;
+  -webkit-transition: all 0.5s ease;
+  opacity: 0.6;
 }
 
 .oone:hover {
-  opacity: 80%;
+  -webkit-transition: all 0.5s ease;
+  opacity: 0.6;
+}
+
+.contents1 {
+  position: absolute;
+  opacity: 0;
+  border: solid 7px rgba(214, 214, 214, 0.5);
+  width: 130px;
+  margin-left: -27px;
+  margin-top: -40px;
+  padding-right: 5px;
+  padding-left: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+.contents1:hover {
+  -webkit-transition: all 0.8s ease;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(87, 87, 87);
+}
+.contents2 {
+  position: absolute;
+  opacity: 0;
+  border: solid 7px rgba(156, 178, 78, 0.5);
+  width: 130px;
+  margin-left: -27px;
+  margin-top: -40px;
+  padding-right: 5px;
+  padding-left: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+.contents2:hover {
+  -webkit-transition: all 0.8s ease;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(87, 87, 87);
 }

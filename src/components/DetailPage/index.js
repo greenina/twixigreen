@@ -265,15 +265,15 @@ function DetailPage(props) {
     <div class="whole">
       <div className="d_companion">
         <a href="/mypage">
-        <img
-          id="bukkuk"
-          className="companion_gif"
-          src={img_src[score]}
-          alt="companion"
-          key={status}
-          margin-left="-10%"
+          <img
+            id="bukkuk"
+            className="companion_gif"
+            src={img_src[score]}
+            alt="companion"
+            key={status}
+            margin-left="-10%"
           ></img>
-          </a>
+        </a>
       </div>
       <div className="wrap">
         <div className="img">
@@ -300,7 +300,7 @@ function DetailPage(props) {
               <img src="/images/share.png" height="30px" />
             </div>
 
-            <a href={link}>
+            <a onClick={() => window.open(link, '_blank')}>
               <div className="buy">
                 <span
                   class="iconify"
@@ -324,6 +324,12 @@ function DetailPage(props) {
           <div className="row2">
             {stage[0] == 0 ? (
               <div className="feature1" id="a">
+                <div className="contents1">
+                  Production process is not eco-friendly. Those processes emit a
+                  range of pollutants, and substantial environmental safeguards
+                  are needed.
+                </div>
+
                 <div className="image">
                   <img
                     src="/images/setting.png"
@@ -333,10 +339,15 @@ function DetailPage(props) {
                   />
                 </div>
                 <div>Production</div>
-                <div>Process</div>
+                {/* <div>Process</div> */}
               </div>
             ) : (
               <div className="feature2" id="b">
+                <div className="contents2">
+                  Production process is eco-friendly. Those processes are making
+                  effort to minimize the amount of pollutants.
+                </div>
+
                 <div className="image">
                   <img
                     alt="icons"
@@ -346,11 +357,16 @@ function DetailPage(props) {
                   />
                 </div>
                 <div>Production</div>
-                <div>Process</div>
+                {/* <div>Process</div> */}
               </div>
             )}
             {stage[1] == 0 ? (
               <div className="feature1" id="a">
+                <div className="contents1">
+                  During using this product, you may harm the environment.
+                  Please use other eco-friendly substitute to become a hero for
+                  the Earth.
+                </div>
                 <div className="image">
                   <img
                     alt="icons"
@@ -359,11 +375,16 @@ function DetailPage(props) {
                     className="icons"
                   />
                 </div>
-                <div>Using</div>
-                <div>Product</div>
+                <div>Usage</div>
+                {/* <div>Product</div> */}
               </div>
             ) : (
               <div className="feature2" id="b">
+                <div className="contents2">
+                  During using this product, you do not have to harm the
+                  environment a lot. Using this product may be the start of
+                  doing your best.
+                </div>
                 <div className="image">
                   <img
                     alt="icons"
@@ -372,12 +393,17 @@ function DetailPage(props) {
                     className="icons"
                   />
                 </div>
-                <div>Using</div>
-                <div>Product</div>
+                <div>Usage</div>
+                {/* <div>Product</div> */}
               </div>
             )}
             {stage[2] == 0 ? (
               <div className="feature1" id="a">
+                <div className="contents1">
+                  After use, this product can be recycled at the end of their
+                  useful life. You are the best to think about the environment
+                  until after using the product.
+                </div>
                 <div className="image">
                   <img
                     src="/images/bin.png"
@@ -386,11 +412,16 @@ function DetailPage(props) {
                     className="icons"
                   />
                 </div>
-                <div>After</div>
-                <div>Use</div>
+                <div>Afterward</div>
+                {/* <div>Use</div> */}
               </div>
             ) : (
               <div className="feature2" id="b">
+                <div className="contents2">
+                  There is a high possibility that this product will return to
+                  nature after use and cause trouble. If we recycled more, we
+                  would save more.
+                </div>
                 <div className="image">
                   <img
                     src="/images/bin.png"
@@ -399,8 +430,8 @@ function DetailPage(props) {
                     className="icons"
                   />
                 </div>
-                <div>After</div>
-                <div>Use</div>
+                <div>Afterward</div>
+                {/* <div>Use</div> */}
               </div>
             )}
           </div>
@@ -418,19 +449,21 @@ function DetailPage(props) {
                       name: products_in[0][1],
                       price: products_in[0][2],
                       imgg: products_in[0][e_length],
-                      link: products_in[0][e_length+2],
-                      ecoval: Number(products_in[0][e_length+1]),
-                      idx: products_in[0][e_length+3],
+                      link: products_in[0][e_length + 2],
+                      ecoval: Number(products_in[0][e_length + 1]),
+                      idx: products_in[0][e_length + 3],
                     },
                   }}
                 >
-                <img
-                  alt="product_img"
-                  className="oone"
-                  src={products_in[0][elements.length]}
+                  <img
+                    alt="product_img"
+                    className="oone"
+                    src={products_in[0][elements.length]}
                     width="250px"
-                    onClick={() => {setProductId(0)}}
-                ></img>
+                    onClick={() => {
+                      setProductId(0);
+                    }}
+                  ></img>
                 </Link>
                 <Link
                   to={{
@@ -439,18 +472,20 @@ function DetailPage(props) {
                       name: products_in[1][1],
                       price: products_in[1][2],
                       imgg: products_in[1][e_length],
-                      link: products_in[1][e_length+2],
-                      ecoval: Number(products_in[1][e_length+1]),
-                      idx: products_in[1][e_length+3],
+                      link: products_in[1][e_length + 2],
+                      ecoval: Number(products_in[1][e_length + 1]),
+                      idx: products_in[1][e_length + 3],
                     },
                   }}
                 >
-                <img
-                  alt="product_img"
-                  className="two"
-                  src={products_in[1][elements.length]}
+                  <img
+                    alt="product_img"
+                    className="two"
+                    src={products_in[1][elements.length]}
                     width="250px"
-                    onClick={() => {setProductId(1)}}
+                    onClick={() => {
+                      setProductId(1);
+                    }}
                   ></img>
                 </Link>
                 <Link
@@ -460,18 +495,20 @@ function DetailPage(props) {
                       name: products_in[2][1],
                       price: products_in[2][2],
                       imgg: products_in[2][e_length],
-                      link: products_in[2][e_length+2],
-                      ecoval: Number(products_in[2][e_length+1]),
-                      idx: products_in[2][e_length+3],
+                      link: products_in[2][e_length + 2],
+                      ecoval: Number(products_in[2][e_length + 1]),
+                      idx: products_in[2][e_length + 3],
                     },
                   }}
                 >
-                <img
-                  alt="product_img"
-                  className="two"
-                  src={products_in[2][elements.length]}
+                  <img
+                    alt="product_img"
+                    className="two"
+                    src={products_in[2][elements.length]}
                     width="250px"
-                    onClick={() => {setProductId(2)}}
+                    onClick={() => {
+                      setProductId(2);
+                    }}
                   ></img>
                 </Link>
               </div>
@@ -491,15 +528,24 @@ function DetailPage(props) {
                           {' '}
                           {elements[index]}{' '}
                         </td>
-                        <td className="second_col" id={(index == 1)?"green1":"notgreen"}>
+                        <td
+                          className="second_col"
+                          id={index == 1 ? 'green1' : 'notgreen'}
+                        >
                           {' '}
                           {products_in[0][index]}{' '}
                         </td>{' '}
-                        <td className="second_col" id={(index == 1)?"green1":"notgreen"}>
+                        <td
+                          className="second_col"
+                          id={index == 1 ? 'green1' : 'notgreen'}
+                        >
                           {' '}
                           {products_in[1][index]}{' '}
                         </td>
-                        <td className="second_col" id={(index == 1)?"green1":"notgreen"}>
+                        <td
+                          className="second_col"
+                          id={index == 1 ? 'green1' : 'notgreen'}
+                        >
                           {' '}
                           {products_in[2][index]}{' '}
                         </td>
@@ -513,52 +559,54 @@ function DetailPage(props) {
         </div>
       ) : (
         <div>
-            <div>
-              {products_in != null && products_in.length > 0 ? (
-                <div>
+          <div>
+            {products_in != null && products_in.length > 0 ? (
+              <div>
                 <Link
-                to={{
-                  pathname: `/detail/`,
-                  state: {
-                    name: products_in[product_id][1],
-                    price: products_in[product_id][2],
-                    imgg: products_in[product_id][e_length],
-                    link: products_in[product_id][e_length+2],
-                    ecoval: Number(products_in[product_id][e_length+1]),
-                    idx: products_in[product_id][e_length+3],
-                  },
-                }}
-              >
-          <img
-            alt="product_img"
-            className="one"
-            src={img}
-                      width="250px"
-                      onclick = {()=>{}}
-              ></img>
-              </Link>
+                  to={{
+                    pathname: `/detail/`,
+                    state: {
+                      name: products_in[product_id][1],
+                      price: products_in[product_id][2],
+                      imgg: products_in[product_id][e_length],
+                      link: products_in[product_id][e_length + 2],
+                      ecoval: Number(products_in[product_id][e_length + 1]),
+                      idx: products_in[product_id][e_length + 3],
+                    },
+                  }}
+                >
+                  <img
+                    alt="product_img"
+                    className="one"
+                    src={img}
+                    width="250px"
+                    onclick={() => {}}
+                  ></img>
+                </Link>
                 <Link
-                to={{
-                  pathname: `/detail/`,
-                  state: {
-                    name: products_in[0][1],
-                    price: products_in[0][2],
-                    imgg: products_in[0][e_length],
-                    link: products_in[0][e_length+2],
-                    ecoval: Number(products_in[0][e_length+1]),
-                    idx: products_in[0][e_length+3],
-                  },
-                }}
-              >
-              <img
-                className="two"
-                alt="product_img"
-                src={products_in[0][elements.length]}
-                      width="250px"
-                      onClick={() => {setProductId(0)}}
-              ></img>
-                  </Link>
-                  </div>
+                  to={{
+                    pathname: `/detail/`,
+                    state: {
+                      name: products_in[0][1],
+                      price: products_in[0][2],
+                      imgg: products_in[0][e_length],
+                      link: products_in[0][e_length + 2],
+                      ecoval: Number(products_in[0][e_length + 1]),
+                      idx: products_in[0][e_length + 3],
+                    },
+                  }}
+                >
+                  <img
+                    className="two"
+                    alt="product_img"
+                    src={products_in[0][elements.length]}
+                    width="250px"
+                    onClick={() => {
+                      setProductId(0);
+                    }}
+                  ></img>
+                </Link>
+              </div>
             ) : null}
           </div>
           <div>

@@ -196,6 +196,7 @@ table {
 }
 
 .feature1 {
+  user-select: none;
   margin-right: 20px;
   padding-top: 10px;
   width: 110px;
@@ -214,11 +215,13 @@ table {
   color: rgb(87, 87, 87);
 }
 .feature1:hover {
+  cursor: default;
   border: solid 7px rgba(210, 211, 212, 1);
   opacity: 1;
 }
 
 .feature2 {
+  user-select: none;
   margin-right: 20px;
   padding-top: 10px;
   width: 110px;
@@ -235,5 +238,6 @@ table {
   color: rgb(87, 87, 87);
 }
 .feature2:hover {
+  cursor: default;
   border: solid 7px rgb(114, 133, 47);
 }

@@ -285,7 +285,7 @@ function MyPage() {
         <div>
           {overlayMode == 0 ? (
             <div className="overlayBox">
-              Name: Bukkuk | State: {states[score]}
+              Your Eco Score: {score % 4} | Bukkuk's State: {states[score]}
             </div>
           ) : overlayMode == 1 ? (
             <div>
@@ -414,7 +414,12 @@ function MyPage() {
             ))}
           </div>
         ) : (
-          <div className="emptyWished" onClick={() => console.log(userInfo['wished'])}>No Product</div>
+          <div
+            className="emptyWished"
+            onClick={() => console.log(userInfo['wished'])}
+          >
+            No Product
+          </div>
         )}
       </div>
     </div>

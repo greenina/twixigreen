@@ -1,5 +1,5 @@
 #pc {
-  margin-left: 4vw;
+  margin-left: 8%;
   margin-right: auto;
   width: 92%;
 
@@ -98,9 +98,10 @@
 }
 .checkin {
   position: relative;
+  align-items: center;
 }
 
-.checkin label {
+.checkin .labels {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
@@ -112,7 +113,7 @@
   width: 22px;
 }
 
-.checkin label:after {
+.checkin .labels:after {
   border: 2px solid #fff;
   border-top: none;
   border-right: none;
@@ -130,12 +131,12 @@
   visibility: hidden;
 }
 
-.checkin input[type="checkbox"]:checked + label {
+.checkin input[type="checkbox"]:checked + .labels {
   background-color: #66bb6a;
   border-color: #66bb6a;
 }
 
-.checkin input[type="checkbox"]:checked + label:after {
+.checkin input[type="checkbox"]:checked + .labels:after {
   opacity: 1;
 }
 
@@ -146,8 +147,9 @@
 
 .f_name {
   margin-left: 35px;
+  cursor: pointer;
 }
 
 .checkboxes {
-  cursor: poiter;
+  cursor: pointer;
 }

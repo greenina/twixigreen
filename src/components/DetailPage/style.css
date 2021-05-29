@@ -1,3 +1,33 @@
+.router {
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2vw 9%;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+}
+
+#router-text {
+  margin-right: 5px;
+}
+
+.hr-line {
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  color: rgb(216, 216, 216);
+  background-color: rgb(216, 216, 216);
+  height: 0.5px;
+  width: 82%;
+  border: 0;
+}
+
+.mv2cat:hover {
+  color: #00a900;
+  cursor: pointer;
+}
+
 .wrap {
   display: flex;
   /* align-items: center; */
@@ -175,7 +205,7 @@ table {
   width: 300px;
   margin-left: -80px;
   margin-top: 120px;
-  padding-right: 5px;
+  padding-right: 18px;
   padding-left: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -188,7 +218,7 @@ table {
   width: 300px;
   margin-left: -80px;
   margin-top: 120px;
-  padding-right: 5px;
+  padding-right: 18px;
   padding-left: 20px;
   padding-top: 20px;
   padding-bottom: 20px;

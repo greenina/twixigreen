@@ -194,7 +194,7 @@ class CategoryPage extends React.Component {
           <div className="fixed_container">
             <div className="checkbox1 kk">
               <span class="checkin">
-                <span className="f_name">Eco-friendly</span>
+                <label for="ecoonly" className="f_name">Eco-friendly</label>
                 <input
                   className="checkboxes"
                   type="checkbox"
@@ -202,10 +202,10 @@ class CategoryPage extends React.Component {
                   value="에코"
                   onClick={this.datarefresh}
                 ></input>
-                <label for="ecoonly"></label>
+                <label className="labels" for="ecoonly"></label>
               </span>
               <span class="checkin">
-                <span className="f_name">Save Environment</span>
+                <label for="vegan" className="f_name">Save Environment</label>
                 <input
                   className="checkboxes"
                   type="checkbox"
@@ -213,10 +213,10 @@ class CategoryPage extends React.Component {
                   value="비건"
                   onClick={this.datarefresh}
                 />
-                <label for="vegan"></label>
+                <label className="labels" for="vegan"></label>
               </span>
               <span class="checkin">
-                <span className="f_name">Protect Animal</span>
+                <label for="ap" className="f_name">Protect Animal</label>
                 <input
                   className="checkboxes"
                   type="checkbox"
@@ -224,10 +224,10 @@ class CategoryPage extends React.Component {
                   value="동물보호"
                   onClick={this.datarefresh}
                 ></input>
-                <label for="ap"></label>
+                <label className="labels" for="ap"></label>
               </span>
               <span class="checkin">
-                <span className="f_name">Stay healthy</span>
+                <label for="harm" className="f_name">Stay healthy</label>
                 <input
                   className="checkboxes"
                   type="checkbox"
@@ -235,7 +235,7 @@ class CategoryPage extends React.Component {
                   value="유해물질x"
                   onClick={this.datarefresh}
                 ></input>
-                <label for="harm"></label>
+                <label className="labels" for="harm"></label>
               </span>
               <button
                 id="onesight"

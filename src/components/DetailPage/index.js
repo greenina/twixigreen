@@ -261,7 +261,21 @@ function DetailPage(props) {
     console.log('page re-rendered');
   }, [product_id]);
 
+  const mvPage = () => {
+    let parentCat = (category == "scrubber") || (category == "detergent") ? "kitchen" : ((category == "tissue") || (category == "cushion") ? "living" : ((category == "shampoo") || (category == "toothpaste") ? "bath" : (category == "bag") || (category == "facial") ? "beauty" : ""));
+    document.location.href = '/category/'+parentCat;
+  };
+
   return (
+    <div>
+      <div className="router">
+        <text id="router-text" className="mv2cat" onClick={mvPage}><b>{(category=="scrubber")||(category=="detergent")?"Kitchen":((category=="tissue")||(category=="cushion")?"Living":((category=="shampoo")||(category=="toothpaste")?"Bathroom":(category=="bag")||(category=="facial")?"Bedroom":""))}</b></text>
+        <text id="router-text">></text>
+        <text id="router-text">{category}</text>
+        <text id="router-text">></text>
+        <text id="router-text">{name}</text>
+      </div>
+      <hr className="hr-line" />
     <div class="whole">
       <div className="d_companion">
         <a href="/mypage">
@@ -637,6 +651,8 @@ function DetailPage(props) {
           </div>
         </div>
       )}
+      </div>
+      
     </div>
   );
 }

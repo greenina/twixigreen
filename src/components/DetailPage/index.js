@@ -400,9 +400,9 @@ function DetailPage(props) {
             {stage[2] == 0 ? (
               <div className="feature1" id="a">
                 <div className="contents1">
-                  After use, this product can be recycled at the end of their
-                  useful life. You are the best to think about the environment
-                  until after using the product.
+                  There is a high possibility that this product will return to
+                  nature after use and cause trouble. If we recycled more, we
+                  would save more.
                 </div>
                 <div className="image">
                   <img
@@ -418,9 +418,9 @@ function DetailPage(props) {
             ) : (
               <div className="feature2" id="b">
                 <div className="contents2">
-                  There is a high possibility that this product will return to
-                  nature after use and cause trouble. If we recycled more, we
-                  would save more.
+                  After use, this product can be recycled at the end of their
+                  useful life. You are the best to think about the environment
+                  until after using the product.
                 </div>
                 <div className="image">
                   <img

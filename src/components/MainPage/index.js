@@ -62,6 +62,7 @@ function MainPage() {
       .then(function (doc) {
         let docs = doc.data();
         setUserInfo([]);
+        //console.log("wished list",docs['wished'])
         for (var i = 0; i < Object.keys(docs).length; i++) {
           let dic = userInfo;
           dic[infos[i]] = docs[infos[i]];

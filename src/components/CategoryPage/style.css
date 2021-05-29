@@ -116,7 +116,7 @@
   border: 2px solid #fff;
   border-top: none;
   border-right: none;
-  content: '';
+  content: "";
   height: 4px;
   left: 4px;
   opacity: 0;
@@ -126,16 +126,16 @@
   width: 12px;
 }
 
-.checkin input[type='checkbox'] {
+.checkin input[type="checkbox"] {
   visibility: hidden;
 }
 
-.checkin input[type='checkbox']:checked + label {
+.checkin input[type="checkbox"]:checked + label {
   background-color: #66bb6a;
   border-color: #66bb6a;
 }
 
-.checkin input[type='checkbox']:checked + label:after {
+.checkin input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
 
@@ -146,4 +146,8 @@
 
 .f_name {
   margin-left: 35px;
+}
+
+.checkboxes {
+  cursor: poiter;
 }

@@ -1,20 +1,20 @@
 export const USER = 'USER'
 
-export const setUser = (user) =>({
+export const setUser = (user) =>({//action creater
   type:USER,
-  payload:user
+  user:user
 })
 
 const initialState = {
   user: '1', //default
 }
 
-const user = (state = initialState, action) => {
+const user = (state = initialState, action) => {//reducer
   switch (action.type) {
     case USER:{
       return{
         ...state,
-        user:state.user
+        user:action.user
       }
     }
     default:

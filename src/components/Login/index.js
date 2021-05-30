@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { db, firebaseApp } from '../../firebase';
 import {useHistory} from 'react-router-dom'
+import setUser from '../../reducers/user'//action creator
 
 function Login(){
 
@@ -13,6 +14,8 @@ function Login(){
   const[success, setSuccess] = useState();
   const[error, setError] = useState("");
   let history = useHistory();
+  const dispatch = useDispatch();
+
 
   const changeHandler = (e)=>{
     switch(e.target.name){
@@ -24,18 +27,16 @@ function Login(){
         break;
     }
   }
-  
-  var dispatch = useDispatch();
-
   const signinHandler = () => {
     console.log("email",email)
     console.log("pwd",pwd)
     debugger;
-    firebaseApp.auth().signInWithEmailAndPassword(email, pwd)
+  firebaseApp.auth().signInWithEmailAndPassword(email, pwd)
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
     console.log("user",user)
+    dispatch(setUser(email));
     history.replace('/');
     // ...
   })

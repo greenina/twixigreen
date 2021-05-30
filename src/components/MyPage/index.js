@@ -297,7 +297,8 @@ function MyPage() {
         <div>
           {overlayMode == 0 ? (
             <div className="overlayBox">
-              Your Eco Score: {score % 4} | Bukkuk's State: {states[score]}
+              Your Eco Score: {score == 4 ? '2' : score} | Bukkuk's State:{' '}
+              {states[score]}
             </div>
           ) : overlayMode == 1 ? (
             <div>

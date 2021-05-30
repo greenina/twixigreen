@@ -97,6 +97,7 @@ function DetailPage(props) {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     console.log('db get');
     db.collection('products')
       .get()

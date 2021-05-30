@@ -102,6 +102,7 @@
 }
 
 .checkin .labels {
+  -webkit-transition: all 0.5s ease;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
@@ -132,6 +133,7 @@
 }
 
 .checkin input[type="checkbox"]:checked + .labels {
+  -webkit-transition: all 0.5s ease;
   background-color: #66bb6a;
   border-color: #66bb6a;
 }
@@ -139,12 +141,6 @@
 .checkin input[type="checkbox"]:checked + .labels:after {
   opacity: 1;
 }
-
-.checkin :hover {
-  -webkit-transition: all 0.5s ease;
-  opacity: 0.8;
-}
-
 .f_name {
   margin-left: 35px;
   cursor: pointer;

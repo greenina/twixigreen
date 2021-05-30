@@ -1,25 +1,29 @@
-export const USER = 'USER'
-
-export const setUser = (user) =>({//action creater
-  type:USER,
-  user:user
-})
+import setUser from './action'
 
 const initialState = {
   user: '1', //default
 }
 
 const user = (state = initialState, action) => {//reducer
-  switch (action.type) {
-    case USER:{
-      return{
+  if(state === undefined){
+    state = initialState;
+    console.log("undefined!!")
+  }
+  console.log("action.user",action.user)
+   return{
         ...state,
         user:action.user
       }
-    }
-    default:
-      return state;
-  }
+  // switch (action.type) {
+  //   case USER:{
+  //     return{
+  //       ...state,
+  //       user:action.user
+  //     }
+  //   }
+  //   default:
+  //     return state;
+  // }
 };
 
 export default user;

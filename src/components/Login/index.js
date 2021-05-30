@@ -5,7 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { db, firebaseApp } from '../../firebase';
 import {useHistory} from 'react-router-dom'
-import setUser from '../../reducers/user'//action creator
+import setUser from '../../reducers/action'//action creator
+import user from '../../reducers/user'
 
 function Login(){
 
@@ -16,21 +17,17 @@ function Login(){
   let history = useHistory();
   const dispatch = useDispatch();
 
-
-  const changeHandler = (e)=>{
-    switch(e.target.name){
-      case 'email':
-        setEmail(e.target.value)
-        break;
-      case 'pwd':
-        setPwd(e.target.value)
-        break;
-    }
+  var changeEmail = (e) =>{
+      setEmail(e.target.value)
   }
+  var changePwd = (e) =>{
+      setPwd(e.target.value)
+  }
+
+
   const signinHandler = () => {
     console.log("email",email)
     console.log("pwd",pwd)
-    debugger;
   firebaseApp.auth().signInWithEmailAndPassword(email, pwd)
   .then((userCredential) => {
     // Signed in
@@ -41,7 +38,7 @@ function Login(){
     // ...
   })
   .catch((error) => {
-    console.log("error",error.code)
+    console.log("error",error)
     var errorCode = error.code;
     var errorMessage = error.message;
   });
@@ -53,9 +50,9 @@ function Login(){
     <div className="recruit">
       <div className="apply_title">Login</div>
       <div  align="left" className="userid">email</div>
-                <input  onChange={changeHandler} value={email} name="email" className="userid-input" type="text"/>
+                <input  onChange={changeEmail} value={email} name="email" className="userid-input" type="text"/>
       <div  align="left" className="userid">pwd</div>
-                <input  onChange={changeHandler} value={pwd} name="pwd" className="userPassword-input" type="text"/>
+                <input  onChange={changePwd} value={pwd} name="pwd" className="userPassword-input" type="text"/>
       <button className = 'submit' onClick={signinHandler}>login</button>
       
         

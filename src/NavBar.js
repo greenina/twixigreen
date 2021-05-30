@@ -1,10 +1,23 @@
 import logo from './logo.png';
 import './NavBar.css';
+import { db, firebaseApp } from './firebase';
+import {useEffect, useState} from 'react';
+import MyPage from './components/MyPage';
 
 function NavBar() {
   const mv2main = () => {
     document.location.href = '/';
   };
+  const [signIn, setSignIn] = useState(false);
+
+  useEffect(()=>{
+    firebaseApp.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        setSignIn(true);
+      } 
+    });
+  },[])
+  
 
   return (
     <div className="NavBar">
@@ -30,7 +43,7 @@ function NavBar() {
           </ul>
         </nav>
         <a className="cta" href="/mypage">
-          <button className="login">My Page</button>
+          <button className="login">{signIn?"MyPage":"Login"}</button>
         </a>
       </header>
     </div>

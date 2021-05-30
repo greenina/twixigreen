@@ -49,27 +49,27 @@ class Product extends Component {
     var { name, price, imgg, a, ecoval, wished, idx } = this.props;
     return (
       <header>
-        <div
-          id={'pdb' + idx}
-          className="productbox"
-          value={this.props.eco}
-          onMouseEnter={this.me}
-          onMouseLeave={this.ml}
+        <Link
+          to={{
+            pathname: `/detail/`,
+            state: {
+              name: this.props.name,
+              price: this.props.price,
+              imgg: this.props.imgg,
+              link: this.props.a,
+              ecoval: this.props.ecoval,
+              idx: this.props.idx,
+            },
+          }}
         >
-          <div className="pimage">
-            <Link
-              to={{
-                pathname: `/detail/`,
-                state: {
-                  name: this.props.name,
-                  price: this.props.price,
-                  imgg: this.props.imgg,
-                  link: this.props.a,
-                  ecoval: this.props.ecoval,
-                  idx: this.props.idx,
-                },
-              }}
-            >
+          <div
+            id={'pdb' + idx}
+            className="productbox"
+            value={this.props.eco}
+            onMouseEnter={this.me}
+            onMouseLeave={this.ml}
+          >
+            <div className="pimage">
               <img
                 classname="imgg"
                 src={this.props.imgg}
@@ -77,26 +77,26 @@ class Product extends Component {
                 width="175px"
                 height="175px"
               ></img>
-            </Link>
+            </div>
+            {this.props.wished ? (
+              <img
+                className="heart"
+                src="https://ifh.cc/g/d7BZO6.png"
+                width="30px"
+              />
+            ) : (
+              <img
+                className="heart"
+                src="https://ifh.cc/g/IuZase.png"
+                width="30px"
+              />
+            )}
+            <div>
+              <p className="des">{this.props.name}</p>
+              <p className="des">{this.props.price} won</p>
+            </div>
           </div>
-          {this.props.wished ? (
-            <img
-              className="heart"
-              src="https://ifh.cc/g/d7BZO6.png"
-              width="30px"
-            />
-          ) : (
-            <img
-              className="heart"
-              src="https://ifh.cc/g/IuZase.png"
-              width="30px"
-            />
-          )}
-          <div>
-            <p className="des">{this.props.name}</p>
-            <p className="des">{this.props.price} won</p>
-          </div>
-        </div>
+        </Link>
       </header>
     );
   }

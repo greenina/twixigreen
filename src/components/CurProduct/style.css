@@ -1,7 +1,7 @@
 .curBox {
   position: fixed;
   background-color: #e9e1e1;
-  opacity: 50%;
+  opacity: 0.5;
   width: 14vw;
   height: 16vw;
   margin-top: 4.5vw;

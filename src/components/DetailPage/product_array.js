@@ -393,12 +393,12 @@ let bag = [
 let detergent_element = [
   'docs',
   'Name',
-  'price',
-  'ingredient',
-  'form',
-  'cleaning power',
-  'volume',
-  'rating',
+  'Price',
+  'Ingredient',
+  'Form',
+  'Cleaning power',
+  'Volume',
+  'Rating',
 ];
 
 let detergent = [
@@ -471,13 +471,13 @@ let detergent = [
 
 let cushion_element = [
   'docs',
-  'name',
-  'price',
-  'cover',
-  'filling',
-  'feature',
-  'dimension',
-  'rating',
+  'Name',
+  'Price',
+  'Cover',
+  'Filling',
+  'Feature',
+  'Dimension',
+  'Rating',
 ];
 let cushion = [
   [
@@ -549,7 +549,7 @@ let cushion = [
 
 let shampoo_element = [
   'docsid',
-  'name',
+  'Name',
   'Price',
   'Hair type',
   'Volume',

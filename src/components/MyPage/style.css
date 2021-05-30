@@ -4,7 +4,7 @@
   height: 2vw;
   margin-top: 1%;
   background-color: #e9e1e1;
-  opacity: 50%;
+  opacity: 0.5;
   border-radius: 10px;
   margin-left: 25%;
   text-align: center;
@@ -37,6 +37,7 @@
   overflow: visible;
 }
 .wishlist {
+  margin-left: -4%;
   position: fixed;
   /* display: flex; */
   top: 28vw;

@@ -7,6 +7,7 @@ import React from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import * as ROUTES from './constants/routes';
 
 function App() {
   return (
@@ -18,8 +19,8 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         {/* <Route path="/detail/:name/:price/:img/:link" component={DetailPage} /> */}
-        <Route path="/mypage" exact component={MyPage} />
-        <Redirect to="/" />
+        <Route exact path={ROUTES.MYPAGE} exact component={MyPage} />
+        {/* <Redirect to="/" /> */}
       </Switch>
     </BrowserRouter>
   );

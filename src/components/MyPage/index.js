@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import WishProduct from '../WishProduct';
 import CurProduct from '../CurProduct';
 import RecProduct from '../RecProduct';
+import Tippy from 'react-tooltip';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 
 function MyPage() {
@@ -272,7 +273,18 @@ function MyPage() {
           key="background"
         ></img>
 
-        <div className="companion">
+        <div
+          className="companion"
+          data-tip={
+            score == 0
+              ? 'My home is melting down ...'
+              : score == 1
+              ? "You've never been Green before, have you?"
+              : score == 2 || score == 4
+              ? "Maybe I'll dance if you make the score higher?"
+              : 'Yeah~!'
+          }
+        >
           <img
             id="bukkuk"
             className="companion_gif"
@@ -285,7 +297,8 @@ function MyPage() {
         <div>
           {overlayMode == 0 ? (
             <div className="overlayBox">
-              Name: Bukkuk | State: {states[score]}
+              Your Eco Score: {score == 4 ? '2' : score} | Bukkuk's State:{' '}
+              {states[score]}
             </div>
           ) : overlayMode == 1 ? (
             <div>
@@ -414,9 +427,19 @@ function MyPage() {
             ))}
           </div>
         ) : (
-          <div className="emptyWished" onClick={() => console.log(userInfo['wished'])}>No Product</div>
+          <div
+            className="emptyWished"
+            onClick={() => console.log(userInfo['wished'])}
+          >
+            No Product
+          </div>
         )}
       </div>
+      <Tippy
+        delayShow={100}
+        backgroundColor="rgba(0,169,0,0.9)"
+        delayUpdate={1000}
+      />
     </div>
   );
 }

@@ -262,397 +262,435 @@ function DetailPage(props) {
   }, [product_id]);
 
   const mvPage = () => {
-    let parentCat = (category == "scrubber") || (category == "detergent") ? "kitchen" : ((category == "tissue") || (category == "cushion") ? "living" : ((category == "shampoo") || (category == "toothpaste") ? "bath" : (category == "bag") || (category == "facial") ? "beauty" : ""));
-    document.location.href = '/category/'+parentCat;
+    let parentCat =
+      category == 'scrubber' || category == 'detergent'
+        ? 'kitchen'
+        : category == 'tissue' || category == 'cushion'
+        ? 'living'
+        : category == 'shampoo' || category == 'toothpaste'
+        ? 'bath'
+        : category == 'bag' || category == 'facial'
+        ? 'beauty'
+        : '';
+    document.location.href = '/category/' + parentCat;
   };
 
   return (
     <div>
       <div className="router">
-        <text id="router-text" className="mv2cat" onClick={mvPage}><b>{(category=="scrubber")||(category=="detergent")?"Kitchen":((category=="tissue")||(category=="cushion")?"Living":((category=="shampoo")||(category=="toothpaste")?"Bathroom":(category=="bag")||(category=="facial")?"Bedroom":""))}</b></text>
-        <text id="router-text">></text>
+        <text id="router-text" className="mv2cat" onClick={mvPage}>
+          <b>
+            {category == 'scrubber' || category == 'detergent'
+              ? 'Kitchen'
+              : category == 'tissue' || category == 'cushion'
+              ? 'Living'
+              : category == 'shampoo' || category == 'toothpaste'
+              ? 'Bathroom'
+              : category == 'bag' || category == 'facial'
+              ? 'Bedroom'
+              : ''}
+          </b>
+        </text>
+        <text id="router-text">
+          {' '}
+          <span
+            height="8px"
+            class="iconify"
+            data-icon="whh:bigger"
+            data-inline="false"
+            padding-bottom="5px"
+          ></span>{' '}
+        </text>
         <text id="router-text">{category}</text>
-        <text id="router-text">></text>
+        <text id="router-text">
+          {' '}
+          <span
+            height="8px"
+            class="iconify"
+            data-icon="whh:bigger"
+            data-inline="false"
+            padding-bottom="5px"
+          ></span>{' '}
+        </text>
         <text id="router-text">{name}</text>
       </div>
       <hr className="hr-line" />
-    <div class="whole">
-      <div className="d_companion">
-        <a href="/mypage">
-          <img
-            id="bukkuk"
-            className="companion_gif"
-            src={img_src[score]}
-            alt="companion"
-            key={status}
-            margin-left="-10%"
-          ></img>
-        </a>
-      </div>
-      <div className="wrap">
-        <div className="img">
-          <img
-            src={img}
-            alt="Product image"
-            width="500px"
-            height="500px"
-            className="product_img"
-          ></img>
+      <div class="whole">
+        <div className="d_companion">
+          <a href="/mypage">
+            <img
+              id="bukkuk"
+              className="companion_gif"
+              src={img_src[score]}
+              alt="companion"
+              key={status}
+              margin-left="-10%"
+            ></img>
+          </a>
         </div>
-        <div className="info">
-          <div className="row1">
-            <h1 className="product_name">{name}</h1>
-            <Heart className="heart" isClick={isClick} onClick={heartClick} />
-            <div
-              className="share"
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                // console.log('copy');
-                alert('copied');
-              }}
-            >
-              <img src="/images/share.png" height="30px" />
-            </div>
-
-            <a onClick={() => window.open(link, '_blank')}>
-              <div className="buy">
-                <span
-                  class="iconify"
-                  data-icon="clarity:shopping-bag-line"
-                  data-inline="false"
-                  height="35px"
-                ></span>
-              </div>
-            </a>
+        <div className="wrap">
+          <div className="img">
+            <img
+              src={img}
+              alt="Product image"
+              width="500px"
+              height="500px"
+              className="product_img"
+            ></img>
           </div>
-          <div className="row3">
-            <div className="price">
-              {price}
-              <span>&#8361;</span>
-            </div>
+          <div className="info">
+            <div className="row1">
+              <h1 className="product_name">{name}</h1>
+              <Heart className="heart" isClick={isClick} onClick={heartClick} />
+              <div
+                className="share"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  // console.log('copy');
+                  alert('copied');
+                }}
+              >
+                <img src="/images/share.png" height="30px" />
+              </div>
 
-            {/* <Button className="gotobuy" variant="contained">
+              <a onClick={() => window.open(link, '_blank')}>
+                <div className="buy">
+                  <span
+                    class="iconify"
+                    data-icon="clarity:shopping-bag-line"
+                    data-inline="false"
+                    height="35px"
+                  ></span>
+                </div>
+              </a>
+            </div>
+            <div className="row3">
+              <div className="price">
+                {price}
+                <span>&#8361;</span>
+              </div>
+
+              {/* <Button className="gotobuy" variant="contained">
                 Go to Buy
               </Button> */}
-          </div>
-          <div className="row2">
-            {stage[0] == 0 ? (
-              <div className="feature1" id="a">
-                <div className="contents1">
-                  Production process is not eco-friendly. Those processes emit a
-                  range of pollutants, and substantial environmental safeguards
-                  are needed.
-                </div>
+            </div>
+            <div className="row2">
+              {stage[0] == 0 ? (
+                <div className="feature1" id="a">
+                  <div className="contents1">
+                    Production process is not eco-friendly. Those processes emit
+                    a range of pollutants, and substantial environmental
+                    safeguards are needed.
+                  </div>
 
-                <div className="image">
-                  <img
-                    src="/images/setting.png"
-                    height="30px"
-                    alt="icons"
-                    className="icons"
-                  />
+                  <div className="image">
+                    <img
+                      src="/images/setting.png"
+                      height="30px"
+                      alt="icons"
+                      className="icons"
+                    />
+                  </div>
+                  <div>Production</div>
+                  {/* <div>Process</div> */}
                 </div>
-                <div>Production</div>
-                {/* <div>Process</div> */}
-              </div>
-            ) : (
-              <div className="feature2" id="b">
-                <div className="contents2">
-                  Production process is eco-friendly. Those processes are making
-                  effort to minimize the amount of pollutants.
-                </div>
+              ) : (
+                <div className="feature2" id="b">
+                  <div className="contents2">
+                    Production process is eco-friendly. Those processes are
+                    making effort to minimize the amount of pollutants.
+                  </div>
 
-                <div className="image">
-                  <img
-                    alt="icons"
-                    className="icons"
-                    src="/images/setting.png"
-                    height="30px"
-                  />
+                  <div className="image">
+                    <img
+                      alt="icons"
+                      className="icons"
+                      src="/images/setting.png"
+                      height="30px"
+                    />
+                  </div>
+                  <div>Production</div>
+                  {/* <div>Process</div> */}
                 </div>
-                <div>Production</div>
-                {/* <div>Process</div> */}
-              </div>
-            )}
-            {stage[1] == 0 ? (
-              <div className="feature1" id="a">
-                <div className="contents1">
-                  During using this product, you may harm the environment.
-                  Please use other eco-friendly substitute to become a hero for
-                  the Earth.
+              )}
+              {stage[1] == 0 ? (
+                <div className="feature1" id="a">
+                  <div className="contents1">
+                    During using this product, you may harm the environment.
+                    Please use other eco-friendly substitute to become a hero
+                    for the Earth.
+                  </div>
+                  <div className="image">
+                    <img
+                      alt="icons"
+                      src="/images/hello.png"
+                      height="30px"
+                      className="icons"
+                    />
+                  </div>
+                  <div>Usage</div>
+                  {/* <div>Product</div> */}
                 </div>
-                <div className="image">
-                  <img
-                    alt="icons"
-                    src="/images/hello.png"
-                    height="30px"
-                    className="icons"
-                  />
+              ) : (
+                <div className="feature2" id="b">
+                  <div className="contents2">
+                    During using this product, you do not have to harm the
+                    environment a lot. Using this product may be the start of
+                    doing your best.
+                  </div>
+                  <div className="image">
+                    <img
+                      alt="icons"
+                      src="/images/hello.png"
+                      height="30px"
+                      className="icons"
+                    />
+                  </div>
+                  <div>Usage</div>
+                  {/* <div>Product</div> */}
                 </div>
-                <div>Usage</div>
-                {/* <div>Product</div> */}
-              </div>
-            ) : (
-              <div className="feature2" id="b">
-                <div className="contents2">
-                  During using this product, you do not have to harm the
-                  environment a lot. Using this product may be the start of
-                  doing your best.
+              )}
+              {stage[2] == 0 ? (
+                <div className="feature1" id="a">
+                  <div className="contents1">
+                    There is a high possibility that this product will return to
+                    nature after use and cause trouble. If we recycled more, we
+                    would save more.
+                  </div>
+                  <div className="image">
+                    <img
+                      src="/images/bin.png"
+                      height="30px"
+                      alt="icons"
+                      className="icons"
+                    />
+                  </div>
+                  <div>Afterward</div>
+                  {/* <div>Use</div> */}
                 </div>
-                <div className="image">
-                  <img
-                    alt="icons"
-                    src="/images/hello.png"
-                    height="30px"
-                    className="icons"
-                  />
+              ) : (
+                <div className="feature2" id="b">
+                  <div className="contents2">
+                    After use, this product can be recycled at the end of their
+                    useful life. You are the best to think about the environment
+                    until after using the product.
+                  </div>
+                  <div className="image">
+                    <img
+                      src="/images/bin.png"
+                      height="30px"
+                      alt="icons"
+                      className="icons"
+                    />
+                  </div>
+                  <div>Afterward</div>
+                  {/* <div>Use</div> */}
                 </div>
-                <div>Usage</div>
-                {/* <div>Product</div> */}
-              </div>
-            )}
-            {stage[2] == 0 ? (
-              <div className="feature1" id="a">
-                <div className="contents1">
-                  There is a high possibility that this product will return to
-                  nature after use and cause trouble. If we recycled more, we
-                  would save more.
-                </div>
-                <div className="image">
-                  <img
-                    src="/images/bin.png"
-                    height="30px"
-                    alt="icons"
-                    className="icons"
-                  />
-                </div>
-                <div>Afterward</div>
-                {/* <div>Use</div> */}
-              </div>
-            ) : (
-              <div className="feature2" id="b">
-                <div className="contents2">
-                  After use, this product can be recycled at the end of their
-                  useful life. You are the best to think about the environment
-                  until after using the product.
-                </div>
-                <div className="image">
-                  <img
-                    src="/images/bin.png"
-                    height="30px"
-                    alt="icons"
-                    className="icons"
-                  />
-                </div>
-                <div>Afterward</div>
-                {/* <div>Use</div> */}
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
+        {ecoval > 0 ? (
+          <div>
+            <div>
+              {products_in != null && products_in.length > 0 ? (
+                <div>
+                  <Link
+                    to={{
+                      pathname: `/detail/`,
+                      state: {
+                        name: products_in[0][1],
+                        price: products_in[0][2],
+                        imgg: products_in[0][e_length],
+                        link: products_in[0][e_length + 2],
+                        ecoval: Number(products_in[0][e_length + 1]),
+                        idx: products_in[0][e_length + 3],
+                      },
+                    }}
+                  >
+                    <img
+                      alt="product_img"
+                      className="oone"
+                      src={products_in[0][elements.length]}
+                      width="250px"
+                      onClick={() => {
+                        setProductId(0);
+                      }}
+                    ></img>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/detail/`,
+                      state: {
+                        name: products_in[1][1],
+                        price: products_in[1][2],
+                        imgg: products_in[1][e_length],
+                        link: products_in[1][e_length + 2],
+                        ecoval: Number(products_in[1][e_length + 1]),
+                        idx: products_in[1][e_length + 3],
+                      },
+                    }}
+                  >
+                    <img
+                      alt="product_img"
+                      className="two"
+                      src={products_in[1][elements.length]}
+                      width="250px"
+                      onClick={() => {
+                        setProductId(1);
+                      }}
+                    ></img>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/detail/`,
+                      state: {
+                        name: products_in[2][1],
+                        price: products_in[2][2],
+                        imgg: products_in[2][e_length],
+                        link: products_in[2][e_length + 2],
+                        ecoval: Number(products_in[2][e_length + 1]),
+                        idx: products_in[2][e_length + 3],
+                      },
+                    }}
+                  >
+                    <img
+                      alt="product_img"
+                      className="two"
+                      src={products_in[2][elements.length]}
+                      width="250px"
+                      onClick={() => {
+                        setProductId(2);
+                      }}
+                    ></img>
+                  </Link>
+                </div>
+              ) : null}
+            </div>
+            <div className="table3">
+              {products_in != null &&
+              products_in.length > 0 &&
+              product_id != null ? (
+                <table>
+                  <thead> {cgg} </thead>
+                  <tbody>
+                    {products_in[product_id].map((val, index) =>
+                      index != 0 && index < e_length ? (
+                        <tr>
+                          <td className="first_col" id="factors">
+                            {' '}
+                            {elements[index]}{' '}
+                          </td>
+                          <td
+                            className="second_col"
+                            id={index == 1 ? 'green1' : 'notgreen'}
+                          >
+                            {' '}
+                            {products_in[0][index]}{' '}
+                          </td>{' '}
+                          <td
+                            className="second_col"
+                            id={index == 1 ? 'green1' : 'notgreen'}
+                          >
+                            {' '}
+                            {products_in[1][index]}{' '}
+                          </td>
+                          <td
+                            className="second_col"
+                            id={index == 1 ? 'green1' : 'notgreen'}
+                          >
+                            {' '}
+                            {products_in[2][index]}{' '}
+                          </td>
+                        </tr>
+                      ) : null
+                    )}
+                  </tbody>
+                </table>
+              ) : null}
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div>
+              {products_in != null && products_in.length > 0 ? (
+                <div>
+                  <Link
+                    to={{
+                      pathname: `/detail/`,
+                      state: {
+                        name: products_in[product_id][1],
+                        price: products_in[product_id][2],
+                        imgg: products_in[product_id][e_length],
+                        link: products_in[product_id][e_length + 2],
+                        ecoval: Number(products_in[product_id][e_length + 1]),
+                        idx: products_in[product_id][e_length + 3],
+                      },
+                    }}
+                  >
+                    <img
+                      alt="product_img"
+                      className="one"
+                      src={img}
+                      width="250px"
+                      onclick={() => {}}
+                    ></img>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/detail/`,
+                      state: {
+                        name: products_in[0][1],
+                        price: products_in[0][2],
+                        imgg: products_in[0][e_length],
+                        link: products_in[0][e_length + 2],
+                        ecoval: Number(products_in[0][e_length + 1]),
+                        idx: products_in[0][e_length + 3],
+                      },
+                    }}
+                  >
+                    <img
+                      className="two"
+                      alt="product_img"
+                      src={products_in[0][elements.length]}
+                      width="250px"
+                      onClick={() => {
+                        setProductId(0);
+                      }}
+                    ></img>
+                  </Link>
+                </div>
+              ) : null}
+            </div>
+            <div>
+              {products_in != null &&
+              products_in.length > 0 &&
+              product_id != null ? (
+                <table>
+                  <thead> {cgg} </thead>
+                  <tbody>
+                    {products_in[product_id].map((val, index) =>
+                      index != 0 && index < e_length ? (
+                        <tr>
+                          <td className="first_col" id="factors">
+                            {' '}
+                            {elements[index]}{' '}
+                          </td>
+                          <td className="second_col"> {val} </td>
+                          <td className="third_col" id="green1">
+                            {' '}
+                            {products_in[dominant][index]}{' '}
+                          </td>
+                        </tr>
+                      ) : null
+                    )}
+                  </tbody>
+                </table>
+              ) : null}
+            </div>
+          </div>
+        )}
       </div>
-      {ecoval > 0 ? (
-        <div>
-          <div>
-            {products_in != null && products_in.length > 0 ? (
-              <div>
-                <Link
-                  to={{
-                    pathname: `/detail/`,
-                    state: {
-                      name: products_in[0][1],
-                      price: products_in[0][2],
-                      imgg: products_in[0][e_length],
-                      link: products_in[0][e_length + 2],
-                      ecoval: Number(products_in[0][e_length + 1]),
-                      idx: products_in[0][e_length + 3],
-                    },
-                  }}
-                >
-                  <img
-                    alt="product_img"
-                    className="oone"
-                    src={products_in[0][elements.length]}
-                    width="250px"
-                    onClick={() => {
-                      setProductId(0);
-                    }}
-                  ></img>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/detail/`,
-                    state: {
-                      name: products_in[1][1],
-                      price: products_in[1][2],
-                      imgg: products_in[1][e_length],
-                      link: products_in[1][e_length + 2],
-                      ecoval: Number(products_in[1][e_length + 1]),
-                      idx: products_in[1][e_length + 3],
-                    },
-                  }}
-                >
-                  <img
-                    alt="product_img"
-                    className="two"
-                    src={products_in[1][elements.length]}
-                    width="250px"
-                    onClick={() => {
-                      setProductId(1);
-                    }}
-                  ></img>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/detail/`,
-                    state: {
-                      name: products_in[2][1],
-                      price: products_in[2][2],
-                      imgg: products_in[2][e_length],
-                      link: products_in[2][e_length + 2],
-                      ecoval: Number(products_in[2][e_length + 1]),
-                      idx: products_in[2][e_length + 3],
-                    },
-                  }}
-                >
-                  <img
-                    alt="product_img"
-                    className="two"
-                    src={products_in[2][elements.length]}
-                    width="250px"
-                    onClick={() => {
-                      setProductId(2);
-                    }}
-                  ></img>
-                </Link>
-              </div>
-            ) : null}
-          </div>
-          <div className="table3">
-            {products_in != null &&
-            products_in.length > 0 &&
-            product_id != null ? (
-              <table>
-                <thead> {cgg} </thead>
-                <tbody>
-                  {products_in[product_id].map((val, index) =>
-                    index != 0 && index < e_length ? (
-                      <tr>
-                        <td className="first_col" id="factors">
-                          {' '}
-                          {elements[index]}{' '}
-                        </td>
-                        <td
-                          className="second_col"
-                          id={index == 1 ? 'green1' : 'notgreen'}
-                        >
-                          {' '}
-                          {products_in[0][index]}{' '}
-                        </td>{' '}
-                        <td
-                          className="second_col"
-                          id={index == 1 ? 'green1' : 'notgreen'}
-                        >
-                          {' '}
-                          {products_in[1][index]}{' '}
-                        </td>
-                        <td
-                          className="second_col"
-                          id={index == 1 ? 'green1' : 'notgreen'}
-                        >
-                          {' '}
-                          {products_in[2][index]}{' '}
-                        </td>
-                      </tr>
-                    ) : null
-                  )}
-                </tbody>
-              </table>
-            ) : null}
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div>
-            {products_in != null && products_in.length > 0 ? (
-              <div>
-                <Link
-                  to={{
-                    pathname: `/detail/`,
-                    state: {
-                      name: products_in[product_id][1],
-                      price: products_in[product_id][2],
-                      imgg: products_in[product_id][e_length],
-                      link: products_in[product_id][e_length + 2],
-                      ecoval: Number(products_in[product_id][e_length + 1]),
-                      idx: products_in[product_id][e_length + 3],
-                    },
-                  }}
-                >
-                  <img
-                    alt="product_img"
-                    className="one"
-                    src={img}
-                    width="250px"
-                    onclick={() => {}}
-                  ></img>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/detail/`,
-                    state: {
-                      name: products_in[0][1],
-                      price: products_in[0][2],
-                      imgg: products_in[0][e_length],
-                      link: products_in[0][e_length + 2],
-                      ecoval: Number(products_in[0][e_length + 1]),
-                      idx: products_in[0][e_length + 3],
-                    },
-                  }}
-                >
-                  <img
-                    className="two"
-                    alt="product_img"
-                    src={products_in[0][elements.length]}
-                    width="250px"
-                    onClick={() => {
-                      setProductId(0);
-                    }}
-                  ></img>
-                </Link>
-              </div>
-            ) : null}
-          </div>
-          <div>
-            {products_in != null &&
-            products_in.length > 0 &&
-            product_id != null ? (
-              <table>
-                <thead> {cgg} </thead>
-                <tbody>
-                  {products_in[product_id].map((val, index) =>
-                    index != 0 && index < e_length ? (
-                      <tr>
-                        <td className="first_col" id="factors">
-                          {' '}
-                          {elements[index]}{' '}
-                        </td>
-                        <td className="second_col"> {val} </td>
-                        <td className="third_col" id="green1">
-                          {' '}
-                          {products_in[dominant][index]}{' '}
-                        </td>
-                      </tr>
-                    ) : null
-                  )}
-                </tbody>
-              </table>
-            ) : null}
-          </div>
-        </div>
-      )}
-      </div>
-      
     </div>
   );
 }

@@ -4,23 +4,43 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NavBar from './NavBar';
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import configureStore from './config/store';
+const {store, persistor} = configureStore();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <NavBar />
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <PersistGate laoding={null} persistor={persistor}>
+      <NavBar />
+      <App />
+    </PersistGate>
+  </Provider>,
   document.getElementById('root')
 );
 
 // ReactDOM.render(
 //   <React.StrictMode>
+//     <NavBar />
+//     <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+// store.subscribe(()=> {
+//   console.log(store.getState())
+//   // debugger;
+// })
+
+// ReactDOM.render(
+//   <React.StrictMode>
 //     <Provider store = {store}>
 //       <PersistGate loading={null} persistor={persistor}>
+//         <NavBar />
 //         <App />
 //       </PersistGate>
 //     </Provider>
-//   </React.StrictMode>,
+//   </React.StrictMode>
+//   ,
 //   document.getElementById('root')
 // );
 

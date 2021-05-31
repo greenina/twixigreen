@@ -9,6 +9,7 @@ import Register from './components/Register';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 
+
 function App() {
   return (
     <BrowserRouter>

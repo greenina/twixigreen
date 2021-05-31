@@ -1,9 +1,8 @@
 export const USER = 'USER'
 
-export const setUser = (user) =>({//action creater
-  type:USER,
-  user:user
-})
+export const setUser = (email) =>{return {//action creater
+  type:USER
+}}
 
 const initialState = {
   user: '1', //default
@@ -18,7 +17,7 @@ const user = (state = initialState, action) => {//reducer
     case USER:
       return{
         ...state,
-        user:action.user
+        user:"igreen"
       }
     default:
       return state

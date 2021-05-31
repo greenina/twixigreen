@@ -22,9 +22,10 @@ function MyPage() {
   const [overlayInfo, setOverlayInfo] = useState([]);
   const [recArray, setRecArray] = useState([]);
   const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState('1')
+  const [comp, setComp] = useState('Bukkuk');
   //const [mail,setMail] = useState('1')
   const mail = useSelector(state => state.user.user)
-  console.log("maillll",useSelector(state => state.user))
   var del_idx = [];
   var timer;
   var delay = 1000;
@@ -40,9 +41,11 @@ function MyPage() {
     firebaseApp.auth().onAuthStateChanged(function(user) {
       if (user) {
         setSignIn(true);
+        setEmail(user.email)
       } 
       else{
         setSignIn(false)
+        setEmail('1')
       }
     });
     db.collection('companion')
@@ -77,7 +80,7 @@ function MyPage() {
   }, []);
 
   useEffect(() => {
-    var infos = ['name', 'wished', 'experience', 'score'];
+    var infos = ['name', 'wished', 'experience', 'score','comp'];
     clearTimeout(timer);
     var bukkuk = document.getElementById('companion_gif');
     // console.log(bukkuk);
@@ -87,36 +90,37 @@ function MyPage() {
     }
 
     db.collection('users')
-      .doc(mail)
+      .doc(email)
       .get()
       .then(function (doc) {
         let docs = doc.data();
-        setUserInfo([]);
-        for (var i = 0; i < Object.keys(docs).length; i++) {
-          let dic = userInfo;
-          dic[infos[i]] = docs[infos[i]];
-          setUserInfo(dic);
-        }
+        console.log("docc",docs)
+        setUserInfo(docs);
+        // for (var i = 0; i < Object.keys(docs).length; i++) {
+        //   let dic = userInfo;
+        //   dic[infos[i]] = docs[infos[i]];
+        //   setUserInfo(dic);
+        // }
 
         var tmpScore = 0;
-        for (i = 0; i < userInfo['wished'].length; i++) {
-          tmpScore += products[userInfo['wished'][i]]['eco'];
-        }
-        if (userInfo['wished'].length > 0) {
-          setScore(Math.round(tmpScore / userInfo['wished'].length));
-          // var
-          // db.collection('users').doc('1').set()
-        } else setScore(4);
-        console.log(
+        console.log("userInfo",userInfo)
+        if(docs['wished'].length>0){
+          for (var i = 0; i < docs['wished'].length; i++) {
+            tmpScore += products[docs['wished'][i]]['eco'];
+            console.log("tmpScore",tmpScore)
+          }
+          setScore(Math.round(tmpScore / docs['wished'].length));
+          console.log(
           "user's eco score",
-          Math.round(tmpScore / userInfo['wished'].length)
+          Math.round(tmpScore / docs['wished'].length)
         );
-        console.log('userInfo', userInfo);
-        setWishes(userInfo['wished'].length);
+        }else setScore(4);
+        console.log('userInfo', docs);
+        setWishes(docs['wished'].length);
 
         if (first == 0) {
           setFirst(1);
-          setPrinted(userInfo['wished']);
+          setPrinted(docs['wished']);
           console.log('printed wishlist changed');
           //debugger;
         }
@@ -126,13 +130,10 @@ function MyPage() {
         console.log(':::::::::::::', score, userInfo);
         //debugger;
 
-        var tmpDic = userInfo;
-
-        console.log(userInfo);
+        var tmpDic = docs;
         tmpDic['score'] = score;
-        console.log(userInfo);
         //debugger;
-        db.collection('users').doc(mail).set(tmpDic);
+        db.collection('users').doc(email).set(tmpDic);
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -250,7 +251,7 @@ function MyPage() {
     ttmp['wished'].splice(index, 0, val);
 
     db.collection('users')
-      .doc(mail)
+      .doc(email)
       .set(ttmp)
       .then(() => {
         var current_wish = wishes + 1;
@@ -268,7 +269,7 @@ function MyPage() {
         tmpDic['score'] = score;
         console.log(userInfo);
         //debugger;
-        db.collection('users').doc(mail).set(tmpDic);
+        db.collection('users').doc(email).set(tmpDic);
       });
 
     setOverlayInfo([]);
@@ -310,12 +311,12 @@ function MyPage() {
         <div>
           {signIn?(overlayMode == 0 ? (
             <div className="overlayBox">
-              Your Eco Score: {score == 4 ? '2' : score} | Bukkuk's State:{' '}
+              Your Eco Score: {score == 4 ? '2' : score} | {comp}'s State:{' '}
               {states[score]}
             </div>
           ) : overlayMode == 1 ? (
             <div>
-              <div className="overlayBox"> Bukkuk loves this product !</div>
+              <div className="overlayBox"> {comp} loves this product !</div>
               {overlayInfo[0] != null &&
               '0' <= overlayInfo[0] &&
               overlayInfo <= '9' &&
@@ -348,7 +349,7 @@ function MyPage() {
             </div>
           ) : (
             <div>
-              <div className="overlayBox"> Bukkuk's recommendations !</div>
+              <div className="overlayBox"> {comp}'s recommendations !</div>
               {/* {overlayInfo[0] != null && overlayInfo[0].length > 1 ? ( */}
               <div className="rshowing" id="showrec">
                 {/* <div> {recArray.length} </div> */}

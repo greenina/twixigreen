@@ -1,7 +1,7 @@
 import './style.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
-import { db } from '../../firebase';
+import { db, firebaseApp } from '../../firebase';
 import RecProduct from '../RecProduct';
 import { Button } from '@material-ui/core';
 import { facials_element, facials } from './product_array';
@@ -34,6 +34,8 @@ function DetailPage(props) {
   const [e_length, setELength] = useState(0);
   const [elements, setElements] = useState([]);
   const [products_in, setProductIn] = useState([]);
+  const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState('1')
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
   // const [triDominant, setTriDominant] = useState(0);
@@ -77,7 +79,7 @@ function DetailPage(props) {
     }
     setClick(!isClick);
     setWished(wished);
-    db.collection('users').doc('1').update({
+    db.collection('users').doc(email).update({
       wished: wished,
     });
     setStatus(
@@ -214,7 +216,7 @@ function DetailPage(props) {
                 console.log('::::::::', doc2.data()['stage']);
               });
             db.collection('users')
-              .doc('1')
+              .doc(email)
               .get()
               .then(function (docc) {
                 var docs = docc.data();
@@ -259,8 +261,13 @@ function DetailPage(props) {
   }, [product_id]);
 
   useEffect(() => {
-    console.log('page re-rendered');
-  }, [product_id]);
+    firebaseApp.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        setSignIn(true);
+        setEmail(user.email)
+      } 
+    });
+  }, []);
 
   const mvPage = () => {
     let parentCat =

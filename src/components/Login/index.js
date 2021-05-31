@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { db, firebaseApp } from '../../firebase';
 import {useHistory} from 'react-router-dom'
-import setUser from '../../reducers/action'//action creator
+import setUser from '../../reducers/user'//action creator
 import user from '../../reducers/user'
 
 function Login(){
@@ -15,6 +15,7 @@ function Login(){
   const[success, setSuccess] = useState();
   const[error, setError] = useState("");
   let history = useHistory();
+  const selector = useSelector((store)=>store.user.user)
   const dispatch = useDispatch();
 
   var changeEmail = (e) =>{
@@ -22,6 +23,9 @@ function Login(){
   }
   var changePwd = (e) =>{
       setPwd(e.target.value)
+  }
+  var goRegister = () =>{
+    history.replace('register')
   }
 
 
@@ -33,7 +37,7 @@ function Login(){
     // Signed in
     var user = userCredential.user;
     console.log("user",user)
-    dispatch(setUser(email));
+    //dispatch(setUser());
     history.replace('/');
     // ...
   })
@@ -56,6 +60,7 @@ function Login(){
       <div  align="left" className="userid">pwd</div>
                 <input  onChange={changePwd} value={pwd} name="pwd" className="userPassword-input" type="text"/>
       <button className = 'submit' onClick={signinHandler}>login</button>
+      <button className = 'submit' onClick={goRegister}>register</button>
       
         
           {/* <Grid align="center"

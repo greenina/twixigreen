@@ -3,7 +3,7 @@ import './NavBar.css';
 import { db, firebaseApp } from './firebase';
 import {useEffect, useState} from 'react';
 import MyPage from './components/MyPage';
-import setUser from './reducers/action'
+import setUser from './reducers/user'
 import {useDispatch, useSelector} from 'react-redux'
 
 function NavBar() {
@@ -12,22 +12,26 @@ function NavBar() {
     document.location.href = '/';
   };
   const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState('1')
   var dispatch = useDispatch();
   const mail = useSelector(state => state.user.user)
 
   useEffect(()=>{
     firebaseApp.auth().onAuthStateChanged(function(user) {
-      console.log("user",user)
       if (user) {
         setSignIn(true);
+        setEmail(user.email)
       } 
     });
-  },[])
+  },[signIn])
   
   var logOut = () =>{
     firebaseApp.auth().signOut().then(() => {
    console.log("log out")
-   dispatch(setUser('1'));
+   //dispatch(setUser('1'));
+   setEmail('1')
+   setSignIn(false)
+   
     }).catch((error) => {
     // An error happened.
     });
@@ -61,7 +65,7 @@ function NavBar() {
           <button className="login">{signIn?"MyPage":"Login"}</button>
         </a>
         <button onClick={logOut}className="logout">Logout</button>
-        <div>{mail?mail:"undefined"}</div>
+        <div>{email!=1?email:"undefined"}</div>
       </header>
     </div>
   );

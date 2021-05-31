@@ -44,6 +44,8 @@ function Login(){
   });
 
   }
+  console.log("maillll",useSelector(state => state.user))
+  console.log("email",email)
 
 
   return(

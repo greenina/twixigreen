@@ -10,14 +10,18 @@ import configureStore from './config/store';
 const {store, persistor} = configureStore();
 
 ReactDOM.render(
+  <React.StrictMode>
   <Provider store={store}>
     <PersistGate laoding={null} persistor={persistor}>
       <NavBar />
       <App />
     </PersistGate>
-  </Provider>,
+  </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
+
+
 
 // ReactDOM.render(
 //   <React.StrictMode>

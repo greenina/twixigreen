@@ -5,11 +5,11 @@ const initialState = {
 }
 
 const user = (state = initialState, action) => {//reducer
-  if(state === undefined){
+  if(state.user === undefined){
     state = initialState;
     console.log("undefined!!")
   }
-  console.log("action.user",action.user)
+  console.log("action.user user.js",action.user)
    return{
         ...state,
         user:action.user

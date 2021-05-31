@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './style.css';
-import { db } from '../../firebase';
+import { db, firebaseApp } from '../../firebase';
 import React, { useState, useEffect } from 'react';
 import WishProduct from '../WishProduct';
 import CurProduct from '../CurProduct';
 import RecProduct from '../RecProduct';
 import Tippy from 'react-tooltip';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 function MyPage() {
   // const [img_num, setImgNum] = useState(0);
@@ -20,6 +21,10 @@ function MyPage() {
   const [overlayMode, setOverlay] = useState(0);
   const [overlayInfo, setOverlayInfo] = useState([]);
   const [recArray, setRecArray] = useState([]);
+  const [signIn, setSignIn] = useState(false);
+  //const [mail,setMail] = useState('1')
+  const mail = useSelector(state => state.user.user)
+  console.log("maillll",useSelector(state => state.user))
   var del_idx = [];
   var timer;
   var delay = 1000;
@@ -32,6 +37,14 @@ function MyPage() {
   ];
 
   useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        setSignIn(true);
+      } 
+      else{
+        setSignIn(false)
+      }
+    });
     db.collection('companion')
       .doc('bukkuk')
       .get()
@@ -74,7 +87,7 @@ function MyPage() {
     }
 
     db.collection('users')
-      .doc('1')
+      .doc(mail)
       .get()
       .then(function (doc) {
         let docs = doc.data();
@@ -119,7 +132,7 @@ function MyPage() {
         tmpDic['score'] = score;
         console.log(userInfo);
         //debugger;
-        db.collection('users').doc('1').set(tmpDic);
+        db.collection('users').doc(mail).set(tmpDic);
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -237,7 +250,7 @@ function MyPage() {
     ttmp['wished'].splice(index, 0, val);
 
     db.collection('users')
-      .doc('1')
+      .doc(mail)
       .set(ttmp)
       .then(() => {
         var current_wish = wishes + 1;
@@ -255,7 +268,7 @@ function MyPage() {
         tmpDic['score'] = score;
         console.log(userInfo);
         //debugger;
-        db.collection('users').doc('1').set(tmpDic);
+        db.collection('users').doc(mail).set(tmpDic);
       });
 
     setOverlayInfo([]);
@@ -276,7 +289,7 @@ function MyPage() {
         <div
           className="companion"
           data-tip={
-            score == 0
+            signIn && score == 0
               ? 'My home is melting down ...'
               : score == 1
               ? "You've never been Green before, have you?"
@@ -295,7 +308,7 @@ function MyPage() {
           ></img>
         </div>
         <div>
-          {overlayMode == 0 ? (
+          {signIn?(overlayMode == 0 ? (
             <div className="overlayBox">
               Your Eco Score: {score == 4 ? '2' : score} | Bukkuk's State:{' '}
               {states[score]}
@@ -369,7 +382,14 @@ function MyPage() {
               </div>
               {/* ) : null} */}
             </div>
-          )}
+          )):
+          <div>
+            <div className="overlayBox">
+              Welcome~! Register or Sign in!
+            </div>
+            
+          </div>}
+          
         </div>
       </div>
       <div className="wishlist">

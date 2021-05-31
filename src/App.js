@@ -14,11 +14,11 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={MainPage} />
+        <Route path="/main" exact component={MainPage} />
         <Route path="/category/:cg" exact component={CategoryPage} />
         <Route path="/detail" exact component={DetailPage} />
         <Route path="/register" exact component={Register} />
-        <Route path="/login" exact component={Login} />
+        <Route path="/" exact component={Login} />
         {/* <Route path="/detail/:name/:price/:img/:link" component={DetailPage} /> */}
         <Route exact path={ROUTES.MYPAGE} exact component={MyPage} />
         {/* <Redirect to="/" /> */}

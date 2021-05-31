@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from 'react-redux'
 function NavBar() {
   console.log("aaaa")
   const mv2main = () => {
-    document.location.href = '/';
+    document.location.href = '/main';
   };
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1')
@@ -61,9 +61,12 @@ function NavBar() {
             <li>|</li>
           </ul>
         </nav>
-        <a className="cta" href="/mypage">
-          <button className="login">{signIn?"MyPage":"Login"}</button>
-        </a>
+        {signIn?<a className="cta" href="/mypage">
+          <button className="login">MyPage</button>
+        </a>:<a className="cta" href="/">
+          <button className="login">Login</button>
+        </a>}
+        
         <button onClick={logOut}className="logout">Logout</button>
         <div>{email!=1?email:"undefined"}</div>
       </header>

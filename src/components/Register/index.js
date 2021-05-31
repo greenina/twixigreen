@@ -57,7 +57,7 @@ function Register(){
           wished:[]
         })
         console.log("name",name)
-        history.replace('/login');
+        history.replace('/');
       })
       .catch((error)=>{
         console.log("mode",mode)

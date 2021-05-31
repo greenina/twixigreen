@@ -11,7 +11,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user,
-
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);	// 추가

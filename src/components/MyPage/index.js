@@ -311,12 +311,12 @@ function MyPage() {
         <div>
           {signIn?(overlayMode == 0 ? (
             <div className="overlayBox">
-              Your Eco Score: {score == 4 ? '2' : score} | {comp}'s State:{' '}
+              Your Eco Score: {score == 4 ? '2' : score} | {userInfo.comp}'s State:{' '}
               {states[score]}
             </div>
           ) : overlayMode == 1 ? (
             <div>
-              <div className="overlayBox"> {comp} loves this product !</div>
+              <div className="overlayBox"> {userInfo.comp} loves this product !</div>
               {overlayInfo[0] != null &&
               '0' <= overlayInfo[0] &&
               overlayInfo <= '9' &&
@@ -349,7 +349,7 @@ function MyPage() {
             </div>
           ) : (
             <div>
-              <div className="overlayBox"> {comp}'s recommendations !</div>
+              <div className="overlayBox"> {userInfo.comp}'s recommendations !</div>
               {/* {overlayInfo[0] != null && overlayInfo[0].length > 1 ? ( */}
               <div className="rshowing" id="showrec">
                 {/* <div> {recArray.length} </div> */}

@@ -28,7 +28,6 @@ function Login(){
     history.replace('register')
   }
 
-
   const signinHandler = () => {
     console.log("email",email)
     console.log("pwd",pwd)
@@ -38,7 +37,7 @@ function Login(){
     var user = userCredential.user;
     console.log("user",user)
     //dispatch(setUser());
-    history.replace('/');
+    history.replace('/main');
     // ...
   })
   .catch((error) => {

@@ -52,9 +52,7 @@ function DetailPage(props) {
   const ecoval = props.location.state.ecoval;
   var value = '';
   var cgg = '';
-  // var product_id = 0;
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
-  // console.log('num', idx + 1);
   var avg = function (list) {
     var sum = 0;
     for (var i = 0; i < list.length; i++) {
@@ -62,6 +60,18 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
+
+  useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        setSignIn(true);
+        setEmail(user.email);
+      } else {
+        setSignIn(false);
+        setEmail('1');
+      }
+    });
+  }, []);
 
   var heartClick = function (e) {
     // console.log('heartIdd', idd);
@@ -258,16 +268,7 @@ function DetailPage(props) {
         tdic[4] = img_src[2];
         // console.log('companion img source list', img_src);
       });
-  }, [product_id]);
-
-  useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        setSignIn(true);
-        setEmail(user.email);
-      }
-    });
-  }, []);
+  }, [product_id, email]);
 
   const mvPage = () => {
     let parentCat =

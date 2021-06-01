@@ -2,7 +2,7 @@ import './style.css';
 import { db, firebaseApp } from '../../firebase';
 import React, { useEffect, useState } from 'react';
 import Tippy from 'react-tooltip';
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 //import Switch from './Switch';
 
 function MainPage() {
@@ -11,7 +11,7 @@ function MainPage() {
   const [products, setProducts] = useState({});
   const [score, setScore] = useState(0);
   const [signIn, setSignIn] = useState(true);
-  const [email,setEmail] = useState('1')
+  const [email, setEmail] = useState('1');
   //const [overlayMode, setOverlay] = useState(0);
   //const [overlayInfo, setOverlayInfo] = useState([]);
   //const [recArray, setRecArray] = useState([]);
@@ -21,16 +21,17 @@ function MainPage() {
   var dispatch = useDispatch();
 
   useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged(function(user) {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
       if (user) {
         setSignIn(true);
-        setEmail(user.email)
-      } 
-      else{
-        setSignIn(false)
-        setEmail('1')
+        setEmail(user.email);
+      } else {
+        setSignIn(false);
+        setEmail('1');
       }
     });
+  }, []);
+  useEffect(() => {
     db.collection('companion')
       .doc('bukkuk')
       .get()
@@ -73,7 +74,7 @@ function MainPage() {
       .doc(email)
       .get()
       .then(function (doc) {
-        console.log("doc",doc)
+        console.log('doc', doc);
         let docs = doc.data();
         setUserInfo([]);
         //console.log("wished list",docs['wished'])
@@ -101,7 +102,7 @@ function MainPage() {
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [email]);
 
   const resizeArea = (data) => {
     const winWidth = document.body.offsetWidth;
@@ -479,7 +480,7 @@ function MainPage() {
             <img
               id="companion-mp"
               className="companion-mp"
-              src={img_src[score]} //"https://ifh.cc/g/d7BZO6.png"//{img_src[score]}
+              src={img_src[score]}
               alt="companion"
               key={score}
               margin-left="-15%"
@@ -496,16 +497,5 @@ function MainPage() {
     </div>
   );
 }
-
-/*<div className="companion">
-<img
-  id="bukkuk"
-  className="companion_gif"
-  src={img_src[score]}
-  alt="companion"
-  key={score}
-></img>
-</div>
-*/
 
 export default MainPage;

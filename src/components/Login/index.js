@@ -15,6 +15,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { styled } from '@material-ui/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Input from '@material-ui/core/Input';
 
 const MyButton = styled(Button)({
   background: 'green',
@@ -60,6 +65,21 @@ function Login() {
   let history = useHistory();
   const selector = useSelector((store) => store.user.user);
   const dispatch = useDispatch();
+
+  const [values, setValues] = React.useState({
+    password: '',
+    showPassword: false,
+  });
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+    setPwd(event.target.value);
+  };
 
   var changeEmail = (e) => {
     setEmail(e.target.value);
@@ -117,25 +137,33 @@ function Login() {
             </Typography>
             <form className={classes.form} noValidate>
               <Grid item xs={12} sm={60}>
-                <TextField
-                  required
+                <Input
+                  className="input_login"
                   onChange={changeEmail}
-                  value={email}
-                  id="firstName"
-                  name="firstName"
-                  label="email"
-                  fullWidth
+                  placeholder="email *"
                 />
               </Grid>
               <Grid item xs={12} sm={60}>
-                <TextField
-                  required
-                  onChange={changePwd}
-                  value={pwd}
-                  id="firstName"
-                  name="firstName"
-                  label="password"
-                  fullWidth
+                <Input
+                  className="input_login"
+                  type={values.showPassword ? 'text' : 'password'}
+                  onChange={handlePasswordChange('password')}
+                  value={values.password}
+                  placeholder="password *"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={60}>

@@ -14,6 +14,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { styled } from '@material-ui/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Input from '@material-ui/core/Input';
 
 const MyButton = styled(Button)({
   background: 'green',
@@ -170,6 +175,42 @@ function Register() {
     }
   };
 
+  const [values, setValues] = React.useState({
+    password: '',
+    showPassword: false,
+  });
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+    setPwd(event.target.value);
+  };
+
+  const [values2, setValues2] = React.useState({
+    password: '',
+    showPassword2: false,
+  });
+  const handleClickShowPassword2 = () => {
+    setValues2({ ...values2, showPassword2: !values2.showPassword2 });
+  };
+  const handleMouseDownPassword2 = (event) => {
+    event.preventDefault();
+  };
+  const handlePasswordChange2 = (prop) => (event) => {
+    setValues2({ ...values2, [prop]: event.target.value });
+
+    event.preventDefault();
+    if (pwd === event.target.value) {
+      setMode(true);
+    } else {
+      setMode(false);
+    }
+  };
+
   return (
     <div className="recruit">
       <Container component="main" maxWidth="xs">
@@ -180,35 +221,52 @@ function Register() {
           </Typography>
           <form className={classes.form} noValidate>
             <Grid item xs={12} sm={60}>
-              <TextField
-                required
+              <Input
+                className="input_login"
                 onChange={changeEmail}
-                value={email}
-                id="firstName"
-                name="firstName"
-                label="email"
-                fullWidth
+                placeholder="email *"
               />
             </Grid>
             <Grid item xs={12} sm={60}>
-              <TextField
-                required
-                onChange={changePwd}
-                value={pwd}
-                id="firstName"
-                name="firstName"
-                label="password"
-                fullWidth
+              <Input
+                className="input_login"
+                type={values.showPassword ? 'text' : 'password'}
+                onChange={handlePasswordChange('password')}
+                value={values.password}
+                placeholder="password *"
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
             </Grid>
             <Grid item xs={12} sm={60}>
-              <TextField
-                required
-                onChange={passwordHandler}
-                id="firstName"
-                name="firstName"
-                label="confirm password"
-                fullWidth
+              <Input
+                className="input_login"
+                type={values2.showPassword2 ? 'text' : 'password'}
+                onChange={handlePasswordChange2('password')}
+                value={values2.password}
+                placeholder="password confirm *"
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword2}
+                      onMouseDown={handleMouseDownPassword2}
+                    >
+                      {values2.showPassword2 ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
             </Grid>
             {/* {mode?<div></div>:<div></div>} */}
@@ -218,25 +276,17 @@ function Register() {
               <div className="red">pwd doesn't match</div>
             )}
             <Grid item xs={12} sm={60}>
-              <TextField
-                required
+              <Input
+                className="input_login"
                 onChange={changeName}
-                value={name}
-                id="firstName"
-                name="firstName"
-                label="name"
-                fullWidth
+                placeholder="name *"
               />
             </Grid>
             <Grid item xs={12} sm={60}>
-              <TextField
-                required
+              <Input
+                className="input_login"
                 onChange={changeComp}
-                value={comp}
-                id="firstName"
-                name="firstName"
-                label="companion"
-                fullWidth
+                placeholder="companion name *"
               />
             </Grid>
             <Grid item xs={12} sm={60}>

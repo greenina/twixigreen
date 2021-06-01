@@ -214,7 +214,8 @@ function Register(){
               fullWidth
             />
           </Grid>
-          {mode?<div className="green">pwd matches</div>:<div className="red">pwd doesn't match</div>}
+          {/* {mode?<div></div>:<div></div>} */}
+          {mode?<div>pwd matches</div>:<div className="red">pwd doesn't match</div>}
           <Grid item xs={12} sm={60}>
             <TextField
               required

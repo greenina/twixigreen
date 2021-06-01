@@ -1,4 +1,21 @@
-.root{
-    display: flex;
-    flex-direction: row;
+.root {
+  /* display: flex; */
+  position: fixed;
+  margin-left: 45vw;
+  margin-top: 20vh;
+  width: 500px;
+  flex-direction: row;
+}
+
+.login_comp {
+  position: fixed;
+  margin-top: 20vh;
+  margin-left: 25vw;
+}
+
+.explain {
+  position: fixed;
+  margin-top: 15vh;
+
+  margin-left: 27vw;
 }

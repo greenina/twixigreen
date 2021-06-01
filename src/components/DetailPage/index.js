@@ -35,7 +35,7 @@ function DetailPage(props) {
   const [elements, setElements] = useState([]);
   const [products_in, setProductIn] = useState([]);
   const [signIn, setSignIn] = useState(false);
-  const [email, setEmail] = useState('1')
+  const [email, setEmail] = useState('1');
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
   // const [triDominant, setTriDominant] = useState(0);
@@ -261,11 +261,11 @@ function DetailPage(props) {
   }, [product_id]);
 
   useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged(function(user) {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
       if (user) {
         setSignIn(true);
-        setEmail(user.email)
-      } 
+        setEmail(user.email);
+      }
     });
   }, []);
 
@@ -328,11 +328,10 @@ function DetailPage(props) {
           <a href="/mypage">
             <img
               id="bukkuk"
-              className="companion_gif"
+              className="d_companion_gif"
               src={img_src[score]}
               alt="companion"
               key={status}
-              margin-left="-10%"
             ></img>
           </a>
         </div>

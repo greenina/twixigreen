@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './style.css';
-import { db, firebaseApp ,firebase} from '../../firebase';
+import { db, firebaseApp, firebase } from '../../firebase';
 import React, { useState, useEffect } from 'react';
 import WishProduct from '../WishProduct';
 import CurProduct from '../CurProduct';
 import RecProduct from '../RecProduct';
 import Tippy from 'react-tooltip';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function MyPage() {
   // const [img_num, setImgNum] = useState(0);
@@ -22,10 +22,10 @@ function MyPage() {
   const [overlayInfo, setOverlayInfo] = useState([]);
   const [recArray, setRecArray] = useState([]);
   const [signIn, setSignIn] = useState(false);
-  const [email, setEmail] = useState('1')
+  const [email, setEmail] = useState('1');
   const [comp, setComp] = useState('Bukkuk');
   //const [mail,setMail] = useState('1')
-  const mail = useSelector(state => state.user.user)
+  const mail = useSelector((state) => state.user.user);
   var del_idx = [];
   var timer;
   var delay = 1000;
@@ -38,14 +38,12 @@ function MyPage() {
   ];
 
   useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged(function(user) {
-   
+    firebaseApp.auth().onAuthStateChanged(function (user) {
       if (user) {
         setSignIn(true);
-        
+
         setEmail(user.email);
-      } 
-      else{
+      } else {
         setSignIn(false);
         console('false');
         setEmail('1');
@@ -83,7 +81,7 @@ function MyPage() {
   }, []);
 
   useEffect(() => {
-    var infos = ['name', 'wished', 'experience', 'score','comp'];
+    var infos = ['name', 'wished', 'experience', 'score', 'comp'];
     clearTimeout(timer);
     var bukkuk = document.getElementById('companion_gif');
     // console.log(bukkuk);
@@ -91,13 +89,13 @@ function MyPage() {
     if (bukkuk != null && overlayMode != 0) {
       bukkuk.style = 'margin-left: 10%';
     }
-    
+
     db.collection('users')
       .doc(email)
       .get()
       .then(function (doc) {
         let docs = doc.data();
-        console.log("docc",docs)
+        console.log('docc', docs);
         setUserInfo(docs);
         // for (var i = 0; i < Object.keys(docs).length; i++) {
         //   let dic = userInfo;
@@ -106,26 +104,26 @@ function MyPage() {
         // }
 
         var tmpScore = 0;
-        console.log("userInfo",userInfo, email);
-        if(docs['wished'].length>0){
+        console.log('userInfo', userInfo, email);
+        if (docs['wished'].length > 0) {
           for (var i = 0; i < docs['wished'].length; i++) {
             tmpScore += products[docs['wished'][i]]['eco'];
-            console.log("tmpScore",tmpScore)
+            console.log('tmpScore', tmpScore);
           }
           setScore(Math.round(tmpScore / docs['wished'].length));
           console.log(
-          "user's eco score",
-          Math.round(tmpScore / docs['wished'].length)
-        );
-        }else setScore(4);
+            "user's eco score",
+            Math.round(tmpScore / docs['wished'].length)
+          );
+        } else setScore(4);
         console.log('userInfoandfirst', docs, first);
         setWishes(docs['wished'].length);
 
         if (first == 0) {
-            setPrinted(docs['wished']);
+          setPrinted(docs['wished']);
           console.log('printed wishlist changed');
           setFirst(1);
-          
+
           //debugger;
         }
         console.log('printed', printed);
@@ -149,7 +147,7 @@ function MyPage() {
     timer = setTimeout(function () {
       var bukkuk = document.getElementsByClassName('companion_gif')[0];
       console.log(bukkuk);
-      bukkuk.style = 'margin-left: 10%';
+      if (bukkuk != null) bukkuk.style = 'margin-left: 10%';
       if (products[val]['eco'] > 0) {
         // console.log(String(val));
         setOverlayInfo([val]);
@@ -313,88 +311,93 @@ function MyPage() {
           ></img>
         </div>
         <div>
-          {signIn?(overlayMode == 0 ? (
-            <div className="overlayBox">
-              Your Eco Score: {score == 4 ? '2' : score} | {userInfo.comp}'s State:{' '}
-              {states[score]}
-            </div>
-          ) : overlayMode == 1 ? (
-            <div>
-              <div className="overlayBox"> {userInfo.comp} loves this product !</div>
-              {overlayInfo[0] != null &&
-              '0' <= overlayInfo[0] &&
-              overlayInfo <= '9' &&
-              Object.keys(products[overlayInfo[0]]).includes('name') ? (
-                <div className="showing">
-                  <Link
-                    to={{
-                      pathname: `/detail/`,
-                      state: {
-                        name: products[overlayInfo[0]]['name'],
-                        price: products[overlayInfo[0]]['price'],
-                        imgg: products[overlayInfo[0]]['imgg'],
-                        link: products[overlayInfo[0]]['a'],
-                        ecoval: products[overlayInfo[0]]['eco'],
-                        idx: [overlayInfo[0]],
-                      },
-                    }}
-                  >
-                    <CurProduct
-                      name={products[overlayInfo[0]]['name']}
-                      price={products[overlayInfo[0]]['price']}
-                      imgg={products[overlayInfo[0]]['imgg']}
-                      a={products[overlayInfo[0]]['a']}
-                      ecoval={products[overlayInfo[0]]['eco']}
-                      idx={overlayInfo[0]}
-                    />
-                  </Link>
+          {signIn ? (
+            overlayMode == 0 ? (
+              <div className="overlayBox">
+                Your Eco Score: {score == 4 ? '2' : score} | {userInfo.comp}'s
+                State: {states[score]}
+              </div>
+            ) : overlayMode == 1 ? (
+              <div>
+                <div className="overlayBox">
+                  {' '}
+                  {userInfo.comp} loves this product !
                 </div>
-              ) : null}
-            </div>
-          ) : (
-            <div>
-              <div className="overlayBox"> {userInfo.comp}'s recommendations !</div>
-              {/* {overlayInfo[0] != null && overlayInfo[0].length > 1 ? ( */}
-              <div className="rshowing" id="showrec">
-                {/* <div> {recArray.length} </div> */}
-                {recArray.map((val, idx) => (
-                  <div key={val}>
+                {overlayInfo[0] != null &&
+                '0' <= overlayInfo[0] &&
+                overlayInfo <= '9' &&
+                Object.keys(products[overlayInfo[0]]).includes('name') ? (
+                  <div className="showing">
                     <Link
                       to={{
                         pathname: `/detail/`,
                         state: {
-                          name: products[val]['name'],
-                          price: products[val]['price'],
-                          imgg: products[val]['imgg'],
-                          link: products[val]['a'],
-                          ecoval: products[val]['eco'],
-                          idx: val,
+                          name: products[overlayInfo[0]]['name'],
+                          price: products[overlayInfo[0]]['price'],
+                          imgg: products[overlayInfo[0]]['imgg'],
+                          link: products[overlayInfo[0]]['a'],
+                          ecoval: products[overlayInfo[0]]['eco'],
+                          idx: [overlayInfo[0]],
                         },
                       }}
                     >
-                      <RecProduct
-                        name={products[val]['name']}
-                        price={products[val]['price']}
-                        imgg={products[val]['imgg']}
-                        a={products[val]['a']}
-                        ecoval={products[val]['eco']}
-                        idx={products[val]}
-                        wished={printed.includes(1)}
+                      <CurProduct
+                        name={products[overlayInfo[0]]['name']}
+                        price={products[overlayInfo[0]]['price']}
+                        imgg={products[overlayInfo[0]]['imgg']}
+                        a={products[overlayInfo[0]]['a']}
+                        ecoval={products[overlayInfo[0]]['eco']}
+                        idx={overlayInfo[0]}
                       />
                     </Link>
                   </div>
-                ))}
+                ) : null}
               </div>
-              {/* ) : null} */}
+            ) : (
+              <div>
+                <div className="overlayBox">
+                  {' '}
+                  {userInfo.comp}'s recommendations !
+                </div>
+                {/* {overlayInfo[0] != null && overlayInfo[0].length > 1 ? ( */}
+                <div className="rshowing" id="showrec">
+                  {/* <div> {recArray.length} </div> */}
+                  {recArray.map((val, idx) => (
+                    <div key={val}>
+                      <Link
+                        to={{
+                          pathname: `/detail/`,
+                          state: {
+                            name: products[val]['name'],
+                            price: products[val]['price'],
+                            imgg: products[val]['imgg'],
+                            link: products[val]['a'],
+                            ecoval: products[val]['eco'],
+                            idx: val,
+                          },
+                        }}
+                      >
+                        <RecProduct
+                          name={products[val]['name']}
+                          price={products[val]['price']}
+                          imgg={products[val]['imgg']}
+                          a={products[val]['a']}
+                          ecoval={products[val]['eco']}
+                          idx={products[val]}
+                          wished={printed.includes(1)}
+                        />
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+                {/* ) : null} */}
+              </div>
+            )
+          ) : (
+            <div>
+              <div className="overlayBox">Welcome~! Register or Sign in!</div>
             </div>
-          )):
-          <div>
-            <div className="overlayBox">
-              Welcome~! Register or Sign in!
-            </div>
-            
-          </div>}
-          
+          )}
         </div>
       </div>
       <div className="wishlist">

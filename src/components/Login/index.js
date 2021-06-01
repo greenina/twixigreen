@@ -7,15 +7,10 @@ import { db, firebaseApp } from '../../firebase';
 import {useHistory} from 'react-router-dom'
 import setUser from '../../reducers/user'//action creator
 import user from '../../reducers/user'
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -97,80 +92,53 @@ function Login(){
 
   return(
     <div className="root">
-      {/* <img src="/images/bukkuk.gif"/> */}
+      <img width="200px"src="/images/bukkuk.gif"/>
       <div>
-        {/* <div className="apply_title">Login</div>
-      <div  align="left" className="userid">email</div>
-                <input  onChange={changeEmail} value={email} name="email" className="userid-input" type="text"/>
-      <div  align="left" className="userid">pwd</div>
-                <input  onChange={changePwd} value={pwd} name="pwd" className="userPassword-input" type="text"/>
-      <button className = 'submit' onClick={signinHandler}>login</button>
-      <button className = 'submit' onClick={goRegister}>register</button> */}
-      <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid item xs={12} sm={60}>
-          <TextField
-            required
-            onChange={changeEmail} 
-            value={email}
-            id="firstName"
-            name="firstName"
-            label="email"
-            fullWidth
-            
-          />
-        </Grid>
-          <Grid item xs={12} sm={60}>
-          <TextField
-            required
-            onChange={changePwd} 
-            value={pwd}
-            id="firstName"
-            name="firstName"
-            label="password"
-            fullWidth
-          />
-        </Grid>
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
-          <Grid item xs={12} sm={60}>
-            <MyButton className = 'submit' color = 'secondary' className={classes.submit} onClick={signinHandler} fullWidth>
-              login
-            </MyButton>
+        <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changeEmail} 
+              value={email}
+              id="firstName"
+              name="firstName"
+              label="email"
+              fullWidth
+              
+            />
           </Grid>
-
-            
-
-          
-          {/* <Button
-            onClick={signinHandler}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button> */}
-          <Grid container>
-            <Grid item>
-              <Link onClick={goRegister}  variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+            <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changePwd} 
+              value={pwd}
+              id="firstName"
+              name="firstName"
+              label="password"
+              fullWidth
+            />
+          </Grid>
+            <Grid item xs={12} sm={60}>
+              <MyButton className = 'submit' color = 'secondary' className={classes.submit} onClick={signinHandler} fullWidth>
+                login
+              </MyButton>
             </Grid>
-          </Grid>
-        </form>
-      </div>
+
+            <Grid container>
+              <Grid item>
+                <Link onClick={goRegister}  >
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
     </Container>
       </div>
       

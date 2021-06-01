@@ -6,8 +6,47 @@ import { db, firebaseApp } from '../../firebase';
 import {useSelector, useDispatch} from 'react-redux';
 import setUser from '../../reducers/user'
 import {useHistory} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { styled } from '@material-ui/styles';
+
+
+const MyButton = styled(Button)({
+    background: 'green',
+    border: 0,
+    borderRadius: 3,
+    // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+});
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 function Register(){
+    const classes = useStyles();
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
@@ -17,7 +56,7 @@ function Register(){
     const [uid, setUid] = useState(null);
     const mail = useSelector(state => state.user.user)
     const [a, setA] = useState(mail);
-    const [comp, setComp] = useState("Bukkuk");
+    const [comp, setComp] = useState("");
     const [img, setImg] = useState([]);
     let history = useHistory();
 
@@ -34,6 +73,10 @@ function Register(){
   }
   var changeComp = (e) =>{
     setComp(e.target.value);
+  }
+
+  var goLogin = () =>{
+    history.replace('login')
   }
 
   var submitHandler = () =>{
@@ -118,8 +161,6 @@ function Register(){
 
   const signoutHandler = () => {
     firebaseApp.auth().signOut().then(() => {
-      // history.push('/login');
-
       console.log('firebase logout');
     })
   }
@@ -134,22 +175,85 @@ function Register(){
   }
 
     return(<div className="recruit">
-      <h1>{mail}</h1>
-          <div  align="left" className="userid">Email</div>
-                <input  onChange={changeEmail} value={email} name="email" className="userid-input" type="text"/>
-          <div  align="left" className="userid">password</div>
-                <input  onChange={changePwd} value={pwd} name="pwd" className="userPassword-input" type="text"/>
-          <div  align="left" className="userid">confirm password</div>
-                <input  onChange={passwordHandler}  name="userPasswordConfirm" className="userPassword-input" type="text"/>
-                {mode?<div className="green">pwd matches</div>:<div className="red">pwd doesn't match</div>}
-          <div  align="left" className="name">name</div>
-                <input  onChange={changeName} value={name} name="name" className="userPassword-input" type="text"/>
-          <div>
-            <img src={img}/>
-            <div>What will you name me?</div>
-                <input  onChange={changeComp} value={comp} name="comp" className="userPassword-input" type="text"/>
-          </div>
-          <button className = 'submit' onClick={submitHandler}>Sign up</button>
+              <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changeEmail} 
+              value={email}
+              id="firstName"
+              name="firstName"
+              label="email"
+              fullWidth
+            />
+          </Grid>
+            <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changePwd} 
+              value={pwd}
+              id="firstName"
+              name="firstName"
+              label="password"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={passwordHandler} 
+              id="firstName"
+              name="firstName"
+              label="confirm password"
+              fullWidth
+            />
+          </Grid>
+          {mode?<div className="green">pwd matches</div>:<div className="red">pwd doesn't match</div>}
+          <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changeName} 
+              value={name}
+              id="firstName"
+              name="firstName"
+              label="name"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changeComp} 
+              value={comp}
+              id="firstName"
+              name="firstName"
+              label="companion"
+              fullWidth
+            />
+          </Grid>
+            <Grid item xs={12} sm={60}>
+              <MyButton className = 'submit'onClick={submitHandler} color = 'secondary' className={classes.submit}  fullWidth>
+                sign up
+              </MyButton>
+            </Grid>
+
+            <Grid container>
+              <Grid item>
+                <Link href="/"  >
+                  {"Already have an account? Sign In"}
+                </Link>
+              </Grid>
+            </Grid>
+            {error}
+          </form>
+        </div>
+    </Container>
       </div>)
 }
 

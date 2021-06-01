@@ -36,6 +36,7 @@ function MyPage() {
     'adult_dance',
     'adult_good',
   ];
+  var show_states = ['Bad', 'Normal', 'Good', 'Dance', 'Good'];
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -314,7 +315,7 @@ function MyPage() {
             overlayMode == 0 ? (
               <div className="overlayBox">
                 Your Eco Score: {score == 4 ? '2' : score} | {userInfo.comp}'s
-                State: {states[score]}
+                State: {show_states[score]}
               </div>
             ) : overlayMode == 1 ? (
               <div>

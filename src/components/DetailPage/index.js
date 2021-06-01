@@ -245,7 +245,20 @@ function DetailPage(props) {
               .then(function (docc) {
                 var docs = docc.data();
                 setWished(docs['wished']);
-                setScore(docs['score']);
+
+                var tmpScore = 0;
+                if (docs['wished'].length > 0) {
+                  for (var i = 0; i < docs['wished'].length; i++) {
+                    tmpScore += products[docs['wished'][i]]['eco'];
+                    console.log('tmpScore', tmpScore);
+                  }
+                  setScore(Math.round(tmpScore / docs['wished'].length));
+                  console.log(
+                    "user's eco score",
+                    Math.round(tmpScore / docs['wished'].length)
+                  );
+                } else setScore(4);
+
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
               });
@@ -321,7 +334,7 @@ function DetailPage(props) {
             <img
               id="bukkuk"
               className="d_companion_gif"
-              src={0 >= score && score <= 4 ? img_src[score] : img_src[2]}
+              src={img_src[score]}
               alt="companion"
               key={status}
             ></img>

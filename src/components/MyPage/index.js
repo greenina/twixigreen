@@ -95,13 +95,7 @@ function MyPage() {
       .get()
       .then(function (doc) {
         let docs = doc.data();
-        console.log('docc', docs);
         setUserInfo(docs);
-        // for (var i = 0; i < Object.keys(docs).length; i++) {
-        //   let dic = userInfo;
-        //   dic[infos[i]] = docs[infos[i]];
-        //   setUserInfo(dic);
-        // }
 
         var tmpScore = 0;
         console.log('userInfo', userInfo, email);
@@ -221,22 +215,19 @@ function MyPage() {
       .then(() => {
         var current_wish = wishes - 1;
         setWishes(current_wish);
-        if (userInfo['wished'].length == 0) {
+        if (tmp['wished'].length == 0) {
           setScore(4);
         } else {
           var new_score = 0;
-          for (var i = 0; i < userInfo['wished'].length; i++) {
-            new_score += products[userInfo['wished'][i]['eco']];
+          for (var i = 0; i < tmp['wished'].length; i++) {
+            new_score += products[tmp['wished'][i]['eco']];
           }
-          setScore(Math.round(new_score / userInfo['wished'].length));
+          setScore(Math.round(new_score / tmp['wished'].length));
           console.log(':::::::::::::', score, userInfo);
           //debugger;
         }
         var tmpDic = userInfo;
-
-        console.log(userInfo);
-        tmpDic['score'] = score;
-        console.log(userInfo);
+        tmpDic['score'] = Math.round(new_score / tmp['wished'].length);
         //debugger;
         db.collection('users').doc(email).set(tmpDic);
       });
@@ -244,7 +235,6 @@ function MyPage() {
     setRecArray([]);
     setOverlay(0);
   };
-
   const heartOn = (e) => {
     e.preventDefault();
     var ttmp = userInfo;
@@ -257,18 +247,19 @@ function MyPage() {
       .set(ttmp)
       .then(() => {
         var current_wish = wishes + 1;
-        var new_score = 0;
-        for (var i = 0; i < userInfo['wished'].length; i++) {
-          new_score += products[userInfo['wished'][i]['eco']];
+        var newscore = 0;
+        for (var i = 0; i < ttmp['wished'].length; i++) {
+          newscore += products[ttmp['wished'][i]['eco']];
+          console.log('newscore', newscore);
         }
-        setScore(Math.round(new_score / userInfo['wished'].length));
+        setScore(Math.round(newscore / ttmp['wished'].length));
         setWishes(current_wish);
         // console.log(score, userInfo);
 
         var tmpDic = userInfo;
 
         console.log(userInfo);
-        tmpDic['score'] = score;
+        tmpDic['score'] = Math.round(newscore / ttmp['wished'].length);
         console.log(userInfo);
         //debugger;
         db.collection('users').doc(email).set(tmpDic);
@@ -277,6 +268,14 @@ function MyPage() {
     setOverlayInfo([]);
     setRecArray([]);
     setOverlay(0);
+
+    db.collection('users')
+      .doc(email)
+      .get()
+      .then(function (doc) {
+        let docs = doc.data();
+        console.log('docc', docs);
+      });
   };
 
   return (

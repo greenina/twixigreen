@@ -10,7 +10,7 @@ var email = '1';
 var signIn = true
 var wished=[]
 var score = 0
-
+var products = []
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ class CategoryPage extends React.Component {
     this.bukkuk = this.bukkuk.bind(this);
     this.bukkukthen = this.bukkukthen.bind(this);
     this.wishthen = this.wishthen.bind(this);
-    this.scorethen = this.scorethen.bind(this);
+    // this.scorethen = this.scorethen.bind(this);
     this.afteremaildownload=this.afteremaildownload.bind(this);
   }
   
@@ -62,36 +62,44 @@ class CategoryPage extends React.Component {
             email : email,
         }));
         console.log("user Email",this.state.email);
-        db.collection('users').doc(this.state.email).get().then(this.scorethen);
+       
+        // db.collection('users').doc(this.state.email).get().then(this.scorethen);
         db.collection('users').doc(this.state.email).get().then(this.wishthen);
-        this.setState(() => ({
-                score: score,
-                wishlist: wished,
-        },
-        ()=>{alert("callback")}
         
-        ));
-        this.datarefresh(this.props.cg);
+        
        
     
   }
-  scorethen(doc) {
-    {
-      let docs = doc.data();
-      this.setState(() => ({
-        score: docs['score'],
-      }));
-      console.log('::::::::::', this.state.score);
-    }
-  }
+//   scorethen(doc) {
+    
+//     //   let docs = doc.data();
+//     // //   this.setState(() => ({
+//     // //     score: docs['score'],
+//     // //   }));
+      
+//     //   score= docs['score'];
+//     //   console.log(score, '1');
+    
+//   }
+
+
   wishthen(doc) {
     // eslint-disable-next-line no-lone-blocks
-    {
+    
       let docs = doc.data();
       this.setState(() => ({
         wishlist: docs['wished'],
       }));
-    }
+    console.log(products);
+    
+    this.setState(() => ({
+        score: score,
+        wishlist: wished,
+},
+()=>{alert("callback")}
+
+));
+this.datarefresh(this.props.cg);
   }
   bukkukthen(doc) {
     var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
@@ -138,7 +146,8 @@ class CategoryPage extends React.Component {
         //alert(document.getElementById('pc'))
         snapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-
+          products[doc.id] = doc.data();
+        //  console.log(products);
           var vegan = document.getElementById('vegan').checked;
           var ap = document.getElementById('ap').checked;
           var harm = document.getElementById('harm').checked;
@@ -196,36 +205,38 @@ class CategoryPage extends React.Component {
           if (this.state.wishlist.includes('' + this.state.id[i])) {
             this.setState((prevState) => ({
               wished: [...prevState.wished, true],
+              
             }));
+            
+            
           } else
             this.setState((prevState) => ({
               wished: [...prevState.wished, false],
+              
             }));
         }
+        var tmpScore=0;
+    for (var i = 0; i < this.state.wishlist.length; i++) {
+        tmpScore += products[this.state.wishlist[i]]['eco'];
+        
+      }
+      score= Math.round(tmpScore / this.state.wishlist.length);
+        console.log(tmpScore, score, '2');
+        this.setState((prevState) => ({
+            score: Math.round(tmpScore / this.state.wishlist.length),
+            
+          }));
+        
       });
   }
-  // componentDidMount(){
-  //   firebaseApp.auth().onAuthStateChanged(function(user) {
-  //     if (user) {
-  //       this.setState(() => ({
-  //         email: user.email,
-  //         signIn:true
-  //       }));
-  //     } 
-  //     this.setState(() => ({
-  //         email: '1',
-  //         signIn:false
-  //     }));
-  //   });
-
-  // }
+  
   componentWillMount() {
     this.bukkuk();
 
     
     
-    //alert(this);
-    // console.log(this.state.img_src);
+    
+    
   }
   render() {
     // this.bukkuk();
@@ -321,7 +332,7 @@ class CategoryPage extends React.Component {
                   <img
                     id="bukkuk"
                     className="companion_gif"
-                    src={this.state.img_src[score]}
+                    src={this.state.img_src[this.state.score]}
                     alt="companion"
                     key={this.state.score}
                   ></img>

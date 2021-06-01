@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './style.css';
-import { db, firebaseApp } from '../../firebase';
+import { db, firebaseApp ,firebase} from '../../firebase';
 import React, { useState, useEffect } from 'react';
 import WishProduct from '../WishProduct';
 import CurProduct from '../CurProduct';
@@ -39,13 +39,16 @@ function MyPage() {
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function(user) {
+   
       if (user) {
         setSignIn(true);
-        setEmail(user.email)
+        
+        setEmail(user.email);
       } 
       else{
-        setSignIn(false)
-        setEmail('1')
+        setSignIn(false);
+        console('false');
+        setEmail('1');
       }
     });
     db.collection('companion')
@@ -88,7 +91,7 @@ function MyPage() {
     if (bukkuk != null && overlayMode != 0) {
       bukkuk.style = 'margin-left: 10%';
     }
-
+    
     db.collection('users')
       .doc(email)
       .get()
@@ -103,7 +106,7 @@ function MyPage() {
         // }
 
         var tmpScore = 0;
-        console.log("userInfo~!",userInfo)
+        console.log("userInfo",userInfo, email);
         if(docs['wished'].length>0){
           for (var i = 0; i < docs['wished'].length; i++) {
             tmpScore += products[docs['wished'][i]]['eco'];
@@ -115,14 +118,14 @@ function MyPage() {
           Math.round(tmpScore / docs['wished'].length)
         );
         }else setScore(4);
+        console.log('userInfoandfirst', docs, first);
         setWishes(docs['wished'].length);
 
         if (first == 0) {
-          setFirst(1);
-          setPrinted(docs['wished']);
-          console.log('userInfo[wished]', docs['wished']);
-          console.log('printed', printed);
+            setPrinted(docs['wished']);
           console.log('printed wishlist changed');
+          setFirst(1);
+          
           //debugger;
         }
         console.log('printed', printed);
@@ -203,6 +206,9 @@ function MyPage() {
   const heartOff = (e) => {
     e.preventDefault();
     var tmp = userInfo;
+    // console.log(tmp);
+    // debugger;
+    // console.log(e.target.parentElement.getAttribute('value'));
     var val = e.target.parentElement.getAttribute('value');
     var index = userInfo['wished'].indexOf(val);
     if (index !== -1) {
@@ -274,9 +280,6 @@ function MyPage() {
     setRecArray([]);
     setOverlay(0);
   };
-  useEffect(()=>{
-    console.log("printed~!",printed)
-  },[printed])
 
   return (
     <div className="entire">

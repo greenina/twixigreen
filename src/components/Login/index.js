@@ -8,6 +8,7 @@ import {useHistory} from 'react-router-dom'
 import setUser from '../../reducers/user'//action creator
 import user from '../../reducers/user'
 
+
 function Login(){
 
   const[email, setEmail] = useState();
@@ -47,12 +48,10 @@ function Login(){
   });
 
   }
-  console.log("maillll",useSelector(state => state.user))
-  console.log("email",email)
-
 
   return(
     <div className="recruit">
+      <img src="/images/bukkuk"/>
       <div className="apply_title">Login</div>
       <div  align="left" className="userid">email</div>
                 <input  onChange={changeEmail} value={email} name="email" className="userid-input" type="text"/>

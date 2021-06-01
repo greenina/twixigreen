@@ -202,7 +202,7 @@ function DetailPage(props) {
             console.log('::::::', elements, products_in);
             console.log('category', cgg, 'product_id', product_id);
             console.log(products_in[product_id]);
-            debugger;
+            //debugger;
           }
           /////////get product id, category///////////
           if (doc.data().name === name) {

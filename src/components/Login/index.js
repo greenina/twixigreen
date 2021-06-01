@@ -19,6 +19,17 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { styled } from '@material-ui/styles';
+
+const MyButton = styled(Button)({
+    background: 'green',
+    border: 0,
+    borderRadius: 3,
+    // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+});
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -36,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  palette: {
+    primary: 'purple',
+    secondary: 'green',
+    error: 'red',
   },
 }));
 
@@ -62,10 +78,8 @@ function Login(){
   }
 
   const signinHandler = () => {
-    debugger;
     console.log("email",email)
     console.log("pwd",pwd)
-    debugger;
   firebaseApp.auth().signInWithEmailAndPassword(email, pwd)
   .then((userCredential) => {
     // Signed in
@@ -78,10 +92,7 @@ function Login(){
   })
   .catch((error) => {
     console.log("error",error)
-    var errorCode = error.code;
-    var errorMessage = error.message;
   });
-
   }
 
   return(
@@ -105,7 +116,7 @@ function Login(){
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={60}>
           <TextField
             required
             onChange={changeEmail} 
@@ -117,7 +128,7 @@ function Login(){
             
           />
         </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={60}>
           <TextField
             required
             onChange={changePwd} 
@@ -128,11 +139,19 @@ function Login(){
             fullWidth
           />
         </Grid>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
-          <button className = 'submit' onClick={signinHandler}>login</button>
+          /> */}
+          <Grid item xs={12} sm={60}>
+            <MyButton className = 'submit' color = 'secondary' className={classes.submit} onClick={signinHandler} fullWidth>
+              login
+            </MyButton>
+          </Grid>
+
+            
+
+          
           {/* <Button
             onClick={signinHandler}
             type="submit"
@@ -144,11 +163,6 @@ function Login(){
             Sign In
           </Button> */}
           <Grid container>
-            {/* <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
             <Grid item>
               <Link onClick={goRegister}  variant="body2">
                 {"Don't have an account? Sign Up"}

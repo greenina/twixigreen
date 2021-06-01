@@ -1,42 +1,48 @@
 import logo from './logo.png';
 import './NavBar.css';
 import { db, firebaseApp } from './firebase';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import MyPage from './components/MyPage';
-import setUser from './reducers/user'
-import {useDispatch, useSelector} from 'react-redux'
+import setUser from './reducers/user';
+import { useDispatch, useSelector } from 'react-redux';
 
 function NavBar() {
-  console.log("aaaa")
+  // console.log("aaaa")
   const mv2main = () => {
     document.location.href = '/main';
   };
   const [signIn, setSignIn] = useState(false);
-  const [email, setEmail] = useState('1')
+  const [email, setEmail] = useState('1');
   var dispatch = useDispatch();
-  const mail = useSelector(state => state.user.user)
+  const mail = useSelector((state) => state.user.user);
 
-  useEffect(()=>{
-    firebaseApp.auth().onAuthStateChanged(function(user) {
+  useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
       if (user) {
         setSignIn(true);
-        setEmail(user.email)
-      } 
+        setEmail(user.email);
+      }
     });
-  },[signIn])
-  
-  var logOut = () =>{
-    firebaseApp.auth().signOut().then(() => {
-   console.log("log out")
-   //dispatch(setUser('1'));
-   setEmail('1')
-   setSignIn(false)
-   
-    }).catch((error) => {
-    // An error happened.
-    });
-  }
-  console.log("useSelector on NavBar",useSelector(state => state.user))
+  }, [signIn]);
+
+  var logOut = () => {
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log('log out');
+        //dispatch(setUser('1'));
+        setEmail('1');
+        setSignIn(false);
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  console.log(
+    'useSelector on NavBar',
+    useSelector((state) => state.user)
+  );
 
   return (
     <div className="NavBar">
@@ -61,14 +67,18 @@ function NavBar() {
             <li>|</li>
           </ul>
         </nav>
-        {signIn?<a className="cta" href="/mypage">
-          <button className="login">MyPage</button>
-        </a>:<a className="cta" href="/">
-          <button className="login">Login</button>
-        </a>}
-        
-        <button onClick={logOut}className="logout">Logout</button>
-        <div>{email!=1?email:"undefined"}</div>
+        {signIn ? (
+          <a className="cta" href="/mypage">
+            <button className="login">MyPage</button>
+          </a>
+        ) : (
+          <a className="cta" href="/">
+            <button className="login">Login</button>
+          </a>
+        )}
+
+        {/* <button onClick={logOut}className="logout">Logout</button>
+        <div>{email!=1?email:"undefined"}</div> */}
       </header>
     </div>
   );

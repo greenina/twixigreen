@@ -21,9 +21,14 @@ function NavBar() {
       if (user) {
         setSignIn(true);
         setEmail(user.email);
+      } else {
+        setSignIn(false);
+        setEmail('1');
       }
     });
-  }, [signIn]);
+  });
+
+  useEffect(() => {}, [email]);
 
   var logOut = () => {
     firebaseApp
@@ -47,38 +52,50 @@ function NavBar() {
   return (
     <div className="NavBar">
       <header className="NavBar-header">
-        <img onClick={mv2main} src={logo} className="NavBar-logo" alt="logo" />
+        {signIn ? (
+          <img
+            onClick={mv2main}
+            src={logo}
+            className="NavBar-logo"
+            alt="logo"
+          />
+        ) : (
+          <img src={logo} className="NavBar-logo" alt="logo" />
+        )}
         <nav>
-          <ul className="nav__links">
-            <li>
-              <a href="/category/living">Living</a>
-            </li>
-            <li>
-              <a href="/category/kitchen">Kitchen</a>
-            </li>
-            <li>
-              <a href="/category/bath">Bathroom</a>
-            </li>
-            <li>
-              <a href="/category/beauty">Bedroom</a>
-            </li>
-            {/* <li><a href="/detail">Details</a></li> */}
-            {/*<li><a href="/mypage">Mypage</a></li>*/}
-            <li>|</li>
-          </ul>
+          {signIn ? (
+            <ul className="nav__links">
+              <li>
+                <a href="/category/living">Living</a>
+              </li>
+              <li>
+                <a href="/category/kitchen">Kitchen</a>
+              </li>
+              <li>
+                <a href="/category/bath">Bathroom</a>
+              </li>
+              <li>
+                <a href="/category/beauty">Bedroom</a>
+              </li>
+              <li>|</li>
+            </ul>
+          ) : (
+            <ul className="nav__links">
+              <li>Living</li>
+              <li>Kitchen</li>
+              <li>Bathroom</li>
+              <li>Bedroom</li>
+              <li>|</li>
+            </ul>
+          )}
         </nav>
         {signIn ? (
           <a className="cta" href="/mypage">
             <button className="login">MyPage</button>
           </a>
         ) : (
-          <a className="cta" href="/">
-            <button className="login">Login</button>
-          </a>
+          <button className="login">MyPage</button>
         )}
-
-        {/* <button onClick={logOut}className="logout">Logout</button>
-        <div>{email!=1?email:"undefined"}</div> */}
       </header>
     </div>
   );

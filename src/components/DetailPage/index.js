@@ -109,20 +109,17 @@ function DetailPage(props) {
     db.collection('users').doc(email).update({
       wished: wished,
     });
-    setStatus(
-      avg(
-        wished.map(function (el) {
-          db.collection('products')
-            .doc(String(el))
-            .get()
-            .then(function (doc1) {
-              var docs1 = doc1.data();
-              return docs1['eco'];
-            });
-        })
-      )
-    );
-    isClick ? setConsole2('true') : setConsole2('false');
+
+    var tmpScore = 0;
+    for (var i = 0; i < wished.length; i++) {
+      tmpScore += products[wished[i]]['eco'];
+    }
+    if (wished.length > 0) {
+      setScore(Math.round(tmpScore / wished.length));
+      // var
+      // db.collection('users').doc('1').set()
+    } else setScore(4);
+    console.log("user's eco score", Math.round(tmpScore / wished.length));
   };
 
   useEffect(() => {
@@ -250,19 +247,6 @@ function DetailPage(props) {
                 setWished(docs['wished']);
                 setScore(docs['score']);
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
-                setStatus(
-                  avg(
-                    wished.map(function (el) {
-                      db.collection('products')
-                        .doc(String(el))
-                        .get()
-                        .then(function (doc1) {
-                          var docs1 = doc1.data();
-                          return docs1['eco'];
-                        });
-                    })
-                  )
-                );
                 setClick(clicked);
               });
           }
@@ -273,6 +257,9 @@ function DetailPage(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [score]);
 
   const mvPage = () => {
     let parentCat =
@@ -334,7 +321,7 @@ function DetailPage(props) {
             <img
               id="bukkuk"
               className="d_companion_gif"
-              src={img_src[score]}
+              src={0 >= score && score <= 4 ? img_src[score] : img_src[2]}
               alt="companion"
               key={status}
             ></img>

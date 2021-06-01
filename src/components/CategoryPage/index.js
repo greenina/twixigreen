@@ -1,10 +1,16 @@
 import './style.css';
 import React from 'react';
 import Productlist from './productlist';
-import { db } from './../../firebase';
+import { db, firebaseApp } from './../../firebase';
+import {useState, useEffect} from 'react'
 
 var count = 0;
 var cgg = '';
+var email = '1';
+var signIn = true
+var wished=[]
+var score = 0
+
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
@@ -17,11 +23,14 @@ class CategoryPage extends React.Component {
       a: [],
       ecoval: [],
       img_src: [],
-      score: 0,
+      score: score,
       wished: [],
       id: [],
-      wishlist: [],
+      wishlist: wished,
+      email:email,
+      signIn:signIn
     };
+    console.log("this.state.wished",wished)
     this.datarefresh = this.datarefresh.bind(this);
     this.onesight = this.onesight.bind(this);
     this.bukkuk = this.bukkuk.bind(this);
@@ -29,12 +38,42 @@ class CategoryPage extends React.Component {
     this.wishthen = this.wishthen.bind(this);
     this.scorethen = this.scorethen.bind(this);
   }
+  
 
   bukkuk() {
     db.collection('companion').doc('bukkuk').get().then(this.bukkukthen);
-    var user = db.collection('users').doc('1').get().then(this.scorethen);
-    var user = db.collection('users').doc('1').get().then(this.wishthen);
+    //db.collection('users').doc(this.state.email).get().then(this.scorethen);
+    //db.collection('users').doc(this.state.email).get().then(this.wishthen);
+    this.setState(() => ({
+            score: score,
+            wishlist: wished,
+    },
+    ()=>{alert("callback")}
+    // ()=>{
+    //   console.log("callback function")
+    //   firebaseApp.auth().onAuthStateChanged(function(user) {
+    //     console.log("user Email",user.email)
+    //   if (user) {
+    //     email = user.email;
+    //     signIn = true;
+    //   } 
+    //   else{
+    //     email = '1';
+    //     signIn = false;
+    //   }
+    // })
+    // db.collection('users').doc(email).get().then(
+    //       function(doc){
+    //         let docs = doc.data();
+    //         score = docs['score']
+    //         wished = docs['wished']
+    //       }
+    //   )
+
+    // }
+    ));
   }
+
   scorethen(doc) {
     {
       let docs = doc.data();
@@ -91,7 +130,7 @@ class CategoryPage extends React.Component {
           imgg: [],
           a: [],
           ecoval: [],
-          wished: [],
+          //wished: [],
           id: [],
         }));
         //snapshot.forEach(datacheck);
@@ -150,7 +189,7 @@ class CategoryPage extends React.Component {
         console.log(this.state);
         var sum = 0;
         var i;
-        console.log('wishlist', this.state.wishlist);
+        //console.log('wishlist!!!!!!!!!', this.state.id);
         for (i = 0; i < this.state.id.length; i++) {
           console.log(this.state.id[i]);
           if (this.state.wishlist.includes('' + this.state.id[i])) {
@@ -164,10 +203,26 @@ class CategoryPage extends React.Component {
         }
       });
   }
+  // componentDidMount(){
+  //   firebaseApp.auth().onAuthStateChanged(function(user) {
+  //     if (user) {
+  //       this.setState(() => ({
+  //         email: user.email,
+  //         signIn:true
+  //       }));
+  //     } 
+  //     this.setState(() => ({
+  //         email: '1',
+  //         signIn:false
+  //     }));
+  //   });
+
+  // }
   componentWillMount() {
     this.bukkuk();
 
     this.datarefresh(this.props.cg);
+    
     //alert(this);
     // console.log(this.state.img_src);
   }

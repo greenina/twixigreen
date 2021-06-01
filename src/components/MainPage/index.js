@@ -1,7 +1,8 @@
 import './style.css';
-import { db } from '../../firebase';
+import { db, firebaseApp } from '../../firebase';
 import React, { useEffect, useState } from 'react';
 import Tippy from 'react-tooltip';
+import { useSelector, useDispatch} from 'react-redux'
 //import Switch from './Switch';
 
 function MainPage() {
@@ -9,14 +10,27 @@ function MainPage() {
   const [userInfo, setUserInfo] = useState({});
   const [products, setProducts] = useState({});
   const [score, setScore] = useState(0);
+  const [signIn, setSignIn] = useState(true);
+  const [email,setEmail] = useState('1')
   //const [overlayMode, setOverlay] = useState(0);
   //const [overlayInfo, setOverlayInfo] = useState([]);
   //const [recArray, setRecArray] = useState([]);
 
   let states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
   var timer;
+  var dispatch = useDispatch();
 
   useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        setSignIn(true);
+        setEmail(user.email)
+      } 
+      else{
+        setSignIn(false)
+        setEmail('1')
+      }
+    });
     db.collection('companion')
       .doc('bukkuk')
       .get()
@@ -55,13 +69,14 @@ function MainPage() {
     // console.log(bukkuk);
     //if (bukkuk != null) bukkuk.style = 'margin-left: -15%';
     //setOverlayInfo(['']);
-
     db.collection('users')
-      .doc('1')
+      .doc(email)
       .get()
       .then(function (doc) {
+        console.log("doc",doc)
         let docs = doc.data();
         setUserInfo([]);
+        //console.log("wished list",docs['wished'])
         for (var i = 0; i < Object.keys(docs).length; i++) {
           let dic = userInfo;
           dic[infos[i]] = docs[infos[i]];

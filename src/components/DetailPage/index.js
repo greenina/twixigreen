@@ -71,6 +71,23 @@ function DetailPage(props) {
         setEmail('1');
       }
     });
+
+    db.collection('companion')
+      .doc('bukkuk')
+      .get()
+      .then(function (doc) {
+        let docs = doc.data();
+        // console.log('link', link);
+        setImgSrc([]);
+        for (var i = 0; i < Object.keys(docs).length; i++) {
+          let dic = img_src;
+          dic[i] = docs[states[i]];
+          setImgSrc(dic);
+        }
+        let tdic = img_src;
+        tdic[4] = img_src[2];
+        // console.log('companion img source list', img_src);
+      });
   }, []);
 
   var heartClick = function (e) {
@@ -251,24 +268,11 @@ function DetailPage(props) {
           }
         });
       });
-
-    db.collection('companion')
-      .doc('bukkuk')
-      .get()
-      .then(function (doc) {
-        let docs = doc.data();
-        // console.log('link', link);
-        setImgSrc([]);
-        for (var i = 0; i < Object.keys(docs).length; i++) {
-          let dic = img_src;
-          dic[i] = docs[states[i]];
-          setImgSrc(dic);
-        }
-        let tdic = img_src;
-        tdic[4] = img_src[2];
-        // console.log('companion img source list', img_src);
-      });
   }, [product_id, email]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const mvPage = () => {
     let parentCat =

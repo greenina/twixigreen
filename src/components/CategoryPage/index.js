@@ -37,43 +37,44 @@ class CategoryPage extends React.Component {
     this.bukkukthen = this.bukkukthen.bind(this);
     this.wishthen = this.wishthen.bind(this);
     this.scorethen = this.scorethen.bind(this);
+    this.afteremaildownload=this.afteremaildownload.bind(this);
   }
   
 
   bukkuk() {
     db.collection('companion').doc('bukkuk').get().then(this.bukkukthen);
-    //db.collection('users').doc(this.state.email).get().then(this.scorethen);
-    //db.collection('users').doc(this.state.email).get().then(this.wishthen);
-    this.setState(() => ({
-            score: score,
-            wishlist: wished,
-    },
-    ()=>{alert("callback")}
-    // ()=>{
-    //   console.log("callback function")
-    //   firebaseApp.auth().onAuthStateChanged(function(user) {
-    //     console.log("user Email",user.email)
-    //   if (user) {
-    //     email = user.email;
-    //     signIn = true;
-    //   } 
-    //   else{
-    //     email = '1';
-    //     signIn = false;
-    //   }
-    // })
-    // db.collection('users').doc(email).get().then(
-    //       function(doc){
-    //         let docs = doc.data();
-    //         score = docs['score']
-    //         wished = docs['wished']
-    //       }
-    //   )
-
-    // }
-    ));
+    firebaseApp.auth().onAuthStateChanged(this.afteremaildownload);
+    
   }
-
+  afteremaildownload(user){
+   
+        if (user) {
+          email = user.email;
+          signIn = true;
+        } 
+        else{
+          email = '1';
+          signIn = false;
+        }
+        console.log("now Email",this.state.email);
+        console.log("change Email",email);
+        this.setState(() => ({
+            email : email,
+        }));
+        console.log("user Email",this.state.email);
+        db.collection('users').doc(this.state.email).get().then(this.scorethen);
+        db.collection('users').doc(this.state.email).get().then(this.wishthen);
+        this.setState(() => ({
+                score: score,
+                wishlist: wished,
+        },
+        ()=>{alert("callback")}
+        
+        ));
+        this.datarefresh(this.props.cg);
+       
+    
+  }
   scorethen(doc) {
     {
       let docs = doc.data();
@@ -221,7 +222,7 @@ class CategoryPage extends React.Component {
   componentWillMount() {
     this.bukkuk();
 
-    this.datarefresh(this.props.cg);
+    
     
     //alert(this);
     // console.log(this.state.img_src);
@@ -240,6 +241,8 @@ class CategoryPage extends React.Component {
       wished,
       //id,
       //wishlist,
+      email,
+      signIn
     } = this.state;
 
     return (

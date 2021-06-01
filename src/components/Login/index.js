@@ -7,11 +7,55 @@ import { db, firebaseApp } from '../../firebase';
 import {useHistory} from 'react-router-dom'
 import setUser from '../../reducers/user'//action creator
 import user from '../../reducers/user'
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { styled } from '@material-ui/styles';
+
+const MyButton = styled(Button)({
+    background: 'green',
+    border: 0,
+    borderRadius: 3,
+    // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+});
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  palette: {
+    primary: 'purple',
+    secondary: 'green',
+    error: 'red',
+  },
+}));
+
 
 function Login(){
+  const classes = useStyles();
 
-  const[email, setEmail] = useState();
-  const[pwd, setPwd] = useState();
+  const[email, setEmail] = useState("");
+  const[pwd, setPwd] = useState("");
   const[success, setSuccess] = useState();
   const[error, setError] = useState("");
   let history = useHistory();
@@ -34,6 +78,7 @@ function Login(){
   firebaseApp.auth().signInWithEmailAndPassword(email, pwd)
   .then((userCredential) => {
     // Signed in
+    debugger;
     var user = userCredential.user;
     console.log("user",user)
     //dispatch(setUser());
@@ -42,51 +87,63 @@ function Login(){
   })
   .catch((error) => {
     console.log("error",error)
-    var errorCode = error.code;
-    var errorMessage = error.message;
   });
-
   }
-  console.log("maillll",useSelector(state => state.user))
-  console.log("email",email)
-
 
   return(
-    <div className="recruit">
-      <div className="apply_title">Login</div>
-      <div  align="left" className="userid">email</div>
-                <input  onChange={changeEmail} value={email} name="email" className="userid-input" type="text"/>
-      <div  align="left" className="userid">pwd</div>
-                <input  onChange={changePwd} value={pwd} name="pwd" className="userPassword-input" type="text"/>
-      <button className = 'submit' onClick={signinHandler}>login</button>
-      <button className = 'submit' onClick={goRegister}>register</button>
+    <div className="root">
+      <img width="200px"src="/images/bukkuk.gif"/>
+      <div>
+        <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changeEmail} 
+              value={email}
+              id="firstName"
+              name="firstName"
+              label="email"
+              fullWidth
+              
+            />
+          </Grid>
+            <Grid item xs={12} sm={60}>
+            <TextField
+              required
+              onChange={changePwd} 
+              value={pwd}
+              id="firstName"
+              name="firstName"
+              label="password"
+              fullWidth
+            />
+          </Grid>
+            <Grid item xs={12} sm={60}>
+              <MyButton className = 'submit' color = 'secondary' className={classes.submit} onClick={signinHandler} fullWidth>
+                login
+              </MyButton>
+            </Grid>
+
+            <Grid container>
+              <Grid item>
+                <Link onClick={goRegister}  >
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+    </Container>
+      </div>
       
         
-          {/* <Grid align="center"
-                justify="center"
-                direction="column"
-                className="format"  
-                alignItems="center" 
-                justify="center">
-            <Grid item xs={5} alignItems="center" justify="center">
-              <div className="blank"></div>
-              <Paper className="titlePaper" >
-                <div className="apply_title">Login</div>
-              </Paper>
-              <div className="blank1"></div>
-              <Paper >
-              <div  align="left" className="userid">email</div>
-                <input  onChange={changeHandler} value={email} name="userId" className="userid-input" type="text"/>
-              </Paper>
-              <Paper >
-              <div  align="left" className="userid">pwd</div>
-                <input  onChange={changeHandler} value={pwd} name="userPassword" className="userPassword-input" type="text"/>
-              </Paper>
-              
-              <button className = 'submit' onClick={signinHandler}>login</button>
-            </Grid>
-            
-          </Grid> */}
+          
       </div>
   )
 }

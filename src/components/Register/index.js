@@ -109,7 +109,7 @@ function Register() {
           alert(errorMessage);
         });
     } else {
-      alert('비밀번호가 일치하지 않습니다');
+      alert("The passwords don't match.");
     }
   };
 

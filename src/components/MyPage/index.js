@@ -103,7 +103,7 @@ function MyPage() {
         // }
 
         var tmpScore = 0;
-        console.log("userInfo",userInfo)
+        console.log("userInfo~!",userInfo)
         if(docs['wished'].length>0){
           for (var i = 0; i < docs['wished'].length; i++) {
             tmpScore += products[docs['wished'][i]]['eco'];
@@ -115,12 +115,13 @@ function MyPage() {
           Math.round(tmpScore / docs['wished'].length)
         );
         }else setScore(4);
-        console.log('userInfo', docs);
         setWishes(docs['wished'].length);
 
         if (first == 0) {
           setFirst(1);
           setPrinted(docs['wished']);
+          console.log('userInfo[wished]', docs['wished']);
+          console.log('printed', printed);
           console.log('printed wishlist changed');
           //debugger;
         }
@@ -202,9 +203,6 @@ function MyPage() {
   const heartOff = (e) => {
     e.preventDefault();
     var tmp = userInfo;
-    // console.log(tmp);
-    // debugger;
-    // console.log(e.target.parentElement.getAttribute('value'));
     var val = e.target.parentElement.getAttribute('value');
     var index = userInfo['wished'].indexOf(val);
     if (index !== -1) {
@@ -214,7 +212,7 @@ function MyPage() {
     // console.log(tmp);
     // debugger;
     db.collection('users')
-      .doc('1')
+      .doc(email)
       .set(tmp)
       .then(() => {
         var current_wish = wishes - 1;
@@ -236,7 +234,7 @@ function MyPage() {
         tmpDic['score'] = score;
         console.log(userInfo);
         //debugger;
-        db.collection('users').doc('1').set(tmpDic);
+        db.collection('users').doc(email).set(tmpDic);
       });
     setOverlayInfo([]);
     setRecArray([]);
@@ -276,6 +274,9 @@ function MyPage() {
     setRecArray([]);
     setOverlay(0);
   };
+  useEffect(()=>{
+    console.log("printed~!",printed)
+  },[printed])
 
   return (
     <div className="entire">

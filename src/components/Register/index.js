@@ -213,6 +213,7 @@ function Register() {
 
   return (
     <div className="recruit">
+      <div className="root">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -310,6 +311,13 @@ function Register() {
           </form>
         </div>
       </Container>
+      </div>
+      <div className="register_comp">
+        {name!=""?<div>Welcome {name}</div>:<div></div>}
+        {comp!=""?<div>My name is {comp}</div>:<div>Would you name me?</div>}
+        <img  width="300px" src="/images/bukkuk.gif" />
+      </div>
+      
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.root {
+  /* display: flex;  */
+  position: fixed;
+  margin-left: 25vw;
+  margin-top: 20vh;
+  width: 500px;
+  flex-direction: row;
+}
+.register_comp {
+  position: fixed;
+  margin-top: 30vh;
+  margin-left: 60vw;
+  
+}

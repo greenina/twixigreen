@@ -105,12 +105,8 @@ function Register() {
           history.replace('/');
         })
         .catch((error) => {
-          // console.log('mode', mode);
-          // console.log('errorMessage', error.message);
           var errorCode = error.code;
           var errorMessage = error.message;
-          // console.log('errorCode', errorCode);
-          // console.log('errorMessage', errorMessage);
           alert(errorMessage);
         });
     } else {
@@ -118,30 +114,11 @@ function Register() {
     }
   };
 
-  const signinHandler = () => {
-    firebaseApp
-      .auth()
-      .signInWithEmailAndPassword(email, pwd)
-      .setPersistence(firebaseApp.auth.Auth.Persistence.SESSION)
-      .then((user) => {
-        console.log(user);
-        const uid = (firebaseApp.auth().currentUser || {}).uid;
-        console.log(uid);
-        alert('signin!!');
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
-        setError(errorMessage);
-      });
-  };
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged((user) => {
       const uid = (firebaseApp.auth().currentUser || {}).uid;
       if (uid) {
-        // alert(uid);
         setUid(uid);
         // alert()
       } else {
@@ -212,7 +189,8 @@ function Register() {
   };
 
   return (
-    <div className="recruit">
+    <div >
+      <div className="root">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -286,7 +264,7 @@ function Register() {
               <Input
                 className="input_login"
                 onChange={changeComp}
-                placeholder="companion name *"
+                placeholder="name your polar bear *"
               />
             </Grid>
             <Grid item xs={12} sm={60}>
@@ -310,6 +288,14 @@ function Register() {
           </form>
         </div>
       </Container>
+      </div>
+      <div className="register_comp">
+        {name!="" ?<div>Welcome {name}!</div>:<div></div>}
+        {comp!=""?<div>My name is {comp}</div>:<div>Would you name me?</div>}
+
+        <img  width="300px" src="/images/bukkuk.gif"/>
+      </div>
+      
     </div>
   );
 }

@@ -10,7 +10,7 @@ var email = '1';
 var signIn = true
 var wished=[]
 var score = 0
-var products = []
+
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
@@ -30,77 +30,23 @@ class CategoryPage extends React.Component {
       email:email,
       signIn:signIn
     };
-    console.log("this.state.wished",wished)
     this.datarefresh = this.datarefresh.bind(this);
     this.onesight = this.onesight.bind(this);
     this.bukkuk = this.bukkuk.bind(this);
     this.bukkukthen = this.bukkukthen.bind(this);
-    this.wishthen = this.wishthen.bind(this);
-    // this.scorethen = this.scorethen.bind(this);
-    this.afteremaildownload=this.afteremaildownload.bind(this);
   }
   
 
   bukkuk() {
     db.collection('companion').doc('bukkuk').get().then(this.bukkukthen);
-    firebaseApp.auth().onAuthStateChanged(this.afteremaildownload);
-    
-  }
-  afteremaildownload(user){
-   
-        if (user) {
-          email = user.email;
-          signIn = true;
-        } 
-        else{
-          email = '1';
-          signIn = false;
-        }
-        console.log("now Email",this.state.email);
-        console.log("change Email",email);
-        this.setState(() => ({
-            email : email,
-        }));
-        console.log("user Email",this.state.email);
-       
-        // db.collection('users').doc(this.state.email).get().then(this.scorethen);
-        db.collection('users').doc(this.state.email).get().then(this.wishthen);
-        
-        
-       
-    
-  }
-//   scorethen(doc) {
-    
-//     //   let docs = doc.data();
-//     // //   this.setState(() => ({
-//     // //     score: docs['score'],
-//     // //   }));
-      
-//     //   score= docs['score'];
-//     //   console.log(score, '1');
-    
-//   }
-
-
-  wishthen(doc) {
-    // eslint-disable-next-line no-lone-blocks
-    
-      let docs = doc.data();
-      this.setState(() => ({
-        wishlist: docs['wished'],
-      }));
-    console.log(products);
-    
     this.setState(() => ({
         score: score,
         wishlist: wished,
-},
-()=>{alert("callback")}
-
-));
-this.datarefresh(this.props.cg);
+    },
+    ()=>{alert("callback")}
+    ));
   }
+  
   bukkukthen(doc) {
     var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
     let docs = doc.data();
@@ -142,12 +88,7 @@ this.datarefresh(this.props.cg);
           //wished: [],
           id: [],
         }));
-        //snapshot.forEach(datacheck);
-        //alert(document.getElementById('pc'))
         snapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          products[doc.id] = doc.data();
-        //  console.log(products);
           var vegan = document.getElementById('vegan').checked;
           var ap = document.getElementById('ap').checked;
           var harm = document.getElementById('harm').checked;
@@ -199,43 +140,24 @@ this.datarefresh(this.props.cg);
         console.log(this.state);
         var sum = 0;
         var i;
-        //console.log('wishlist!!!!!!!!!', this.state.id);
         for (i = 0; i < this.state.id.length; i++) {
           console.log(this.state.id[i]);
           if (this.state.wishlist.includes('' + this.state.id[i])) {
             this.setState((prevState) => ({
               wished: [...prevState.wished, true],
-              
             }));
-            
-            
           } else
             this.setState((prevState) => ({
               wished: [...prevState.wished, false],
-              
             }));
         }
-        var tmpScore=0;
-    for (var i = 0; i < this.state.wishlist.length; i++) {
-        tmpScore += products[this.state.wishlist[i]]['eco'];
-        
-      }
-      score= Math.round(tmpScore / this.state.wishlist.length);
-        console.log(tmpScore, score, '2');
-        this.setState((prevState) => ({
-            score: Math.round(tmpScore / this.state.wishlist.length),
-            
-          }));
-        
       });
   }
-  
+
   componentWillMount() {
     this.bukkuk();
 
-    
-    
-    
+    this.datarefresh(this.props.cg);
     
   }
   render() {
@@ -252,8 +174,6 @@ this.datarefresh(this.props.cg);
       wished,
       //id,
       //wishlist,
-      email,
-      signIn
     } = this.state;
 
     return (
@@ -324,6 +244,8 @@ this.datarefresh(this.props.cg);
                 a={a}
                 ecoval={ecoval}
                 wished={wished}
+                email="igreen0485@gmail.com"
+                cg={cgg}
               ></Productlist>
             </div>
             <div>
@@ -332,7 +254,7 @@ this.datarefresh(this.props.cg);
                   <img
                     id="bukkuk"
                     className="companion_gif"
-                    src={this.state.img_src[this.state.score]}
+                    src={this.state.img_src[score]}
                     alt="companion"
                     key={this.state.score}
                   ></img>

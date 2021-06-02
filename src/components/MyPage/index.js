@@ -184,32 +184,19 @@ function MyPage() {
 
   const mouseLeave = (val) => {
     console.log('mouse leaved from ' + products[val]['name']);
-    // var bukkuk = document.getElementsByClassName('companion_gif')[0];
-    // console.log(bukkuk);
-    // bukkuk.style = 'margin-left: -15%';
-    // setOverlay(0);
-    // setOverlayInfo([]);
-    // setRecArray([]);
     clearTimeout(timer);
-    // if (products[val]['eco'] > 0)
-    //   console.log('bukkuk loved this product', products[val]['name']);
-    // else console.log("bukkuk's recommendation!");
   };
 
   const heartOff = (e) => {
     e.preventDefault();
     var tmp = userInfo;
-    // console.log(tmp);
-    // debugger;
-    // console.log(e.target.parentElement.getAttribute('value'));
     var val = e.target.parentElement.getAttribute('value');
     var index = userInfo['wished'].indexOf(val);
     if (index !== -1) {
       del_idx.push(index);
       tmp['wished'].splice(index, 1);
     }
-    // console.log(tmp);
-    // debugger;
+    
     db.collection('users')
       .doc(email)
       .set(tmp)

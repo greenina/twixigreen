@@ -52,9 +52,7 @@ function DetailPage(props) {
   const ecoval = props.location.state.ecoval;
   var value = '';
   var cgg = '';
-  // var product_id = 0;
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
-  // console.log('num', idx + 1);
   var avg = function (list) {
     var sum = 0;
     for (var i = 0; i < list.length; i++) {
@@ -62,6 +60,35 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
+
+  useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        setSignIn(true);
+        setEmail(user.email);
+      } else {
+        setSignIn(false);
+        setEmail('1');
+      }
+    });
+
+    db.collection('companion')
+      .doc('bukkuk')
+      .get()
+      .then(function (doc) {
+        let docs = doc.data();
+        // console.log('link', link);
+        setImgSrc([]);
+        for (var i = 0; i < Object.keys(docs).length; i++) {
+          let dic = img_src;
+          dic[i] = docs[states[i]];
+          setImgSrc(dic);
+        }
+        let tdic = img_src;
+        tdic[4] = img_src[2];
+        // console.log('companion img source list', img_src);
+      });
+  }, []);
 
   var heartClick = function (e) {
     // console.log('heartIdd', idd);
@@ -82,20 +109,17 @@ function DetailPage(props) {
     db.collection('users').doc(email).update({
       wished: wished,
     });
-    setStatus(
-      avg(
-        wished.map(function (el) {
-          db.collection('products')
-            .doc(String(el))
-            .get()
-            .then(function (doc1) {
-              var docs1 = doc1.data();
-              return docs1['eco'];
-            });
-        })
-      )
-    );
-    isClick ? setConsole2('true') : setConsole2('false');
+
+    var tmpScore = 0;
+    for (var i = 0; i < wished.length; i++) {
+      tmpScore += products[wished[i]]['eco'];
+    }
+    if (wished.length > 0) {
+      setScore(Math.round(tmpScore / wished.length));
+      // var
+      // db.collection('users').doc('1').set()
+    } else setScore(4);
+    console.log("user's eco score", Math.round(tmpScore / wished.length));
   };
 
   useEffect(() => {
@@ -221,53 +245,34 @@ function DetailPage(props) {
               .then(function (docc) {
                 var docs = docc.data();
                 setWished(docs['wished']);
-                setScore(docs['score']);
+
+                var tmpScore = 0;
+                if (docs['wished'].length > 0) {
+                  for (var i = 0; i < docs['wished'].length; i++) {
+                    tmpScore += products[docs['wished'][i]]['eco'];
+                    console.log('tmpScore', tmpScore);
+                  }
+                  setScore(Math.round(tmpScore / docs['wished'].length));
+                  console.log(
+                    "user's eco score",
+                    Math.round(tmpScore / docs['wished'].length)
+                  );
+                } else setScore(4);
+
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
-                setStatus(
-                  avg(
-                    wished.map(function (el) {
-                      db.collection('products')
-                        .doc(String(el))
-                        .get()
-                        .then(function (doc1) {
-                          var docs1 = doc1.data();
-                          return docs1['eco'];
-                        });
-                    })
-                  )
-                );
                 setClick(clicked);
               });
           }
         });
       });
-
-    db.collection('companion')
-      .doc('bukkuk')
-      .get()
-      .then(function (doc) {
-        let docs = doc.data();
-        // console.log('link', link);
-        setImgSrc([]);
-        for (var i = 0; i < Object.keys(docs).length; i++) {
-          let dic = img_src;
-          dic[i] = docs[states[i]];
-          setImgSrc(dic);
-        }
-        let tdic = img_src;
-        tdic[4] = img_src[2];
-        // console.log('companion img source list', img_src);
-      });
-  }, [product_id]);
+  }, [product_id, email]);
 
   useEffect(() => {
-    firebaseApp.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        setSignIn(true);
-        setEmail(user.email);
-      }
-    });
+    window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [score]);
 
   const mvPage = () => {
     let parentCat =

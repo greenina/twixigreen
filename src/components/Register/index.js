@@ -234,7 +234,7 @@ function Register() {
                 type={values.showPassword ? 'text' : 'password'}
                 onChange={handlePasswordChange('password')}
                 value={values.password}
-                placeholder="password *"
+                placeholder="password(at least 6 characters) *"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -314,7 +314,7 @@ function Register() {
       </div>
       <div className="register_comp">
         {name!=""?<div>Welcome {name}</div>:<div></div>}
-        {comp!=""?<div>My name is {comp}</div>:<div>Would you name me?</div>}
+        {comp!=""?<div>My name is {comp}</div>:<div><div>I am your companion</div><div>Would you name me?</div></div>}
         <img  width="300px" src="/images/bukkuk.gif" />
       </div>
       

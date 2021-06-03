@@ -22,7 +22,7 @@ This service is for newcomers of eco-friendly product consumption which supports
 
 ### Main Page
 
-The main page of the website. Here, you can see four pictures of rooms in home(living room, dining room, bathroom) including several households. Some of them are drawn and overlaid on the picture, and some are not. If you click the drawn households, it links to Category Page showing related products. Bukkuk, the companion is also shown with its state applied. Furthermore, you can directly move to MyPage and each Category Pages of Living, Kitchen, Bathroom, Bedroom through NavBar on the top. 
+The main page of the website. Here, you can see four pictures of rooms in home(living room, dining room, bathroom) including several households. Some of them are drawn and overlaid on the picture, and some are not. If you click the drawn households, it links to Category Page showing related products. Bukkuk, the companion is also shown with its state applied. Companion is a character who goes on together from end to end of the web site's whole scenario of buying eco friendly products. Furthermore, you can directly move to MyPage and each Category Pages of Living, Kitchen, Bathroom, Bedroom through NavBar on the top. 
 
 ### Category Page
 

@@ -26,11 +26,11 @@ The main page of the website. Here, you can see four pictures of rooms in home(l
 
 ### Category Page
 
-This is the page where list of products of certain category appears. It has filter options to select(Eco-friendly, Save environment, Protect Animal, Stay healthy). You can filter by selecting those options. "In a Glance" button views all the borders of each item which implies the econess of each item(It is determined by how many filter options they have). Companion is also viewed in Category Page as well. 
+This is the page where list of products of certain category appear. It has filter options to select(Eco-friendly, Save environment, Protect Animal, Stay healthy). You can filter by selecting those options. "In a Glance" button views all the borders of each item which implies the econess of each item(It is determined by how many filter options they have). Companion is also viewed in Category Page as well. 
 
 ### Detail Page
 
-It shows details of each item. It contains heart icon(putting to wish list), share button(which copies link), and shopping icon(which directly links to the shopping link). Three icons are shown which implies the econess of the lifecycle of the product(production, useage, afterwards). For eco-friendly products, items which are not ecofriendly are compared in several features via table. And for non eco-friendly items, some eco-friendly items which functions same are explained via table. Companion is also viewed here. 
+It shows details of each item. It contains heart icon(putting to wish list), share button(which copies link), and shopping icon(which directly links to the shopping link). Three icons are shown which each implies the econess of the lifecycle of the product(production, useage, afterwards). For eco-friendly products, items which are not ecofriendly are compared in several features via table. And for non eco-friendly items, some eco-friendly items which functions same are explained via table. Companion is also viewed here. 
 
 <h3>My Page</h3>
 

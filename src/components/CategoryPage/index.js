@@ -139,7 +139,7 @@ this.datarefresh(this.props.cg);
           imgg: [],
           a: [],
           ecoval: [],
-          //wished: [],
+          wished: [],
           id: [],
         }));
         //snapshot.forEach(datacheck);
@@ -199,7 +199,8 @@ this.datarefresh(this.props.cg);
         console.log(this.state);
         var sum = 0;
         var i;
-        //console.log('wishlist!!!!!!!!!', this.state.id);
+        console.log('wishlist!!!!!!!!!', this.state.id);
+       
         for (i = 0; i < this.state.id.length; i++) {
           console.log(this.state.id[i]);
           if (this.state.wishlist.includes('' + this.state.id[i])) {
@@ -215,8 +216,15 @@ this.datarefresh(this.props.cg);
               
             }));
         }
+        console.log('wished!', this.state.wished);
         var tmpScore=0;
-    for (var i = 0; i < this.state.wishlist.length; i++) {
+    if(this.state.wishlist.length==0)
+    this.setState((prevState) => ({
+      score: 2,
+      
+    }));
+    else
+    {for (var i = 0; i < this.state.wishlist.length; i++) {
         tmpScore += products[this.state.wishlist[i]]['eco'];
         
       }
@@ -225,7 +233,8 @@ this.datarefresh(this.props.cg);
         this.setState((prevState) => ({
             score: Math.round(tmpScore / this.state.wishlist.length),
             
-          }));
+          }));}
+    
         
       });
   }

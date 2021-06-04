@@ -21,7 +21,7 @@ class Product extends Component {
       ecoval: 1,
       wished: this.props.wished,
       idx: this.props.idx,
-     
+        
     };
     
     this.me = this.me.bind(this);

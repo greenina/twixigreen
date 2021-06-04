@@ -167,7 +167,7 @@ function MainPage() {
                   753, 537, 745, 547, 744, 565, 799, 566, 812, 556, 812, 536,
                   786, 534, 795, 517, 775, 518, 761, 512, 768, 536, 753, 538,
                 ])}
-                href="/category/living"
+                href="/category/tissue"
                 target=""
               />
               <area
@@ -197,7 +197,7 @@ function MainPage() {
                   526, 1231, 500, 1237, 481, 1246, 449, 1241, 439, 1186, 434,
                   1174, 437,
                 ])}
-                href="/category/living"
+                href="/category/cushion"
                 target=""
               />
               <area
@@ -265,7 +265,7 @@ function MainPage() {
                   283, 514, 277, 519, 280, 602, 284, 610, 304, 613, 330, 609,
                   334, 604, 335, 552, 338, 517, 333, 512, 299, 514,
                 ])}
-                href="/category/kitchen"
+                href="/category/scrubber"
                 target=""
               />
               <area
@@ -289,7 +289,7 @@ function MainPage() {
                   639, 472, 645, 474, 650, 469, 653, 455, 650, 440, 641, 430,
                   636, 423,
                 ])}
-                href="/category/kitchen"
+                href="/category/scrubber"
                 target=""
               />
               <area
@@ -303,7 +303,7 @@ function MainPage() {
                   541, 470, 526, 466, 517, 451, 518, 436, 526, 422, 534, 416,
                   534, 408, 539, 405, 541, 395, 538, 397, 536, 390,
                 ])}
-                href="/category/kitchen"
+                href="/category/detergent"
                 target=""
               />
               <area
@@ -365,7 +365,7 @@ function MainPage() {
                   727, 451, 754, 450, 756, 456, 750, 518, 746, 527, 739, 528,
                   735, 526, 734, 517, 731, 517, 727, 455,
                 ])}
-                href="/category/bath"
+                href="/category/toothpaste"
                 target=""
               />
               <area
@@ -396,7 +396,7 @@ function MainPage() {
                   477, 1070, 472, 1069, 470, 1067, 469, 1067, 461, 1070, 461,
                   1072, 461, 1071, 457, 1063, 457, 1061, 454,
                 ])}
-                href="/category/bath"
+                href="/category/shampoo"
                 target=""
               />
             </map>
@@ -423,7 +423,7 @@ function MainPage() {
                   207, 411, 222, 409, 226, 412, 224, 433, 225, 452, 222, 455,
                   223, 464, 213, 462, 213, 456, 210, 451, 208, 428,
                 ])}
-                href="/category/beauty"
+                href="/category/facial"
                 target=""
               />
               <area
@@ -462,7 +462,7 @@ function MainPage() {
                   631, 1300, 629, 1286, 633, 1286, 623, 1282, 609, 1270, 605,
                   1263, 605, 1253, 615, 1247, 635,
                 ])}
-                href="/category/beauty"
+                href="/category/bag"
                 target=""
               />
             </map>

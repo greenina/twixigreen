@@ -46,7 +46,7 @@ function MyPage() {
         setEmail(user.email);
       } else {
         setSignIn(false);
-        console('false');
+      
         setEmail('1');
       }
     });
@@ -90,7 +90,7 @@ function MyPage() {
     if (bukkuk != null && overlayMode != 0) {
       bukkuk.style = 'margin-left: 10%';
     }
-
+    
     db.collection('users')
       .doc(email)
       .get()
@@ -136,6 +136,10 @@ function MyPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [printed, wishes, overlayMode]);
 
+
+  const fakefunc=function(){
+      setWishes(1);
+  }
   const mouseEnter = (val) => {
     console.log('mouse entered to ' + products[val]['name']);
     console.log('current overlayInfo :::: ', overlayInfo[0]);
@@ -384,7 +388,10 @@ function MyPage() {
                           a={products[val]['a']}
                           ecoval={products[val]['eco']}
                           idx={products[val]}
-                          wished={printed.includes(1)}
+                          wished={userInfo['wished'].includes(String(val))}
+                            email={email}
+                            id={val}
+                            fakefunc={fakefunc}
                         />
                       </Link>
                     </div>

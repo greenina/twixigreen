@@ -276,3 +276,6 @@ table {
   cursor: default;
   border: solid 7px rgb(114, 133, 47);
 }
+.text{
+  position: fixed;
+}

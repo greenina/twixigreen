@@ -36,6 +36,8 @@ function DetailPage(props) {
   const [products_in, setProductIn] = useState([]);
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
+  const [textBalloon, setTextBalloon] = useState("")
+
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
   // const [triDominant, setTriDominant] = useState(0);
@@ -53,6 +55,10 @@ function DetailPage(props) {
   var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
+
+
+
+
   var avg = function (list) {
     var sum = 0;
     for (var i = 0; i < list.length; i++) {
@@ -60,6 +66,17 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
+  useEffect(()=>{
+    if(ecoval==0){
+      setTextBalloon("밑으로 내려보면 내가 좋아하는 제품 있눈디?(비친환경적인 제품)")
+    }
+    else if(isClick){
+      setTextBalloon("오예 신나~!(친환경적인거클릭함)")
+    }
+    else{
+      setTextBalloon("아쉽다 ㅜㅜ(친환경적인거 하트 끔)")
+    }
+  },[ecoval,isClick])
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -290,6 +307,7 @@ function DetailPage(props) {
 
   return (
     <div>
+      
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
           <b>
@@ -330,6 +348,7 @@ function DetailPage(props) {
       <hr className="hr-line" />
       <div class="whole">
         <div className="d_companion">
+          <div className="text">{textBalloon}</div>
           <a href="/mypage">
             <img
               id="bukkuk"
@@ -353,7 +372,10 @@ function DetailPage(props) {
           <div className="info">
             <div className="row1">
               <h1 className="product_name">{name}</h1>
-              <Heart className="heart" isClick={isClick} onClick={heartClick} />
+              <div onMouseEnter={()=>{console.log("mouse on heart")}} onMouseLeave={()=>{console.log("mouse leave heart")}}>
+                <Heart className="heart" isClick={isClick} onClick={heartClick} />
+              </div>
+              
               <div
                 className="share"
                 onClick={() => {
@@ -375,6 +397,7 @@ function DetailPage(props) {
                   ></span>
                 </div>
               </a>
+              
             </div>
             <div className="row3">
               <div className="price">
@@ -394,7 +417,6 @@ function DetailPage(props) {
                     a range of pollutants, and substantial environmental
                     safeguards are needed.
                   </div>
-
                   <div className="image">
                     <img
                       src="/images/setting.png"

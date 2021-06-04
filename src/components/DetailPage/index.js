@@ -309,7 +309,7 @@ function DetailPage(props) {
 
   return (
     <div>
-      
+      <div className="text">{textBalloon}</div>
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
           <b>
@@ -349,8 +349,8 @@ function DetailPage(props) {
       </div>
       <hr className="hr-line" />
       <div class="whole">
+        
         <div className="d_companion">
-          <div className="text">{textBalloon}</div>
           <a href="/mypage">
             <img
               id="bukkuk"

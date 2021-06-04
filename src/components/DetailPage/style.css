@@ -317,6 +317,16 @@ table {
   text-align: center;
   margin-left: -10px;
 }
+.sharec{
+  border-radius: 6px;
+  background-color:green;
+  width: 40px;
+  height: 18px;
+  font-size: 11px;
+  text-align: center;
+  margin-left: -10px;
+  color: white;
+}
 .buya{
   border-radius: 6px;
   background-color: darkgray;

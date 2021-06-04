@@ -38,7 +38,7 @@ function DetailPage(props) {
   const [email, setEmail] = useState('1');
   const [textBalloon, setTextBalloon] = useState("")
   const [heart, setHeart] = useState(false)
-  const [share, setShare] = useState(false)
+  const [share, setShare] = useState(0)
   const [buy, setBuy] = useState(false)
 
   // const [dominant, setDominant] = useState(0);
@@ -386,12 +386,14 @@ function DetailPage(props) {
                   <div className="share1">
                     <div className="shareContainer">
                     <div
-                    onMouseEnter={()=>{console.log("mouse on heart");setShare(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setShare(false)}}
+                    onMouseEnter={()=>{console.log("mouse on heart");setShare(1)}} onMouseLeave={()=>{console.log("mouse leave heart");setShare(0)}}
                       className="share"
                       onClick={() => {
                         navigator.clipboard.writeText(window.location.href);
+                        setShare(2)
+                        // setTimeout(setShare(1),3000)
                         // console.log('copy');
-                        alert('copied');
+                        //alert('copied');
                       }}
                     >
                       <span 
@@ -405,7 +407,7 @@ function DetailPage(props) {
                     </div>
                     <div className="space2"></div>
                     </div>
-                    {share?<div className="sharea">share</div>:<div className="shareb"></div>}
+                    {share==1?<div className="sharea">share</div>:(share==0?<div></div>:<div className="sharec">Copied!</div>)}
                   </div>
                 <div className="buy1">
                   <a onClick={() => window.open(link, '_blank')}>

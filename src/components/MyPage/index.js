@@ -17,6 +17,7 @@ function MyPage() {
   const [score, setScore] = useState(0);
   const [wishes, setWishes] = useState(0);
   const [printed, setPrinted] = useState([]);
+  const [ishovering, setishovering] = useState(false);
   const [first, setFirst] = useState(0);
   const [overlayMode, setOverlay] = useState(0);
   const [overlayInfo, setOverlayInfo] = useState([]);
@@ -132,13 +133,20 @@ function MyPage() {
         //debugger;
         db.collection('users').doc(email).set(tmpDic);
       });
-
+      if(ishovering)
+      {
+        var bukkuk = document.getElementsByClassName('companion_gif')[0];
+        if (bukkuk != null) bukkuk.style = 'margin-left: 10%';
+        
+      }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [printed, wishes, overlayMode]);
 
 
   const fakefunc=function(){
-      setWishes(1);
+      setishovering(true);
+      setFirst(0);
+      setPrinted([]);
   }
   const mouseEnter = (val) => {
     console.log('mouse entered to ' + products[val]['name']);

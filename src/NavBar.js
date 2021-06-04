@@ -7,7 +7,7 @@ import setUser from './reducers/user';
 import { useDispatch, useSelector } from 'react-redux';
 
 function NavBar() {
-  // console.log("aaaa")
+
   const mv2main = () => {
     document.location.href = '/main';
   };
@@ -35,7 +35,7 @@ function NavBar() {
       .auth()
       .signOut()
       .then(() => {
-        console.log('log out');
+       
         //dispatch(setUser('1'));
         setEmail('1');
         setSignIn(false);
@@ -44,10 +44,7 @@ function NavBar() {
         // An error happened.
       });
   };
-  console.log(
-    'useSelector on NavBar',
-    useSelector((state) => state.user)
-  );
+ 
 
   return (
     <div className="NavBar">

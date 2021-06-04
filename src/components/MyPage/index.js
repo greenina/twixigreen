@@ -46,7 +46,7 @@ function MyPage() {
         setEmail(user.email);
       } else {
         setSignIn(false);
-        console('false');
+      
         setEmail('1');
       }
     });

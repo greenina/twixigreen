@@ -14,7 +14,7 @@ var products = []
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.match.params.cg);
+    
     cgg = props.match.params.cg;
     this.state = {
       name: [],
@@ -30,7 +30,7 @@ class CategoryPage extends React.Component {
       email:email,
       signIn:signIn
     };
-    console.log("this.state.wished",wished)
+    
     this.datarefresh = this.datarefresh.bind(this);
     this.onesight = this.onesight.bind(this);
     this.bukkuk = this.bukkuk.bind(this);
@@ -38,10 +38,14 @@ class CategoryPage extends React.Component {
     this.wishthen = this.wishthen.bind(this);
     // this.scorethen = this.scorethen.bind(this);
     this.afteremaildownload=this.afteremaildownload.bind(this);
+    this.jebal=this.jebal.bind(this);
   }
-  
-
+ 
+  jebal(v){
+    this.bukkuk();
+  }
   bukkuk() {
+    console.log('bukkuk');
     db.collection('companion').doc('bukkuk').get().then(this.bukkukthen);
     firebaseApp.auth().onAuthStateChanged(this.afteremaildownload);
     
@@ -56,12 +60,11 @@ class CategoryPage extends React.Component {
           email = '1';
           signIn = false;
         }
-        console.log("now Email",this.state.email);
-        console.log("change Email",email);
+        
         this.setState(() => ({
             email : email,
         }));
-        console.log("user Email",this.state.email);
+     
        
         // db.collection('users').doc(this.state.email).get().then(this.scorethen);
         db.collection('users').doc(this.state.email).get().then(this.wishthen);
@@ -90,7 +93,7 @@ class CategoryPage extends React.Component {
       this.setState(() => ({
         wishlist: docs['wished'],
       }));
-    console.log(products);
+    
     
     this.setState(() => ({
         score: score,
@@ -115,11 +118,11 @@ this.datarefresh(this.props.cg);
     }
     dic[4] = dic[2];
     this.setState((prv) => ({ img_src: dic }));
-    console.log('companion img source list', this.state.img_src);
+   
   }
   onesight() {
     var elements = document.getElementsByClassName('productbox');
-    console.log(elements, count);
+    
     count++;
     for (var i = 0; i < elements.length; i++) {
       if (count % 2 === 1)
@@ -196,13 +199,11 @@ this.datarefresh(this.props.cg);
               id: [...prevState.id, doc.id],
             }));
         });
-        console.log(this.state);
+       
         var sum = 0;
         var i;
-        console.log('wishlist!!!!!!!!!', this.state.id);
-       
         for (i = 0; i < this.state.id.length; i++) {
-          console.log(this.state.id[i]);
+         
           if (this.state.wishlist.includes('' + this.state.id[i])) {
             this.setState((prevState) => ({
               wished: [...prevState.wished, true],
@@ -216,7 +217,7 @@ this.datarefresh(this.props.cg);
               
             }));
         }
-        console.log('wished!', this.state.wished);
+        
         var tmpScore=0;
     if(this.state.wishlist.length==0)
     this.setState((prevState) => ({
@@ -241,7 +242,7 @@ this.datarefresh(this.props.cg);
   
   componentWillMount() {
     this.bukkuk();
-
+    
     
     
     
@@ -332,7 +333,10 @@ this.datarefresh(this.props.cg);
                 imgg={imgg}
                 a={a}
                 ecoval={ecoval}
-                wished={wished}
+                wished={this.state.wished}
+                id={this.state.id}
+                email={this.state.email}
+                jebal={this.jebal}
               ></Productlist>
             </div>
             <div>

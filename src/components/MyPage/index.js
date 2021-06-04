@@ -80,7 +80,7 @@ function MyPage() {
         });
         console.log('product list', products);
       });
-  }, []);
+  }, [wishes]);
 
   useEffect(() => {
     var infos = ['name', 'wished', 'experience', 'score', 'comp'];
@@ -137,7 +137,7 @@ function MyPage() {
       {
         var bukkuk = document.getElementsByClassName('companion_gif')[0];
         if (bukkuk != null) bukkuk.style = 'margin-left: 10%';
-        
+
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [printed, wishes, overlayMode]);

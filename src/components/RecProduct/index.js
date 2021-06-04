@@ -26,7 +26,7 @@ class RecProduct extends Component {
         wished : true
     }))
    var wishedfixed=[];
-   alert('hearton');
+
    email=this.props.email;
    db.collection('users')
    .doc(email)
@@ -60,7 +60,7 @@ class RecProduct extends Component {
         wished : false
     }))
     var wishedfixed
-    alert('heartoff');
+    
     email=this.props.email;
     db.collection('users')
     .doc(email)

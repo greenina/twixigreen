@@ -39,7 +39,7 @@ class Product extends Component {
       colored : true
     }));
    var wishedfixed=[];
-   alert('hearton');
+
    email=this.props.email;
    db.collection('users')
    .doc(email)
@@ -70,7 +70,7 @@ class Product extends Component {
     }));
     e.preventDefault();
     var wishedfixed
-    alert('heartoff');
+  
     email=this.props.email;
     db.collection('users')
     .doc(email)

@@ -37,6 +37,9 @@ function DetailPage(props) {
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
   const [textBalloon, setTextBalloon] = useState("")
+  const [heart, setHeart] = useState(false)
+  const [share, setShare] = useState(false)
+  const [buy, setBuy] = useState(false)
 
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
@@ -55,7 +58,6 @@ function DetailPage(props) {
   var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
-
 
 
 
@@ -372,31 +374,56 @@ function DetailPage(props) {
           <div className="info">
             <div className="row1">
               <h1 className="product_name">{name}</h1>
-              <div onMouseEnter={()=>{console.log("mouse on heart")}} onMouseLeave={()=>{console.log("mouse leave heart")}}>
-                <Heart className="heart" isClick={isClick} onClick={heartClick} />
-              </div>
-              
-              <div
-                className="share"
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  // console.log('copy');
-                  alert('copied');
-                }}
-              >
-                <img src="/images/share.png" height="30px" />
-              </div>
+              <div className="icon1">
+                <div className="icon2">
+                  <div className="heart1">
+                    <div className="heartHome"onMouseEnter={()=>{console.log("mouse on heart");setHeart(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setHeart(false)}}>
+                    <Heart className="heart" isClick={isClick} onClick={heartClick} />
+                    </div>
+                    {heart?<div className="hearta"><div>add to</div><div>wishlist</div></div>:<div className="heartb"></div>}
+                  </div>
+                  <div className="space"></div>
+                  <div className="share1">
+                    <div className="shareContainer">
+                    <div
+                    onMouseEnter={()=>{console.log("mouse on heart");setShare(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setShare(false)}}
+                      className="share"
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        // console.log('copy');
+                        alert('copied');
+                      }}
+                    >
+                      <span 
+                      class="iconify" 
+                      data-icon="mdi:checkbox-multiple-blank-outline" 
+                      data-inline="false"
+                      height="35px">
 
-              <a onClick={() => window.open(link, '_blank')}>
-                <div className="buy">
-                  <span
-                    class="iconify"
-                    data-icon="clarity:shopping-bag-line"
-                    data-inline="false"
-                    height="35px"
-                  ></span>
+                      </span>
+                    {/* <img src="/images/share.png" height="30px" /> */}
+                    </div>
+                    <div className="space2"></div>
+                    </div>
+                    {share?<div className="sharea">share</div>:<div className="shareb"></div>}
+                  </div>
+                <div className="buy1">
+                  <a onClick={() => window.open(link, '_blank')}>
+                    <div className="buy"
+                    onMouseEnter={()=>{console.log("mouse on heart");setBuy(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setBuy(false)}}
+                    >
+                      <span
+                        class="iconify"
+                        data-icon="clarity:shopping-bag-line"
+                        data-inline="false"
+                        height="35px"
+                      ></span>
+                    </div>
+                  </a>
+                  {buy?<div className="buya">buy</div>:<div classname="buyb"></div>}
                 </div>
-              </a>
+              </div>
+            </div>
               
             </div>
             <div className="row3">

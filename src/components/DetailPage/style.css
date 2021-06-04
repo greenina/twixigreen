@@ -103,8 +103,8 @@
   margin-left: -12px;
 }
 .buy {
+
   margin-top: 33px;
-  margin-left: 14px;
 }
 .recommendations {
   font-size: 30px;
@@ -278,4 +278,54 @@ table {
 }
 .text{
   position: fixed;
+}
+.heartHome{
+  /* background-color: #00a900; */
+  width:70px;
+  height:70px;
+}
+.icon1{
+  display: flex;
+  flex-direction: column;
+  /* background-color: brown; */
+}
+.icon2{
+  display: flex;
+}
+.space{
+  width: 25px;
+}
+.space2{
+  width: 15px;
+}
+.hearta{
+  border-radius: 6px;
+  background-color: darkgray;
+  opacity: 0.5;
+  width: 40px;
+  margin-left: 30px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.sharea{
+  border-radius: 6px;
+  background-color: darkgray;
+  opacity: 0.5;
+  width: 40px;
+  font-size: 10px;
+  text-align: center;
+  margin-left: -10px;
+}
+.buya{
+  border-radius: 6px;
+  background-color: darkgray;
+  opacity: 0.5;
+  width: 35px;
+  font-size: 10px;
+  text-align: center;
+}
+.shareContainer{
+  display: flex;
+  flex-direction: row;
 }

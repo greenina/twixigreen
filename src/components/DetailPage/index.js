@@ -15,7 +15,7 @@ import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 
 function DetailPage(props) {
-  //console.log("props",props)
+ 
   const [recArray, setRecArray] = useState([]);
   const [wished, setWished] = useState([]);
   const [category, setCategory] = useState();
@@ -77,7 +77,7 @@ function DetailPage(props) {
       .get()
       .then(function (doc) {
         let docs = doc.data();
-        // console.log('link', link);
+       
         setImgSrc([]);
         for (var i = 0; i < Object.keys(docs).length; i++) {
           let dic = img_src;
@@ -86,15 +86,14 @@ function DetailPage(props) {
         }
         let tdic = img_src;
         tdic[4] = img_src[2];
-        // console.log('companion img source list', img_src);
+        
       });
   }, []);
 
   var heartClick = function (e) {
-    // console.log('heartIdd', idd);
+   
     var index = wished.indexOf(idd);
-    // console.log('index', index);
-    ////
+   
     if (!isClick) {
       if (index === -1) {
         wished.push(idd);
@@ -119,12 +118,12 @@ function DetailPage(props) {
       // var
       // db.collection('users').doc('1').set()
     } else setScore(4);
-    console.log("user's eco score", Math.round(tmpScore / wished.length));
+   
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log('db get');
+   
     db.collection('products')
       .get()
       .then((snapshot) => {
@@ -135,7 +134,7 @@ function DetailPage(props) {
           dic[doc.id] = docs;
           setProducts(dic);
 
-          // console.log('products check', products);
+          
 
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
@@ -223,9 +222,7 @@ function DetailPage(props) {
               }
             }
 
-            console.log('::::::', elements, products_in);
-            console.log('category', cgg, 'product_id', product_id);
-            console.log(products_in[product_id]);
+          
             //debugger;
           }
           /////////get product id, category///////////
@@ -237,7 +234,7 @@ function DetailPage(props) {
               .get()
               .then(function (doc2) {
                 setStage(doc2.data()['stage']);
-                console.log('::::::::', doc2.data()['stage']);
+               
               });
             db.collection('users')
               .doc(email)
@@ -250,13 +247,10 @@ function DetailPage(props) {
                 if (docs['wished'].length > 0) {
                   for (var i = 0; i < docs['wished'].length; i++) {
                     tmpScore += products[docs['wished'][i]]['eco'];
-                    console.log('tmpScore', tmpScore);
+                  
                   }
                   setScore(Math.round(tmpScore / docs['wished'].length));
-                  console.log(
-                    "user's eco score",
-                    Math.round(tmpScore / docs['wished'].length)
-                  );
+                 
                 } else setScore(4);
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
@@ -358,7 +352,7 @@ function DetailPage(props) {
                 className="share"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
-                  // console.log('copy');
+                
                   alert('copied');
                 }}
               >

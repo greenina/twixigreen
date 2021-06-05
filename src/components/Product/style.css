@@ -29,4 +29,5 @@
   position: absolute;
   margin-top: 20px;
   margin-left: 55px;
+  z-index: 1;
 }

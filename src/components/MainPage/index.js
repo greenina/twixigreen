@@ -45,7 +45,7 @@ function MainPage() {
         }
         let tdic = img_src;
         tdic[4] = img_src[2];
-        console.log('companion img source list', img_src);
+        //console.log('companion img source list', img_src);
       });
 
     var count = 0;
@@ -59,7 +59,7 @@ function MainPage() {
           dic[doc.id] = docs;
           setProducts(dic);
         });
-        console.log('product list', products);
+        //console.log('product list', products);
       });
   }, []);
 
@@ -74,7 +74,7 @@ function MainPage() {
       .doc(email)
       .get()
       .then(function (doc) {
-        console.log('doc', doc);
+        //console.log('doc', doc);
         let docs = doc.data();
         setUserInfo([]);
         //console.log("wished list",docs['wished'])
@@ -86,19 +86,19 @@ function MainPage() {
 
         var tmpScore = 0;
         for (i = 0; i < userInfo['wished'].length; i++) {
-          console.log(products[userInfo['wished'][i]]['eco']);
+          //console.log(products[userInfo['wished'][i]]['eco']);
           tmpScore += products[userInfo['wished'][i]]['eco'];
-          console.log(products[userInfo['wished'][i]]);
+          //console.log(products[userInfo['wished'][i]]);
         }
         if (userInfo['wished'].length > 0) {
           setScore(Math.round(tmpScore / userInfo['wished'].length));
           // var
           // db.collection('users').doc('1').set()
         } else setScore(4);
-        console.log(
-          "user's eco score",
-          Math.round(tmpScore / userInfo['wished'].length)
-        );
+        //console.log(
+        //  "user's eco score",
+        //  Math.round(tmpScore / userInfo['wished'].length)
+        //);
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -147,7 +147,7 @@ function MainPage() {
 
           <div className="slide first">
             <img
-              src="https://ifh.cc/g/xEbVfF.jpg"
+              src="https://ifh.cc/g/218GD0.jpg"
               alt=""
               useMap="#livingroom-map"
             ></img>
@@ -171,23 +171,6 @@ function MainPage() {
                 target=""
               />
               <area
-                data-tip="tree"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  780, 483, 776, 519, 786, 524, 804, 526, 820, 520, 822, 484,
-                  802, 479, 801, 459, 812, 456, 814, 467, 818, 460, 815, 449,
-                  820, 448, 827, 445, 825, 438, 829, 432, 830, 426, 829, 422,
-                  836, 422, 834, 417, 841, 410, 839, 407, 819, 411, 830, 403,
-                  835, 395, 830, 392, 841, 385, 823, 388, 822, 377, 810, 377,
-                  796, 377, 798, 368, 796, 359, 791, 352, 779, 363, 770, 369,
-                  774, 382, 778, 393, 774, 403, 767, 414, 771, 411, 762, 423,
-                  770, 432, 764, 439, 771, 445, 776, 450, 764, 456, 772, 462,
-                  761, 471, 787, 459, 799, 461, 800, 479, 790, 480,
-                ])}
-              />
-              <area
                 data-tip="cushion"
                 shape="poly"
                 alt=""
@@ -200,52 +183,11 @@ function MainPage() {
                 href="/category/living"
                 target=""
               />
-              <area
-                data-tip="rug"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  1308, 771, 1226, 704, 1094, 706, 1079, 747, 1074, 745, 1084,
-                  706, 1069, 692, 934, 572, 935, 547, 889, 553, 900, 575, 886,
-                  575, 874, 571, 870, 566, 867, 552, 862, 550, 851, 562, 846,
-                  557, 841, 563, 837, 553, 822, 551, 820, 564, 816, 569, 809,
-                  573, 804, 576, 802, 576, 794, 578, 789, 578, 769, 578, 754,
-                  575, 730, 574, 719, 570, 712, 566, 705, 562, 697, 555, 693,
-                  550, 619, 551, 525, 769,
-                ])}
-              />
-              <area
-                data-tip="light"
-                data-place="bottom"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  518, 28, 584, 28, 601, 76, 549, 76, 546, 72,
-                ])}
-              />
-              <area
-                data-tip="light"
-                data-place="bottom"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([618, 76, 738, 77, 746, 26, 602, 25])}
-              />
-              <area
-                data-tip="ligth"
-                data-place="bottom"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([764, 28, 752, 72, 817, 72, 830, 24])}
-              />
             </map>
           </div>
           <div className="slide">
             <img
-              src="https://ifh.cc/g/lXUw7U.jpg"
+              src="https://ifh.cc/g/OsS9QH.jpg"
               alt=""
               useMap="#kitchen-map"
             ></img>
@@ -256,29 +198,6 @@ function MainPage() {
               height="100%"
               border="5px solid #000000"
             >
-              <area
-                data-tip="cloth"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  283, 514, 277, 519, 280, 602, 284, 610, 304, 613, 330, 609,
-                  334, 604, 335, 552, 338, 517, 333, 512, 299, 514,
-                ])}
-                href="/category/kitchen"
-                target=""
-              />
-              <area
-                data-tip="pan"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  946, 458, 949, 466, 923, 470, 920, 476, 924, 478, 927, 480,
-                  941, 482, 951, 478, 961, 473, 977, 478, 1006, 478, 1026, 473,
-                  1032, 466, 1036, 456, 978, 456,
-                ])}
-              />
               <area
                 data-tip="scrubber"
                 shape="poly"
@@ -306,24 +225,11 @@ function MainPage() {
                 href="/category/kitchen"
                 target=""
               />
-              <area
-                data-tip="wrap"
-                data-tip="hello world"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  377, 406, 378, 396, 388, 398, 390, 402, 422, 403, 420, 410,
-                  420, 424, 411, 434, 423, 434, 419, 444, 419, 461, 395, 472,
-                  358, 472, 344, 460, 341, 445, 339, 438, 353, 433, 346, 430,
-                  344, 418, 343, 408, 350, 403, 368, 403,
-                ])}
-              />
             </map>
           </div>
           <div className="slide">
             <img
-              src="https://ifh.cc/g/2rKxQD.jpg"
+              src="https://ifh.cc/g/SkwUIG.jpg"
               alt=""
               useMap="#bathroom-map"
             ></img>
@@ -346,16 +252,6 @@ function MainPage() {
                 ])}
               />
               <area
-                data-tip="soap"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  568, 461, 565, 466, 570, 470, 602, 470, 606, 470, 607, 463,
-                  603, 460,
-                ])}
-              />
-              <area
                 data-tip="toothpaste"
                 data-place="bottom"
                 shape="poly"
@@ -367,18 +263,6 @@ function MainPage() {
                 ])}
                 href="/category/bath"
                 target=""
-              />
-              <area
-                data-tip="toothbrush"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  779, 434, 778, 466, 785, 469, 793, 468, 806, 468, 806, 431,
-                  800, 432, 806, 402, 805, 400, 798, 401, 794, 414, 798, 416,
-                  794, 432, 787, 432, 781, 417, 785, 415, 781, 404, 778, 403,
-                  774, 405, 769, 405, 780, 430,
-                ])}
               />
               <area
                 data-tip="shampoo"
@@ -403,7 +287,7 @@ function MainPage() {
           </div>
           <div className="slide">
             <img
-              src="https://ifh.cc/g/tcEe36.jpg"
+              src="https://ifh.cc/g/fa8P08.jpg"
               alt=""
               useMap="#myroom-map"
             ></img>
@@ -425,32 +309,6 @@ function MainPage() {
                 ])}
                 href="/category/beauty"
                 target=""
-              />
-              <area
-                data-tip="blanket"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  672, 462, 664, 472, 667, 481, 670, 489, 676, 496, 673, 508,
-                  670, 518, 668, 541, 666, 564, 670, 571, 679, 576, 670, 585,
-                  669, 591, 678, 595, 693, 600, 705, 601, 724, 594, 744, 595,
-                  775, 594, 791, 599, 831, 591, 848, 589, 858, 580, 894, 575,
-                  903, 566, 899, 536, 883, 504, 843, 473, 803, 461, 776, 456,
-                  760, 453, 695, 456,
-                ])}
-              />
-              <area
-                data-tip="mug"
-                shape="poly"
-                alt=""
-                title=""
-                coords={resizeArea([
-                  1160, 508, 1155, 503, 1160, 525, 1161, 541, 1170, 546, 1174,
-                  544, 1175, 536, 1171, 532, 1173, 526, 1179, 525, 1188, 526,
-                  1195, 529, 1200, 523, 1198, 513, 1194, 509, 1194, 503, 1174,
-                  500, 1166, 502,
-                ])}
               />
               <area
                 data-tip="eco-bag"

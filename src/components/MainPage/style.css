@@ -119,8 +119,8 @@ body {
 
 .left-arrow {
   display: flex;
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 27.5vw;
   left: 25px;
   height: 50px;
   width: 50px;
@@ -146,8 +146,8 @@ body {
 
 .right-arrow {
   display: flex;
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 27.5vw;
   right: 25px;
   height: 50px;
   width: 50px;
@@ -169,4 +169,12 @@ body {
 
 .right-arrow img:focus {
   outline: 0;
+}
+
+#radio-lr:checked ~ .left-arrow {
+  display: none;
+}
+
+#radio-mr:checked ~ .right-arrow {
+  display: none;
 }

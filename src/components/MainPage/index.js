@@ -123,14 +123,6 @@ function MainPage() {
     });
   };
 
-  const prevSlide = () => {
-    let radios = ['radio-lr', 'radio-kc', 'radio-br', 'radio-mr'];
-    var view = document.getElementsByClassName('slide first');
-    var radio1 = document.getElementById('radio-lr');
-    console.log(radio1.checked);
-    view[0].style.marginLeft = '-60%';
-  };
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => {
@@ -141,6 +133,42 @@ function MainPage() {
 
   const mv2mypage = () => {
     document.location.href = '/mypage';
+  };
+
+  const prevSlide = () => {
+    let livingroom = document.getElementById('radio-lr');
+    let kitchen = document.getElementById('radio-kc');
+    let bathroom = document.getElementById('radio-br');
+    let bedroom = document.getElementById('radio-mr');
+    let l_arrow = document.getElementById('left-arrow');
+    let r_arrow = document.getElementById('right-arrow');
+    kitchen.checked
+      ? (livingroom.checked = true)
+      : bathroom.checked
+      ? (kitchen.checked = true)
+      : bedroom.checked
+      ? (bathroom.checked = true)
+      : (livingroom.checked = true);
+    //(livingroom.checked ? l_arrow.style.display = 'none' : l_arrow.style.display = 'flex');
+    //(bedroom.checked ? r_arrow.style.display = 'none': r_arrow.style.display = 'flex');
+  };
+
+  const nextSlide = () => {
+    let livingroom = document.getElementById('radio-lr');
+    let kitchen = document.getElementById('radio-kc');
+    let bathroom = document.getElementById('radio-br');
+    let bedroom = document.getElementById('radio-mr');
+    let l_arrow = document.getElementById('left-arrow');
+    let r_arrow = document.getElementById('right-arrow');
+    livingroom.checked
+      ? (kitchen.checked = true)
+      : kitchen.checked
+      ? (bathroom.checked = true)
+      : bathroom.checked
+      ? (bedroom.checked = true)
+      : (bedroom.checked = true);
+    //(livingroom.checked ? l_arrow.style.display = 'none' : l_arrow.style.display = 'flex');
+    //(bedroom.checked ? r_arrow.style.display = 'none': r_arrow.style.display = 'flex');
   };
 
   return (
@@ -253,7 +281,7 @@ function MainPage() {
                   884, 411, 869, 411, 854, 408, 843, 403, 840, 396, 839, 364,
                   840, 300,
                 ])}
-                href="/category/tissue"
+                href="/category/tissue2"
                 target=""
               />
             </map>
@@ -283,7 +311,7 @@ function MainPage() {
                   216, 541, 200, 541, 185, 540, 173, 531, 165, 518, 162, 503,
                   164, 491, 171, 478, 175, 475,
                 ])}
-                href="/category/tissue"
+                href="/category/tissue3"
               />
               <area
                 data-tip="toothpaste"
@@ -358,7 +386,7 @@ function MainPage() {
                   483, 1208, 481, 1198, 483, 1197, 479, 1190, 475, 1182, 473,
                   1169, 477, 1161, 486, 1162, 495,
                 ])}
-                href="/category/tissue"
+                href="/category/tissue4"
                 target=""
               />
               <area
@@ -399,21 +427,22 @@ function MainPage() {
           </div>
 
           <Tippy
-            delayShow={100}
+            delayShow={80}
             backgroundColor="rgba(0,169,0,0.9)"
-            delayUpdate={1000}
+            delayUpdate={2000}
           />
+          <div
+            className="left-arrow"
+            id="left-arrow"
+            onClick={prevSlide}
+            //style = {{display: 'none'}}
+          >
+            <img src={leftArrow} />
+          </div>
+          <div className="right-arrow" id="right-arrow" onClick={nextSlide}>
+            <img src={rightArrow} />
+          </div>
         </div>
-      </div>
-
-      <div className="left-arrow" onClick={prevSlide}>
-        <img src={leftArrow} />
-      </div>
-      <div
-        className="right-arrow"
-        //onClick={nextSlide}
-      >
-        <img src={rightArrow} />
       </div>
     </div>
   );

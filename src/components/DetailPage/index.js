@@ -41,6 +41,7 @@ function DetailPage(props) {
   const [share, setShare] = useState(0);
   const [buy, setBuy] = useState(false);
   const [imgId, setImgId] = useState('a1');
+  const [where, setWhere] = useState('');
 
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
@@ -57,10 +58,14 @@ function DetailPage(props) {
   const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
   const room = props.location.state.room;
-  var where = 'default';
   //var value = '';
   if (typeof (room) != "undefined") {
-    where = room;
+    setWhere(room);
+  }else{
+    if (cgg == 'tissue' || cgg == 'cushion') setWhere("Living");
+    else if (cgg == 'detergent' || cgg == 'scrubber') setWhere("Kitchen");
+    else if (cgg == 'shampoo' || cgg == 'toothpaste') setWhere("Bathroom");
+    else if (cgg == 'facial' || cgg == 'bag') setWhere("Bedroom");
   }
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
@@ -188,15 +193,6 @@ function DetailPage(props) {
           setProducts(dic);
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
-            if (where == 'default') {
-              console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-              if (cgg == 'tissue' || cgg == 'cushion') where = "Living";
-              else if (cgg == 'detergent' || cgg == 'scrubber') where = "Kitchen";
-              else if (cgg == 'shampoo' || cgg == 'toothpaste') where = "Bathroom";
-              else if (cgg == 'facial' || cgg == 'bag') where = "Bedroom";
-            }
-            console.log("cgg::::::", cgg);
-            console.log("where?", where);
             var tmp = Number(doc.id);
 
             if (cgg == 'facial') {

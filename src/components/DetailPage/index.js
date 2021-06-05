@@ -14,7 +14,6 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
-// import ModuiPopup  from 'modui-popup';
 
 function DetailPage(props) {
   const [recArray, setRecArray] = useState([]);
@@ -60,18 +59,6 @@ function DetailPage(props) {
   var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
-
-  var ModuiPopup = require('modui-popup');
-
-  console.log('moduipop', ModuiPopup);
-  console.log('button', Button);
-  // useEffect(()=>{
-  //   ModuiPopup.open({
-  //     target : document.getElementById('text'),
-  //     position : 'right center',
-  //     contents : 'This is a popup balloon.'
-  //   });
-  // },[])
 
   var avg = function (list) {
     var sum = 0;

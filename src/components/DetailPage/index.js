@@ -2,8 +2,8 @@ import './style.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
-import RecProduct from '../RecProduct';
-import { Button } from '@material-ui/core';
+//import RecProduct from '../RecProduct';
+//import { Button } from '@material-ui/core';
 import { facials_element, facials } from './product_array';
 import { tissue_element, tissue } from './product_array';
 import { toothpaste_element, toothpaste } from './product_array';
@@ -16,19 +16,19 @@ import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 
 function DetailPage(props) {
  
-  const [recArray, setRecArray] = useState([]);
+  //const [recArray, setRecArray] = useState([]);
   const [wished, setWished] = useState([]);
   const [category, setCategory] = useState();
   const [products, setProducts] = useState({});
   const [img_src, setImgSrc] = useState({});
   const [score, setScore] = useState(0);
-  const [console2, setConsole2] = useState();
-  const [console3, setConsole3] = useState(0);
-  const [bukkuk, setBukkuk] = useState([]);
+  //const [console2, setConsole2] = useState();
+  //const [console3, setConsole3] = useState(0);
+  //const [bukkuk, setBukkuk] = useState([]);
   const [stage, setStage] = useState([]);
   const [status, setStatus] = useState();
   const [isClick, setClick] = useState();
-  const [userInfo, setUserInfo] = useState({});
+  //const [userInfo, setUserInfo] = useState({});
   const [idd, setIdd] = useState();
   const [product_id, setProductId] = useState(0);
   const [e_length, setELength] = useState(0);
@@ -50,7 +50,7 @@ function DetailPage(props) {
   const link = props.location.state.link;
   const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
-  var value = '';
+  //var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
   var avg = function (list) {
@@ -150,7 +150,7 @@ function DetailPage(props) {
                   break;
                 }
               }
-            } else if (cgg == 'tissue') {
+            } else if (cgg == 'tissue' || cgg == 'tissue2' || cgg == 'tissue3' || cgg == 'tissue4') {
               setELength(tissue_element.length);
               setElements(tissue_element);
               setProductIn(tissue);
@@ -270,13 +270,13 @@ function DetailPage(props) {
 
   const mvPage = () => {
     let parentCat =
-      category == 'scrubber' || category == 'detergent'
+      category == 'scrubber' || category == 'detergent' || category == 'tissue2'
         ? 'kitchen'
         : category == 'tissue' || category == 'cushion'
         ? 'living'
-        : category == 'shampoo' || category == 'toothpaste'
+        : category == 'shampoo' || category == 'toothpaste' || category == 'tissue3'
         ? 'bath'
-        : category == 'bag' || category == 'facial'
+        : category == 'bag' || category == 'facial' || category == 'tissue4'
         ? 'beauty'
         : '';
     document.location.href = '/category/' + parentCat;
@@ -287,13 +287,13 @@ function DetailPage(props) {
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
           <b>
-            {category == 'scrubber' || category == 'detergent'
+            {category == 'scrubber' || category == 'detergent' || category == 'tissue2'
               ? 'Kitchen'
               : category == 'tissue' || category == 'cushion'
               ? 'Living'
-              : category == 'shampoo' || category == 'toothpaste'
+              : category == 'shampoo' || category == 'toothpaste' || category == 'tissue3'
               ? 'Bathroom'
-              : category == 'bag' || category == 'facial'
+              : category == 'bag' || category == 'facial' || category == 'tissue4'
               ? 'Bedroom'
               : ''}
           </b>
@@ -308,7 +308,17 @@ function DetailPage(props) {
             padding-bottom="5px"
           ></span>{' '}
         </text>
-        <text id="router-text">{category}</text>
+        <text id="router-text">
+          {category == 'scrubber' ? 'Scrubber'
+            : category == 'detergent' ? 'Detergent'
+              : category == 'tissue' || category == 'tissue2' || category == 'tissue3' || category == 'tissue4' ? 'Tissue'
+                : category == 'cushion' ? 'Cushion'
+                  : category == 'shampoo' ? 'Shampoo'
+                    : category == 'toothpaste' ? 'Toothpaste'
+                      : category == 'bag' ? 'Bag'
+                        : category == 'facial' ? 'Facial'
+                          :''}
+        </text>
         <text id="router-text">
           {' '}
           <span

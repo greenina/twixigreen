@@ -135,6 +135,30 @@ function MainPage() {
     document.location.href = '/mypage';
   };
 
+  const prevSlide = () => {
+    let livingroom = document.getElementById('radio-lr');
+    let kitchen = document.getElementById('radio-kc');
+    let bathroom = document.getElementById('radio-br');
+    let bedroom = document.getElementById('radio-mr');
+    let l_arrow = document.getElementById('left-arrow');
+    let r_arrow = document.getElementById('right-arrow');
+    (kitchen.checked ? livingroom.checked = true : (bathroom.checked ? kitchen.checked = true : (bedroom.checked ? bathroom.checked = true : livingroom.checked = true)));
+    //(livingroom.checked ? l_arrow.style.display = 'none' : l_arrow.style.display = 'flex');
+    //(bedroom.checked ? r_arrow.style.display = 'none': r_arrow.style.display = 'flex');
+  };
+
+  const nextSlide = () => {
+    let livingroom = document.getElementById('radio-lr');
+    let kitchen = document.getElementById('radio-kc');
+    let bathroom = document.getElementById('radio-br');
+    let bedroom = document.getElementById('radio-mr');
+    let l_arrow = document.getElementById('left-arrow');
+    let r_arrow = document.getElementById('right-arrow');
+    (livingroom.checked ? kitchen.checked = true : (kitchen.checked ? bathroom.checked = true : (bathroom.checked ? bedroom.checked = true : bedroom.checked = true)));
+    //(livingroom.checked ? l_arrow.style.display = 'none' : l_arrow.style.display = 'flex');
+    //(bedroom.checked ? r_arrow.style.display = 'none': r_arrow.style.display = 'flex');
+  };
+
   return (
     <div>
       <div className="slider">
@@ -247,7 +271,7 @@ function MainPage() {
                   901, 403, 895, 409, 884, 411, 869, 411, 854, 408,
                   843, 403, 840, 396, 839, 364, 840, 300
                 ])}
-                href="/category/tissue"
+                href="/category/tissue2"
                 target=""
               />
             </map>
@@ -278,7 +302,7 @@ function MainPage() {
                   185, 540, 173, 531, 165, 518, 162, 503, 164, 491,
                   171, 478, 175, 475
                 ])}
-                href="/category/tissue"
+                href="/category/tissue3"
               />
               <area
                 data-tip="toothpaste"
@@ -354,7 +378,7 @@ function MainPage() {
                   1190, 475, 1182, 473, 1169, 477, 1161, 486, 1162, 495
 
                 ])}
-                href="/category/tissue"
+                href="/category/tissue4"
                 target=""
               />
               <area
@@ -395,25 +419,29 @@ function MainPage() {
           </div>
 
           <Tippy
-            delayShow={100}
+            delayShow={80}
             backgroundColor="rgba(0,169,0,0.9)"
-            delayUpdate={1000}
+            delayUpdate={2000}
           />
+          <div
+            className="left-arrow"
+            id = "left-arrow"
+            onClick={prevSlide}
+            //style = {{display: 'none'}}
+          >
+            <img src={leftArrow} />
+          </div>
+          <div
+            className="right-arrow"
+            id = "right-arrow"
+            onClick={nextSlide}
+          >
+            <img src={rightArrow} />
+          </div>
         </div>
       </div>
       
-      <div
-        class="left-arrow"
-        //onClick={prevSlide}
-    >
-        <img src={leftArrow} />
-      </div>
-      <div
-        class="right-arrow"
-      //onClick={nextSlide}
-    >
-      <img src={rightArrow} />
-    </div>
+
       
     </div>
   );

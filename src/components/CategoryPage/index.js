@@ -151,57 +151,61 @@ class CategoryPage extends React.Component {
           ) {
             cgtest = true;
           } else if (
-            (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath') &&
+            (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'tissue3' || cgg == 'bath') &&
             (doc.data().category == 'toothpaste' ||
-              doc.data().category == 'shampoo')
+              doc.data().category == 'shampoo' || doc.data().category == 'tissue')
           ) {
             cgtest = true;
           } else if (
-            (cgg == 'facial' || cgg == 'bag' || cgg == 'beauty') &&
-            (doc.data().category == 'facial' || doc.data().category == 'bag')
+            (cgg == 'facial' || cgg == 'bag' || cgg == 'tissue4' || cgg == 'beauty') &&
+            (doc.data().category == 'facial' || doc.data().category == 'bag' || doc.data().category == 'tissue')
           ) {
             cgtest = true;
           } else if (
-            (cgg == 'scrubber' || cgg == 'detergent' || cgg == 'kitchen') &&
+            (cgg == 'scrubber' || cgg == 'detergent' || cgg == 'tissue2' || cgg == 'kitchen') &&
             (doc.data().category == 'scrubber' ||
-              doc.data().category == 'detergent')
+              doc.data().category == 'detergent' || doc.data().category == 'tissue')
           ) {
             cgtest = true;
           }
 
           var product1 = document.getElementById('product1').checked;
           var product2 = document.getElementById('product2').checked;
-          if (product1 == false && product2 == false) {
+          if (!(cgg == 'tissue' || cgg == 'cushion' || cgg == 'living')) {
+            var product3 = document.getElementById('product3').checked;
+            if (product1 == false && product2 == false && product3 == false) {
+              product1 = true;
+              product2 = true;
+              product3 = true;
+            }
+          }
+          else if (product1 == false && product2 == false) {
             product1 = true;
             product2 = true;
           }
+          
 
-          var tmpStr = '';
-          if (product1 && !product2) {
-            if (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living')
-              tmpStr = 'Tissue';
-            else if (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath')
-              tmpStr = 'Shampoo';
-            else if (cgg == 'facial' || cgg == 'bag' || cgg == 'beauty')
-              tmpStr = 'Facial';
-            else tmpStr = 'Scrubber';
-          } else if (!product1 && product2) {
-            if (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living')
-              tmpStr = 'Cushion';
-            else if (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath')
-              tmpStr = 'Toothpaste';
-            else if (cgg == 'facial' || cgg == 'bag' || cgg == 'beauty')
-              tmpStr = 'Bag';
-            else tmpStr = 'Detergent';
-          } else if (product1 && product2) {
-            if (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living')
-              tmpStr = 'Tissue, Cushion';
-            else if (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath')
-              tmpStr = 'Shampoo, Toothpaste';
-            else if (cgg == 'facial' || cgg == 'bag' || cgg == 'beauty')
-              tmpStr = 'Facial, Bag';
-            else tmpStr = 'Scrubber, Detergent';
+          var tmpArr = [];
+          if (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living') {
+            if (product1) tmpArr.push('Tissue');
+            if (product2) tmpArr.push('Cushion');
           }
+          else if (cgg == 'scrubber' || cgg == 'detergent' || cgg == 'tissue2' || cgg == 'kitchen') {
+            if (product1) tmpArr.push('Scrubber');
+            if (product2) tmpArr.push('Detergent');
+            if (product3) tmpArr.push('Tissue');
+          }
+          else if (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'tissue3' || cgg == 'bath') {
+            if (product1) tmpArr.push('Shampoo');
+            if (product2) tmpArr.push('Toothpaste');
+            if (product3) tmpArr.push('Tissue');
+          }
+          else if (cgg == 'facial' || cgg == 'bag' || cgg == 'tissue4' || cgg == 'beauty') {
+            if (product1) tmpArr.push('Facial');
+            if (product2) tmpArr.push('Bag');
+            if (product3) tmpArr.push('Tissue');
+          }
+          var tmpStr = tmpArr.join(', ');
 
           this.setState((prevState) => ({
             route: tmpStr,
@@ -209,54 +213,14 @@ class CategoryPage extends React.Component {
 
           var cgtest2 = false;
 
-          if (
-            product1 &&
-            (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living') &&
-            doc.data().category == 'tissue'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product2 &&
-            (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living') &&
-            doc.data().category == 'cushion'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product1 &&
-            (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath') &&
-            doc.data().category == 'shampoo'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product2 &&
-            (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath') &&
-            doc.data().category == 'toothpaste'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product1 &&
-            (cgg == 'facial' || cgg == 'bag' || cgg == 'beauty') &&
-            doc.data().category == 'facial'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product2 &&
-            (cgg == 'facial' || cgg == 'bag' || cgg == 'beauty') &&
-            doc.data().category == 'bag'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product1 &&
-            (cgg == 'scrubber' || cgg == 'detergent' || cgg == 'kitchen') &&
-            doc.data().category == 'scrubber'
-          ) {
-            cgtest2 = true;
-          } else if (
-            product2 &&
-            (cgg == 'scrubber' || cgg == 'detergent' || cgg == 'kitchen') &&
-            doc.data().category == 'detergent'
-          ) {
-            cgtest2 = true;
+          if (cgg == 'tissue' || cgg == 'cushion' || cgg == 'living') {
+            if ((product1 && doc.data().category == 'tissue') || (product2 && doc.data().category == 'cushion')) cgtest2 = true;
+          } else if (cgg == 'scrubber' || cgg == 'detergent' || cgg == 'tissue2' || cgg == 'kitchen') {
+            if ((product1 && doc.data().category == 'scrubber') || (product2 && doc.data().category == 'detergent') || (product3 && doc.data().category == 'tissue')) cgtest2 = true;
+          } else if (cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'tissue3' || cgg == 'bath') {
+            if ((product1 && doc.data().category == 'shampoo') || (product2 && doc.data().category == 'toothpaste') || (product3 && doc.data().category == 'tissue')) cgtest2 = true;
+          } else if (cgg == 'facial' || cgg == 'bag' || cgg == 'tissue4' || cgg == 'beauty') {
+            if ((product1 && doc.data().category == 'facial') || (product2 && doc.data().category == 'bag') || (product3 && doc.data().category == 'tissue')) cgtest2 = true;
           }
 
           // var wishbool = wished.includes('' + doc.id) ? true : false;
@@ -340,13 +304,13 @@ class CategoryPage extends React.Component {
           <div className="router">
             <text id="router-text" className="mv2cat">
               <b>
-                {cgg == 'scrubber' || cgg == 'detergent' || cgg == 'kitchen'
+                {cgg == 'scrubber' || cgg == 'detergent' || cgg == 'tissue2' || cgg == 'kitchen'
                   ? 'Kitchen'
                   : cgg == 'tissue' || cgg == 'cushion' || cgg == 'living'
                   ? 'Living'
-                  : cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'bath'
+                  : cgg == 'shampoo' || cgg == 'toothpaste' || cgg == 'tissue3' || cgg == 'bath'
                   ? 'Bathroom'
-                  : cgg == 'bag' || cgg == 'facial' || cgg == 'beauty'
+                  : cgg == 'bag' || cgg == 'facial' || cgg == 'tissue4' || cgg == 'beauty'
                   ? 'Bedroom'
                   : ''}
               </b>
@@ -433,6 +397,39 @@ class CategoryPage extends React.Component {
               <label className="labels" for="product2"></label>
             </div>
           </div>
+          {(cgg == 'tissue' || cgg == 'cushion' || cgg == 'living') ?<div></div>:
+            <div className="router2" >
+              <span
+                class="iconify"
+                data-icon="mdi:alpha-l"
+                data-inline="false"
+                width="20px"
+              ></span>
+              <div class="checkin2">
+                <label for="product3" className="c_name">
+                  {cgg == 'scrubber' || cgg == 'detergent' || cgg == 'kitchen'
+                    ? 'Tissue'
+                    : cgg == 'facial' || cgg == 'bag' || cgg == 'beauty'
+                      ? 'Tissue'
+                      : 'Tissue'}
+                </label>
+                <input
+                  className="c_checkboxes"
+                  type="checkbox"
+                  id="product3"
+                  value="product3"
+                  defaultChecked={
+                    cgg == 'tissue2' ||
+                      cgg == 'tissue3' ||
+                      cgg == 'tissue4'
+                      ? true
+                      : false
+                  }
+                  onClick={this.datarefresh}
+                ></input>
+                <label className="labels" for="product3"></label>
+              </div>
+            </div>}
           <div className="fixed_container">
             <div className="checkbox1kk">
               <span class="checkin">

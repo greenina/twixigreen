@@ -330,13 +330,12 @@ table {
 }
 .sharec{
   border-radius: 6px;
-  background-color:green;
-  width: 40px;
-  height: 18px;
-  font-size: 11px;
+  background-color:rgb(241, 241, 241);
+  height: 22px;
+  font-size: 15px;
   text-align: center;
-  margin-left: -10px;
-  color: white;
+  margin-left: 10px;
+  color: black;
 }
 .buya{
   border-radius: 6px;
@@ -350,3 +349,39 @@ table {
   display: flex;
   flex-direction: row;
 }
+#a1,#a2,#a3,#a4,#a5,#a6,#a7{
+  width: 250px;
+  position: fixed;
+  bottom: 0;
+  visibility: hidden;
+}
+#a1{
+  margin-left: 175vh;
+  margin-bottom: 35vh;
+}
+#a2{
+  margin-left: 175vh;
+  margin-bottom: 35vh;
+}
+#a3{
+  margin-left: 175vh;
+  margin-bottom: 35vh;
+  /* height:30px */
+}
+#a4{
+  margin-left: 175vh;
+  margin-bottom: 35vh;
+}
+#a5{
+  margin-left: 175vh;
+  margin-bottom: 35vh;
+}
+#a6{
+  margin-left: 175vh;
+  margin-bottom: 27vh;
+}
+#a7{
+  margin-left: 175vh;
+  margin-bottom: 35vh;
+}
+

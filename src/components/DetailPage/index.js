@@ -1,4 +1,5 @@
 import './style.css';
+import './animation.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
@@ -13,6 +14,8 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+// import ModuiPopup  from 'modui-popup';
+
 
 function DetailPage(props) {
   //console.log("props",props)
@@ -40,6 +43,7 @@ function DetailPage(props) {
   const [heart, setHeart] = useState(false)
   const [share, setShare] = useState(0)
   const [buy, setBuy] = useState(false)
+  const [imgId, setImgId] = useState("a1")
 
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
@@ -59,6 +63,18 @@ function DetailPage(props) {
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
 
+  var ModuiPopup = require( 'modui-popup' );
+
+  console.log("moduipop",ModuiPopup)
+  console.log("button",Button)
+  // useEffect(()=>{
+  //   ModuiPopup.open({
+  //     target : document.getElementById('text'),
+  //     position : 'right center',
+  //     contents : 'This is a popup balloon.'
+  //   });
+  // },[])
+
 
 
   var avg = function (list) {
@@ -70,15 +86,18 @@ function DetailPage(props) {
   };
   useEffect(()=>{
     if(ecoval==0){
-      setTextBalloon("밑으로 내려보면 내가 좋아하는 제품 있눈디?(비친환경적인 제품)")
+      setTextBalloon('/images/text7.png')
+      setImgId("a7")
     }
     else if(isClick){
-      setTextBalloon("오예 신나~!(친환경적인거클릭함)")
+      setTextBalloon("images/text5.png")
+      setImgId("a5")
     }
     else{
-      setTextBalloon("아쉽다 ㅜㅜ(친환경적인거 하트 끔)")
+      setTextBalloon("/images/text4.png")
+      setImgId("a4")
     }
-  },[ecoval,isClick])
+  },[ecoval])
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -118,9 +137,31 @@ function DetailPage(props) {
       if (index === -1) {
         wished.push(idd);
       }
+      if(ecoval==0){
+        setTextBalloon('/images/text1.png')
+        setImgId("a1")
+        setTimeout(function(){setTextBalloon('/images/text7.png');setImgId("a7")},2000)
+      }
+      else{
+        setTextBalloon('/images/text3.png')
+        setImgId("a3")
+        setTimeout(function(){setTextBalloon('/images/text5.png');setImgId("a5")},2000)
+      }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
+      }
+      if(ecoval==0){
+        setTextBalloon('/images/text2.png')
+        setImgId("a2")
+        setTimeout(function(){setTextBalloon('/images/text7.png')},2000)
+        setImgId("a7")
+      }
+      else{
+        setTextBalloon('/images/text4.png')
+        setImgId("a4")
+        setTimeout(function(){setTextBalloon('/images/text6.png')},2000)
+        setImgId("a6")
       }
     }
     setClick(!isClick);
@@ -309,7 +350,26 @@ function DetailPage(props) {
 
   return (
     <div>
-      <div className="text">{textBalloon}</div>
+      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link>
+      {()=>{
+        switch(imgId){
+          case "a1":
+            <img id="a1" class="slideUp"src={textBalloon}/>
+          case "a2":
+            <img id="a2" class="slideUp"src={textBalloon}/>
+          case "a3":
+            <img id="a3" class="slideUp"src={textBalloon}/>
+          case "a4":
+            <img id="a4" class="slideUp"src={textBalloon}/>
+          case "a5":
+            <img id="a5" class="slideUp"src={textBalloon}/>
+          case "a6":
+            <img id="a6" class="slideUp"src={textBalloon}/>
+          case "a7":
+            <img id="a7" class="slideUp"src={textBalloon}/>
+        }
+      }}
+      <img id={imgId} class="slideUp"src={textBalloon}/>
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
           <b>
@@ -390,10 +450,8 @@ function DetailPage(props) {
                       className="share"
                       onClick={() => {
                         navigator.clipboard.writeText(window.location.href);
-                        setShare(2)
-                        // setTimeout(setShare(1),3000)
-                        // console.log('copy');
-                        //alert('copied');
+                        setShare(2);
+                        setTimeout(function(){setShare(0)},1500)
                       }}
                     >
                       <span 
@@ -407,7 +465,7 @@ function DetailPage(props) {
                     </div>
                     <div className="space2"></div>
                     </div>
-                    {share==1?<div className="sharea">share</div>:(share==0?<div></div>:<div className="sharec">Copied!</div>)}
+                    {share==1?<div className="sharea">share</div>:<div></div>}
                   </div>
                 <div className="buy1">
                   <a onClick={() => window.open(link, '_blank')}>
@@ -425,6 +483,8 @@ function DetailPage(props) {
                   {buy?<div className="buya">buy</div>:<div classname="buyb"></div>}
                 </div>
               </div>
+              
+              {share==1?<div className="sharea"></div>:(share==0?<div></div>:<div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
             </div>
               
             </div>

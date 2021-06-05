@@ -49,8 +49,9 @@ body {
 }
 
 .navigation-manual label {
-  border: 2px solid #00a900;
-  background-color: rgba(0, 169, 0, 0.1);
+  border: 2px solid #ffffff;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
@@ -62,7 +63,7 @@ body {
 }
 
 .navigation-manual label:hover {
-  background: #00a900;
+  background: #ffffff;
 }
 
 #radio-lr:checked ~ .first {
@@ -82,19 +83,19 @@ body {
 }
 
 #radio-lr:checked ~ .navigation-manual .manual-btn-lr {
-  background: #00a900;
+  background: #ffffff;
 }
 
 #radio-kc:checked ~ .navigation-manual .manual-btn-kc {
-  background: #00a900;
+  background: #ffffff;
 }
 
 #radio-br:checked ~ .navigation-manual .manual-btn-br {
-  background: #00a900;
+  background: #ffffff;
 }
 
 #radio-mr:checked ~ .navigation-manual .manual-btn-mr {
-  background: #00a900;
+  background: #ffffff;
 }
 
 /*companion state*/
@@ -114,4 +115,58 @@ body {
 .bottom {
   width: 100%;
   text-align: center;
+}
+
+.left-arrow {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  align-items: center;
+  transition: transform ease-in 0.1s;
+}
+
+.left-arrow:hover {
+  transform: scale(1.1);
+}
+
+.left-arrow img {
+  transform: translateX(-2px);
+}
+
+.left-arrow img:focus {
+  outline: 0;
+}
+
+.right-arrow {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  align-items: center;
+  transition: transform ease-in 0.1s;
+}
+
+.right-arrow:hover {
+  transform: scale(1.1);
+}
+
+.right-arrow img {
+  transform: translateX(2px);
+}
+
+.right-arrow img:focus {
+  outline: 0;
 }

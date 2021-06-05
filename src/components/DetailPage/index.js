@@ -1,4 +1,5 @@
 import './style.css';
+import './animation.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
@@ -13,6 +14,8 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+// import ModuiPopup  from 'modui-popup';
+
 
 function DetailPage(props) {
  
@@ -36,6 +39,12 @@ function DetailPage(props) {
   const [products_in, setProductIn] = useState([]);
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
+  const [textBalloon, setTextBalloon] = useState("")
+  const [heart, setHeart] = useState(false)
+  const [share, setShare] = useState(0)
+  const [buy, setBuy] = useState(false)
+  const [imgId, setImgId] = useState("a1")
+
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
   // const [triDominant, setTriDominant] = useState(0);
@@ -53,6 +62,21 @@ function DetailPage(props) {
   var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
+
+  var ModuiPopup = require( 'modui-popup' );
+
+  console.log("moduipop",ModuiPopup)
+  console.log("button",Button)
+  // useEffect(()=>{
+  //   ModuiPopup.open({
+  //     target : document.getElementById('text'),
+  //     position : 'right center',
+  //     contents : 'This is a popup balloon.'
+  //   });
+  // },[])
+
+
+
   var avg = function (list) {
     var sum = 0;
     for (var i = 0; i < list.length; i++) {
@@ -60,6 +84,20 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
+  // useEffect(()=>{
+  //   if(ecoval==0){
+  //     setTextBalloon('/images/text7.png')
+  //     setImgId("a7")
+  //   }
+  //   else if(isClick){
+  //     setTextBalloon("images/text5.png")
+  //     setImgId("a5")
+  //   }
+  //   else{
+  //     setTextBalloon("/images/text4.png")
+  //     setImgId("a4")
+  //   }
+  // },[ecoval])
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -98,9 +136,31 @@ function DetailPage(props) {
       if (index === -1) {
         wished.push(idd);
       }
+      if(ecoval==0){
+        setTextBalloon('/images/text1.jpg')
+        setImgId("a1")
+        setTimeout(function(){setTextBalloon('/images/text7.jpg');setImgId("a7")},2000)
+      }
+      else{
+        setTextBalloon('/images/text3.jpg')
+        setImgId("a3")
+        setTimeout(function(){setTextBalloon('/images/text5.jpg');setImgId("a5")},2000)
+      }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
+      }
+      if(ecoval==0){
+        setTextBalloon('/images/text2.jpg')
+        setImgId("a2")
+        setTimeout(function(){setTextBalloon('/images/text7.jpg')},2000)
+        setImgId("a7")
+      }
+      else{
+        setTextBalloon('/images/text4.jpg')
+        setImgId("a4")
+        setTimeout(function(){setTextBalloon('/images/text6.jpg')},2000)
+        setImgId("a6")
       }
     }
     setClick(!isClick);
@@ -255,6 +315,18 @@ function DetailPage(props) {
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
+                if(ecoval==0){
+      setTextBalloon('/images/text7.jpg')
+      setImgId("a7")
+    }
+    else if(clicked){
+      setTextBalloon("images/text5.jpg")
+      setImgId("a5")
+    }
+    else{
+      setTextBalloon("/images/text4.jpg")
+      setImgId("a4")
+    }
               });
           }
         });
@@ -284,6 +356,26 @@ function DetailPage(props) {
 
   return (
     <div>
+      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link>
+      {()=>{
+        switch(imgId){
+          case "a1":
+            <img id="a1" class="slideUp"src={textBalloon}/>
+          case "a2":
+            <img id="a2" class="slideUp"src={textBalloon}/>
+          case "a3":
+            <img id="a3" class="slideUp"src={textBalloon}/>
+          case "a4":
+            <img id="a4" class="slideUp"src={textBalloon}/>
+          case "a5":
+            <img id="a5" class="slideUp"src={textBalloon}/>
+          case "a6":
+            <img id="a6" class="slideUp"src={textBalloon}/>
+          case "a7":
+            <img id="a7" class="slideUp"src={textBalloon}/>
+        }
+      }}
+      <img id={imgId} class="slideUp"src={textBalloon}/>
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
           <b>
@@ -323,6 +415,7 @@ function DetailPage(props) {
       </div>
       <hr className="hr-line" />
       <div class="whole">
+        
         <div className="d_companion">
           <a href="/mypage">
             <img
@@ -347,28 +440,60 @@ function DetailPage(props) {
           <div className="info">
             <div className="row1">
               <h1 className="product_name">{name}</h1>
-              <Heart className="heart" isClick={isClick} onClick={heartClick} />
-              <div
-                className="share"
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                
-                  alert('copied');
-                }}
-              >
-                <img src="/images/share.png" height="30px" />
-              </div>
+              <div className="icon1">
+                <div className="icon2">
+                  <div className="heart1">
+                    <div className="heartHome"onMouseEnter={()=>{console.log("mouse on heart");setHeart(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setHeart(false)}}>
+                    <Heart className="heart" isClick={isClick} onClick={heartClick} />
+                    </div>
+                    {heart?<div className="hearta"><div>add to</div><div>wishlist</div></div>:<div className="heartb"></div>}
+                  </div>
+                  <div className="space"></div>
+                  <div className="share1">
+                    <div className="shareContainer">
+                    <div
+                    onMouseEnter={()=>{console.log("mouse on heart");setShare(1)}} onMouseLeave={()=>{console.log("mouse leave heart");setShare(0)}}
+                      className="share"
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        setShare(2);
+                        setTimeout(function(){setShare(0)},1500)
+                      }}
+                    >
+                      {/* <span 
+                      class="iconify" 
+                      data-icon="mdi:checkbox-multiple-blank-outline" 
+                      data-inline="false"
+                      height="35px"> */}
+                      {/* </span> */}
+                      <img src="/images/copy.png" height="35px"/>
+                    {/* <img src="/images/share.png" height="30px" /> */}
+                    </div>
+                    <div className="space2"></div>
+                    </div>
+                    {share==1?<div className="sharea">share</div>:<div></div>}
+                  </div>
+                <div className="buy1">
+                  <a onClick={() => window.open(link, '_blank')}>
+                    <div className="buy"
+                    onMouseEnter={()=>{console.log("mouse on heart");setBuy(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setBuy(false)}}
+                    >
+                      <span
+                        class="iconify"
+                        data-icon="clarity:shopping-bag-line"
+                        data-inline="false"
+                        height="35px"
+                      ></span>
+                    </div>
+                  </a>
+                  {buy?<div className="buya">buy</div>:<div classname="buyb"></div>}
 
-              <a onClick={() => window.open(link, '_blank')}>
-                <div className="buy">
-                  <span
-                    class="iconify"
-                    data-icon="clarity:shopping-bag-line"
-                    data-inline="false"
-                    height="35px"
-                  ></span>
                 </div>
-              </a>
+              </div>
+              <div className="space3"></div>
+              {share==1?<div className="sharea"></div>:(share==0?<div></div>:<div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
+            </div>
+              
             </div>
             <div className="row3">
               <div className="price">
@@ -388,7 +513,6 @@ function DetailPage(props) {
                     a range of pollutants, and substantial environmental
                     safeguards are needed.
                   </div>
-
                   <div className="image">
                     <img
                       src="/images/setting.png"

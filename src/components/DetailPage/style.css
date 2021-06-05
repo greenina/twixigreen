@@ -91,7 +91,6 @@
   margin-left: -12px;
 }
 .buy {
-
   margin-top: 33px;
 }
 .recommendations {
@@ -127,6 +126,7 @@
 table {
   border: 1px solid rgba(210, 211, 212, 0.3);
   border-collapse: collapse;
+  margin-right: 60px;
 }
 th,
 td {
@@ -309,41 +309,47 @@ table {
 .space2{
   width: 15px;
 }
+.space3{
+  height: 10px;
+}
 .hearta{
   border-radius: 6px;
-  background-color: darkgray;
-  opacity: 0.5;
+  background-color: rgb(202, 200, 200);
+  opacity: 0.8;
   width: 40px;
   margin-left: 30px;
   font-size: 10px;
   text-align: center;
+  margin-top: 5px;
 }
 
 .sharea{
   border-radius: 6px;
-  background-color: darkgray;
-  opacity: 0.5;
+  background-color: rgb(202, 200, 200);
+  opacity: 0.8;
   width: 40px;
   font-size: 10px;
   text-align: center;
-  margin-left: -10px;
+  margin-left: -15px;
 }
 .sharec{
   border-radius: 6px;
-  background-color:rgb(241, 241, 241);
+  background-color:rgb(230, 230, 230);
   height: 22px;
   font-size: 15px;
   text-align: center;
-  margin-left: 10px;
+  margin-left: 13px;
   color: black;
+  padding: 3px;
 }
 .buya{
   border-radius: 6px;
-  background-color: darkgray;
-  opacity: 0.5;
+  background-color: rgb(202, 200, 200);
+  opacity: 0.8;
   width: 35px;
   font-size: 10px;
   text-align: center;
+  margin-top: 5px;
 }
 .shareContainer{
   display: flex;
@@ -365,16 +371,17 @@ table {
 }
 #a3{
   margin-left: 175vh;
-  margin-bottom: 35vh;
-  /* height:30px */
+  margin-bottom: 25vh;
 }
 #a4{
   margin-left: 175vh;
-  margin-bottom: 35vh;
+  margin-bottom: 27vh;
+  height: 80px;
+  width: 250px;
 }
 #a5{
-  margin-left: 175vh;
-  margin-bottom: 35vh;
+  margin-left: 176vh;
+  margin-bottom: 26vh;
 }
 #a6{
   margin-left: 175vh;

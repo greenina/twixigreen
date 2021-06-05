@@ -84,20 +84,20 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
-  useEffect(()=>{
-    if(ecoval==0){
-      setTextBalloon('/images/text7.png')
-      setImgId("a7")
-    }
-    else if(isClick){
-      setTextBalloon("images/text5.png")
-      setImgId("a5")
-    }
-    else{
-      setTextBalloon("/images/text4.png")
-      setImgId("a4")
-    }
-  },[ecoval])
+  // useEffect(()=>{
+  //   if(ecoval==0){
+  //     setTextBalloon('/images/text7.png')
+  //     setImgId("a7")
+  //   }
+  //   else if(isClick){
+  //     setTextBalloon("images/text5.png")
+  //     setImgId("a5")
+  //   }
+  //   else{
+  //     setTextBalloon("/images/text4.png")
+  //     setImgId("a4")
+  //   }
+  // },[ecoval])
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -138,29 +138,29 @@ function DetailPage(props) {
         wished.push(idd);
       }
       if(ecoval==0){
-        setTextBalloon('/images/text1.png')
+        setTextBalloon('/images/text1.jpg')
         setImgId("a1")
-        setTimeout(function(){setTextBalloon('/images/text7.png');setImgId("a7")},2000)
+        setTimeout(function(){setTextBalloon('/images/text7.jpg');setImgId("a7")},2000)
       }
       else{
-        setTextBalloon('/images/text3.png')
+        setTextBalloon('/images/text3.jpg')
         setImgId("a3")
-        setTimeout(function(){setTextBalloon('/images/text5.png');setImgId("a5")},2000)
+        setTimeout(function(){setTextBalloon('/images/text5.jpg');setImgId("a5")},2000)
       }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
       }
       if(ecoval==0){
-        setTextBalloon('/images/text2.png')
+        setTextBalloon('/images/text2.jpg')
         setImgId("a2")
-        setTimeout(function(){setTextBalloon('/images/text7.png')},2000)
+        setTimeout(function(){setTextBalloon('/images/text7.jpg')},2000)
         setImgId("a7")
       }
       else{
-        setTextBalloon('/images/text4.png')
+        setTextBalloon('/images/text4.jpg')
         setImgId("a4")
-        setTimeout(function(){setTextBalloon('/images/text6.png')},2000)
+        setTimeout(function(){setTextBalloon('/images/text6.jpg')},2000)
         setImgId("a6")
       }
     }
@@ -321,6 +321,18 @@ function DetailPage(props) {
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
+                if(ecoval==0){
+      setTextBalloon('/images/text7.jpg')
+      setImgId("a7")
+    }
+    else if(clicked){
+      setTextBalloon("images/text5.jpg")
+      setImgId("a5")
+    }
+    else{
+      setTextBalloon("/images/text4.jpg")
+      setImgId("a4")
+    }
               });
           }
         });
@@ -454,13 +466,13 @@ function DetailPage(props) {
                         setTimeout(function(){setShare(0)},1500)
                       }}
                     >
-                      <span 
+                      {/* <span 
                       class="iconify" 
                       data-icon="mdi:checkbox-multiple-blank-outline" 
                       data-inline="false"
-                      height="35px">
-
-                      </span>
+                      height="35px"> */}
+                      {/* </span> */}
+                      <img src="/images/copy.png" height="35px"/>
                     {/* <img src="/images/share.png" height="30px" /> */}
                     </div>
                     <div className="space2"></div>
@@ -483,7 +495,7 @@ function DetailPage(props) {
                   {buy?<div className="buya">buy</div>:<div classname="buyb"></div>}
                 </div>
               </div>
-              
+              <div className="space3"></div>
               {share==1?<div className="sharea"></div>:(share==0?<div></div>:<div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
             </div>
               

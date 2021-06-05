@@ -59,14 +59,6 @@ function DetailPage(props) {
   const ecoval = props.location.state.ecoval;
   const room = props.location.state.room;
   //var value = '';
-  if (typeof (room) != "undefined") {
-    setWhere(room);
-  }else{
-    if (cgg == 'tissue' || cgg == 'cushion') setWhere("Living");
-    else if (cgg == 'detergent' || cgg == 'scrubber') setWhere("Kitchen");
-    else if (cgg == 'shampoo' || cgg == 'toothpaste') setWhere("Bathroom");
-    else if (cgg == 'facial' || cgg == 'bag') setWhere("Bedroom");
-  }
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
 
@@ -193,6 +185,14 @@ function DetailPage(props) {
           setProducts(dic);
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
+            if (typeof (room) != "undefined") {
+              setWhere(room);
+            }else{
+              if (cgg == 'tissue' || cgg == 'cushion') setWhere("Living");
+              else if (cgg == 'detergent' || cgg == 'scrubber') setWhere("Kitchen");
+              else if (cgg == 'shampoo' || cgg == 'toothpaste') setWhere("Bathroom");
+              else if (cgg == 'facial' || cgg == 'bag') setWhere("Bedroom");
+            }
             var tmp = Number(doc.id);
 
             if (cgg == 'facial') {
@@ -349,7 +349,13 @@ function DetailPage(props) {
   };
 
   const mvCat = () => {
-    document.location.href = '/category/' + category;
+    let gotocategory = category;
+    if (category == 'tissue') {
+      if (where == 'Kitchen') gotocategory = 'tissue2';
+      else if (where == 'Bathroom') gotocategory = 'tissue3';
+      else if (where == 'Bedroom') gotocategory = 'tissue4';
+    }
+    document.location.href = '/category/' + gotocategory;
   }
 
   return (
@@ -358,22 +364,22 @@ function DetailPage(props) {
       {() => {
         switch (imgId) {
           case 'a1':
-            <img id="a1" class="slideUp" src={textBalloon} />;
+            <img id="a1" className="slideUp" src={textBalloon} />;
           case 'a2':
-            <img id="a2" class="slideUp" src={textBalloon} />;
+            <img id="a2" className="slideUp" src={textBalloon} />;
           case 'a3':
-            <img id="a3" class="slideUp" src={textBalloon} />;
+            <img id="a3" className="slideUp" src={textBalloon} />;
           case 'a4':
-            <img id="a4" class="slideUp" src={textBalloon} />;
+            <img id="a4" className="slideUp" src={textBalloon} />;
           case 'a5':
-            <img id="a5" class="slideUp" src={textBalloon} />;
+            <img id="a5" className="slideUp" src={textBalloon} />;
           case 'a6':
-            <img id="a6" class="slideUp" src={textBalloon} />;
+            <img id="a6" className="slideUp" src={textBalloon} />;
           case 'a7':
-            <img id="a7" class="slideUp" src={textBalloon} />;
+            <img id="a7" className="slideUp" src={textBalloon} />;
         }
       }}
-      <img id={imgId} class="slideUp" src={textBalloon} />
+      <img id={imgId} className="slideUp" src={textBalloon} />
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
           <b>{where}</b>
@@ -382,7 +388,7 @@ function DetailPage(props) {
           {' '}
           <span
             height="8px"
-            class="iconify"
+            className="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
@@ -414,7 +420,7 @@ function DetailPage(props) {
           {' '}
           <span
             height="8px"
-            class="iconify"
+            className="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
@@ -423,7 +429,7 @@ function DetailPage(props) {
         <text id="router-text">{name}</text>
       </div>
       <hr className="hr-line" />
-      <div class="whole">
+      <div className="whole">
         <div className="d_companion">
           <a href="/mypage">
             <img
@@ -529,7 +535,7 @@ function DetailPage(props) {
                         }}
                       >
                         <span
-                          class="iconify"
+                          className="iconify"
                           data-icon="clarity:shopping-bag-line"
                           data-inline="false"
                           height="35px"
@@ -552,7 +558,7 @@ function DetailPage(props) {
                   <div className="sharec">
                     Copied to clipboard
                     <i
-                      class="em em-white_check_mark"
+                      className="em em-white_check_mark"
                       aria-role="presentation"
                       aria-label="WHITE HEAVY CHECK MARK"
                     ></i>

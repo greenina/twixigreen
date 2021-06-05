@@ -355,6 +355,30 @@ class CategoryPage extends React.Component {
       });
   }
 
+  mvPage = () => {
+    document.getElementById('vegan').checked = false;
+    document.getElementById('ap').checked =false;
+    document.getElementById('harm').checked = false;
+    document.getElementById('ecoonly').checked = false;
+    document.getElementById('product1').checked =false;
+    document.getElementById('product2').checked = false;
+    if (!(cgg == 'tissue' || cgg == 'cushion' || cgg == 'living')) {
+      document.getElementById('product3').checked = false;
+    };
+    this.datarefresh();
+    // let parentCat =
+    //   this.state.room == "Living"
+    //     ? 'living'
+    //     : this.state.room == "Kitchen"
+    //     ? 'kitchen'
+    //     : this.state.room == "Bathroom"
+    //     ? 'bath'
+    //     : this.state.room == "Bedroom"
+    //     ? 'beauty'
+    //     : '';
+    // document.location.href = '/category/' + parentCat;
+  };
+
   componentWillMount() {
     this.bukkuk();
   }
@@ -380,26 +404,9 @@ class CategoryPage extends React.Component {
       <header>
         <div>
           <div className="router">
-            <text id="router-text" className="mv2cat">
+            <text id="router-text" className="mv2cat" onClick={this.mvPage}>
               <b>
-                {cgg == 'scrubber' ||
-                cgg == 'detergent' ||
-                cgg == 'tissue2' ||
-                cgg == 'kitchen'
-                  ? 'Kitchen'
-                  : cgg == 'tissue' || cgg == 'cushion' || cgg == 'living'
-                  ? 'Living'
-                  : cgg == 'shampoo' ||
-                    cgg == 'toothpaste' ||
-                    cgg == 'tissue3' ||
-                    cgg == 'bath'
-                  ? 'Bathroom'
-                  : cgg == 'bag' ||
-                    cgg == 'facial' ||
-                    cgg == 'tissue4' ||
-                    cgg == 'beauty'
-                  ? 'Bedroom'
-                  : ''}
+                {this.state.room}
               </b>
             </text>
             <text id="router-text">

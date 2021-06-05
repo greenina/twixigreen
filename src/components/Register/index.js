@@ -78,7 +78,7 @@ function Register() {
   };
 
   var goLogin = () => {
-    history.replace('login');
+    history.replace('');
   };
 
   var submitHandler = () => {
@@ -212,7 +212,7 @@ function Register() {
   };
 
   return (
-    <div className="recruit">
+    <div className="no-drag">
       <div className="root">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -304,7 +304,7 @@ function Register() {
 
             <Grid container>
               <Grid item>
-                <Link href="/">{'Already have an account? Sign In'}</Link>
+                <Link onClick={goLogin} className="signin">{'Already have an account? Sign In'}</Link>
               </Grid>
             </Grid>
             {error}

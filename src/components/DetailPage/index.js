@@ -57,7 +57,11 @@ function DetailPage(props) {
   const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
   const room = props.location.state.room;
+  var where = 'default';
   //var value = '';
+  if (typeof (room) != "undefined") {
+    where = room;
+  }
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
 
@@ -182,9 +186,17 @@ function DetailPage(props) {
           let dic = products;
           dic[doc.id] = docs;
           setProducts(dic);
-
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
+            if (where == 'default') {
+              console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+              if (cgg == 'tissue' || cgg == 'cushion') where = "Living";
+              else if (cgg == 'detergent' || cgg == 'scrubber') where = "Kitchen";
+              else if (cgg == 'shampoo' || cgg == 'toothpaste') where = "Bathroom";
+              else if (cgg == 'facial' || cgg == 'bag') where = "Bedroom";
+            }
+            console.log("cgg::::::", cgg);
+            console.log("where?", where);
             var tmp = Number(doc.id);
 
             if (cgg == 'facial') {
@@ -328,19 +340,21 @@ function DetailPage(props) {
 
   const mvPage = () => {
     let parentCat =
-      category == 'scrubber' || category == 'detergent' || category == 'tissue2'
-        ? 'kitchen'
-        : category == 'tissue' || category == 'cushion'
+      where == "Living"
         ? 'living'
-        : category == 'shampoo' ||
-          category == 'toothpaste' ||
-          category == 'tissue3'
+        : where == "Kitchen"
+        ? 'kitchen'
+        : where == "Bathroom"
         ? 'bath'
-        : category == 'bag' || category == 'facial' || category == 'tissue4'
+        : where == "Bedroom"
         ? 'beauty'
         : '';
     document.location.href = '/category/' + parentCat;
   };
+
+  const mvCat = () => {
+    document.location.href = '/category/' + category;
+  }
 
   return (
     <div>
@@ -366,7 +380,7 @@ function DetailPage(props) {
       <img id={imgId} class="slideUp" src={textBalloon} />
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
-          <b>{room}</b>
+          <b>{where}</b>
         </text>
         <text id="router-text">
           {' '}
@@ -378,7 +392,7 @@ function DetailPage(props) {
             padding-bottom="5px"
           ></span>{' '}
         </text>
-        <text id="router-text">
+        <text id="router-text" className="mv2eachcat" onClick={mvCat}>
           {category == 'scrubber'
             ? 'Scrubber'
             : category == 'detergent'
@@ -444,11 +458,11 @@ function DetailPage(props) {
                     <div
                       className="heartHome"
                       onMouseEnter={() => {
-                        console.log('mouse on heart');
+                        //console.log('mouse on heart');
                         setHeart(true);
                       }}
                       onMouseLeave={() => {
-                        console.log('mouse leave heart');
+                        //console.log('mouse leave heart');
                         setHeart(false);
                       }}
                     >
@@ -472,11 +486,11 @@ function DetailPage(props) {
                     <div className="shareContainer">
                       <div
                         onMouseEnter={() => {
-                          console.log('mouse on heart');
+                          //console.log('mouse on heart');
                           setShare(1);
                         }}
                         onMouseLeave={() => {
-                          console.log('mouse leave heart');
+                          //console.log('mouse leave heart');
                           setShare(0);
                         }}
                         className="share"
@@ -510,11 +524,11 @@ function DetailPage(props) {
                       <div
                         className="buy"
                         onMouseEnter={() => {
-                          console.log('mouse on heart');
+                          //console.log('mouse on heart');
                           setBuy(true);
                         }}
                         onMouseLeave={() => {
-                          console.log('mouse leave heart');
+                          //console.log('mouse leave heart');
                           setBuy(false);
                         }}
                       >

@@ -28,6 +28,11 @@
   cursor: pointer;
 }
 
+.mv2eachcat:hover {
+  color: #616161;
+  cursor: pointer;
+}
+
 .wrap {
   display: flex;
   /* align-items: center; */
@@ -279,7 +284,7 @@ table {
   height: 22vw;
   margin-left: -15%;
 }
-.text{
+.text {
   width: 200px;
   padding: 10px;
   position: fixed;
@@ -290,29 +295,29 @@ table {
   border-radius: 5px;
   border: solid 4px rgb(236, 229, 213);
 }
-.heartHome{
+.heartHome {
   /* background-color: #00a900; */
-  width:70px;
-  height:70px;
+  width: 70px;
+  height: 70px;
 }
-.icon1{
+.icon1 {
   display: flex;
   flex-direction: column;
   /* background-color: brown; */
 }
-.icon2{
+.icon2 {
   display: flex;
 }
-.space{
+.space {
   width: 25px;
 }
-.space2{
+.space2 {
   width: 15px;
 }
-.space3{
+.space3 {
   height: 10px;
 }
-.hearta{
+.hearta {
   border-radius: 6px;
   background-color: rgb(202, 200, 200);
   opacity: 0.8;
@@ -323,7 +328,7 @@ table {
   margin-top: 5px;
 }
 
-.sharea{
+.sharea {
   border-radius: 6px;
   background-color: rgb(202, 200, 200);
   opacity: 0.8;
@@ -332,9 +337,9 @@ table {
   text-align: center;
   margin-left: -15px;
 }
-.sharec{
+.sharec {
   border-radius: 6px;
-  background-color:rgb(230, 230, 230);
+  background-color: rgb(230, 230, 230);
   height: 22px;
   font-size: 15px;
   text-align: center;
@@ -342,7 +347,7 @@ table {
   color: black;
   padding: 3px;
 }
-.buya{
+.buya {
   border-radius: 6px;
   background-color: rgb(202, 200, 200);
   opacity: 0.8;
@@ -351,44 +356,49 @@ table {
   text-align: center;
   margin-top: 5px;
 }
-.shareContainer{
+.shareContainer {
   display: flex;
   flex-direction: row;
 }
-#a1,#a2,#a3,#a4,#a5,#a6,#a7{
+#a1,
+#a2,
+#a3,
+#a4,
+#a5,
+#a6,
+#a7 {
   width: 250px;
   position: fixed;
   bottom: 0;
   visibility: hidden;
 }
-#a1{
+#a1 {
   margin-left: 175vh;
   margin-bottom: 35vh;
 }
-#a2{
+#a2 {
   margin-left: 175vh;
   margin-bottom: 35vh;
 }
-#a3{
+#a3 {
   margin-left: 175vh;
   margin-bottom: 25vh;
 }
-#a4{
+#a4 {
   margin-left: 175vh;
   margin-bottom: 27vh;
   height: 80px;
   width: 250px;
 }
-#a5{
+#a5 {
   margin-left: 176vh;
   margin-bottom: 26vh;
 }
-#a6{
+#a6 {
   margin-left: 175vh;
   margin-bottom: 27vh;
 }
-#a7{
+#a7 {
   margin-left: 175vh;
   margin-bottom: 35vh;
 }
-

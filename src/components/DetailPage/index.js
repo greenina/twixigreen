@@ -718,7 +718,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/`+products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],

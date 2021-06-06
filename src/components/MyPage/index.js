@@ -7,7 +7,6 @@ import CurProduct from '../CurProduct';
 import RecProduct from '../RecProduct';
 import Tippy from 'react-tooltip';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 function MyPage() {
   // const [img_num, setImgNum] = useState(0);
@@ -26,7 +25,7 @@ function MyPage() {
   const [email, setEmail] = useState('1');
   const [comp, setComp] = useState('Bukkuk');
   //const [mail,setMail] = useState('1')
-  const mail = useSelector((state) => state.user.user);
+
   var del_idx = [];
   var timer;
   var delay = 1000;
@@ -342,7 +341,7 @@ function MyPage() {
                   <div className="showing">
                     <Link
                       to={{
-                        pathname: `/detail/`,
+                        pathname: `/detail/`+products[overlayInfo[0]]['name'],
                         state: {
                           name: products[overlayInfo[0]]['name'],
                           price: products[overlayInfo[0]]['price'],
@@ -378,7 +377,7 @@ function MyPage() {
                     <div key={val}>
                       <Link
                         to={{
-                          pathname: `/detail/`,
+                          pathname: `/detail/`+products[val]['name'],
                           state: {
                             name: products[val]['name'],
                             price: products[val]['price'],
@@ -430,7 +429,7 @@ function MyPage() {
               >
                 <Link
                   to={{
-                    pathname: `/detail/`,
+                    pathname: `/detail/`+products[printed[idx]]['name'],
                     state: {
                       name: products[printed[idx]]['name'],
                       price: products[printed[idx]]['price'],

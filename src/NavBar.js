@@ -3,8 +3,6 @@ import './NavBar.css';
 import { db, firebaseApp } from './firebase';
 import { useEffect, useState } from 'react';
 import MyPage from './components/MyPage';
-import setUser from './reducers/user';
-import { useDispatch, useSelector } from 'react-redux';
 
 function NavBar() {
 
@@ -13,8 +11,6 @@ function NavBar() {
   };
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
-  var dispatch = useDispatch();
-  const mail = useSelector((state) => state.user.user);
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {

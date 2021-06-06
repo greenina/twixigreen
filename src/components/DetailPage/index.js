@@ -1,3 +1,4 @@
+
 import './style.css';
 import './animation.css';
 import React, { useState, useEffect } from 'react';
@@ -775,3 +776,4 @@ function DetailPage(props) {
 }
 
 export default DetailPage;
+

@@ -76,6 +76,10 @@ function Login() {
     setPwd(event.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') { signinHandler(); }
+  };
+
   var changeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -87,8 +91,8 @@ function Login() {
   };
 
   const signinHandler = () => {
-    console.log('email', email);
-    console.log('pwd', pwd);
+    //console.log('email', email);
+    //console.log('pwd', pwd);
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, pwd)
@@ -108,7 +112,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className = "no-drag">
       <div className="explain">
         <div>
           {' '}
@@ -143,6 +147,7 @@ function Login() {
                   className="input_login"
                   type={values.showPassword ? 'text' : 'password'}
                   onChange={handlePasswordChange('password')}
+                  onKeyPress={handleKeyPress}
                   value={values.password}
                   placeholder="password *"
                   endAdornment={
@@ -175,7 +180,7 @@ function Login() {
 
               <Grid container>
                 <Grid item>
-                  <Link onClick={goRegister}>
+                  <Link onClick={goRegister} className="signup">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

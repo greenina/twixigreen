@@ -63,7 +63,7 @@ function MyPage() {
         }
         let tdic = img_src;
         tdic[4] = img_src[2];
-        console.log('companion img source list', img_src);
+        //console.log('companion img source list', img_src);
       });
 
     var count = 0;
@@ -77,7 +77,7 @@ function MyPage() {
           dic[doc.id] = docs;
           setProducts(dic);
         });
-        console.log('product list', products);
+        //console.log('product list', products);
       });
   }, [wishes]);
 
@@ -86,7 +86,7 @@ function MyPage() {
     clearTimeout(timer);
     var bukkuk = document.getElementById('companion_gif');
     // console.log(bukkuk);
-    console.log('---------', overlayMode, overlayInfo, recArray);
+    //console.log('---------', overlayMode, overlayInfo, recArray);
     if (bukkuk != null && overlayMode != 0) {
       bukkuk.style = 'margin-left: 10%';
     }
@@ -99,32 +99,32 @@ function MyPage() {
         setUserInfo(docs);
 
         var tmpScore = 0;
-        console.log('userInfo', userInfo, email);
+        //console.log('userInfo', userInfo, email);
         if (docs['wished'].length > 0) {
           for (var i = 0; i < docs['wished'].length; i++) {
             tmpScore += products[docs['wished'][i]]['eco'];
-            console.log('tmpScore', tmpScore);
+            //console.log('tmpScore', tmpScore);
           }
           setScore(Math.round(tmpScore / docs['wished'].length));
-          console.log(
-            "user's eco score",
-            Math.round(tmpScore / docs['wished'].length)
-          );
+          //console.log(
+          //  "user's eco score",
+          //  Math.round(tmpScore / docs['wished'].length)
+          //);
         } else setScore(4);
-        console.log('userInfoandfirst', docs, first);
+        //console.log('userInfoandfirst', docs, first);
         setWishes(docs['wished'].length);
 
         if (first == 0) {
           setPrinted(docs['wished']);
-          console.log('printed wishlist changed');
+          //console.log('printed wishlist changed');
           setFirst(1);
 
           //debugger;
         }
-        console.log('printed', printed);
-        console.log(products[printed[0]]);
+        //console.log('printed', printed);
+        //console.log(products[printed[0]]);
 
-        console.log(':::::::::::::', score, userInfo);
+        //console.log(':::::::::::::', score, userInfo);
         //debugger;
 
         var tmpDic = docs;
@@ -148,11 +148,11 @@ function MyPage() {
       setPrinted([]);
   }
   const mouseEnter = (val) => {
-    console.log('mouse entered to ' + products[val]['name']);
-    console.log('current overlayInfo :::: ', overlayInfo[0]);
+    //console.log('mouse entered to ' + products[val]['name']);
+    //console.log('current overlayInfo :::: ', overlayInfo[0]);
     timer = setTimeout(function () {
       var bukkuk = document.getElementsByClassName('companion_gif')[0];
-      console.log(bukkuk);
+      //console.log(bukkuk);
       if (bukkuk != null) bukkuk.style = 'margin-left: 10%';
       if (products[val]['eco'] > 0) {
         // console.log(String(val));
@@ -194,7 +194,7 @@ function MyPage() {
   };
 
   const mouseLeave = (val) => {
-    console.log('mouse leaved from ' + products[val]['name']);
+    //console.log('mouse leaved from ' + products[val]['name']);
     // var bukkuk = document.getElementsByClassName('companion_gif')[0];
     // console.log(bukkuk);
     // bukkuk.style = 'margin-left: -15%';
@@ -235,7 +235,7 @@ function MyPage() {
             new_score += products[tmp['wished'][i]['eco']];
           }
           setScore(Math.round(new_score / tmp['wished'].length));
-          console.log(':::::::::::::', score, userInfo);
+          //console.log(':::::::::::::', score, userInfo);
           //debugger;
         }
         var tmpDic = userInfo;
@@ -262,7 +262,7 @@ function MyPage() {
         var newscore = 0;
         for (var i = 0; i < ttmp['wished'].length; i++) {
           newscore += products[ttmp['wished'][i]['eco']];
-          console.log('newscore', newscore);
+          //console.log('newscore', newscore);
         }
         setScore(Math.round(newscore / ttmp['wished'].length));
         setWishes(current_wish);
@@ -270,9 +270,9 @@ function MyPage() {
 
         var tmpDic = userInfo;
 
-        console.log(userInfo);
+        //console.log(userInfo);
         tmpDic['score'] = Math.round(newscore / ttmp['wished'].length);
-        console.log(userInfo);
+        //console.log(userInfo);
         //debugger;
         db.collection('users').doc(email).set(tmpDic);
       });
@@ -286,7 +286,7 @@ function MyPage() {
       .get()
       .then(function (doc) {
         let docs = doc.data();
-        console.log('docc', docs);
+        //console.log('docc', docs);
       });
   };
 
@@ -471,7 +471,7 @@ function MyPage() {
         ) : (
           <div
             className="emptyWished"
-            onClick={() => console.log(userInfo['wished'])}
+            //onClick={() => //console.log(userInfo['wished'])}
           >
             No Product
           </div>

@@ -1,12 +1,12 @@
+
 import './style.css';
 import { db, firebaseApp } from '../../firebase';
 import React, { useEffect, useState } from 'react';
 import Tippy from 'react-tooltip';
 
-
 import leftArrow from '../../img/left-arrow.svg';
 import rightArrow from '../../img/right-arrow.svg';
-//import Switch from './Switch';
+
 
 function MainPage() {
   const [img_src, setImgSrc] = useState({});

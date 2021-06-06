@@ -1,9 +1,10 @@
-
 import './style.css';
 import './animation.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
+//import RecProduct from '../RecProduct';
+//import { Button } from '@material-ui/core';
 import { facials_element, facials } from './product_array';
 import { tissue_element, tissue } from './product_array';
 import { toothpaste_element, toothpaste } from './product_array';
@@ -15,17 +16,20 @@ import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 
-
 function DetailPage(props) {
- 
+  //const [recArray, setRecArray] = useState([]);
   const [wished, setWished] = useState([]);
   const [category, setCategory] = useState();
   const [products, setProducts] = useState({});
   const [img_src, setImgSrc] = useState({});
   const [score, setScore] = useState(0);
+  //const [console2, setConsole2] = useState();
+  //const [console3, setConsole3] = useState(0);
+  //const [bukkuk, setBukkuk] = useState([]);
   const [stage, setStage] = useState([]);
   const [status, setStatus] = useState();
   const [isClick, setClick] = useState();
+  //const [userInfo, setUserInfo] = useState({});
   const [idd, setIdd] = useState();
   const [product_id, setProductId] = useState(0);
   const [e_length, setELength] = useState(0);
@@ -33,13 +37,13 @@ function DetailPage(props) {
   const [products_in, setProductIn] = useState([]);
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
-  const [textBalloon, setTextBalloon] = useState("")
-  const [heart, setHeart] = useState(false)
-  const [share, setShare] = useState(0)
-  const [buy, setBuy] = useState(false)
-  const [imgId, setImgId] = useState("a1")
-  const [ modalOpen, setModalOpen ] = useState(false);
-  
+  const [textBalloon, setTextBalloon] = useState('');
+  const [heart, setHeart] = useState(false);
+  const [share, setShare] = useState(0);
+  const [buy, setBuy] = useState(false);
+  const [imgId, setImgId] = useState('a1');
+  const [where, setWhere] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
 
   const dominant = 0;
 
@@ -47,16 +51,18 @@ function DetailPage(props) {
   const price = props.location.state.price;
   const img = props.location.state.imgg;
   const link = props.location.state.link;
+  const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
+  const room = props.location.state.room;
+  //var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
   const openModal = () => {
     setModalOpen(true);
-  }
+  };
   const closeModal = () => {
     setModalOpen(false);
-  }
-
+  };
 
   var avg = function (list) {
     var sum = 0;
@@ -65,7 +71,20 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
-
+  // useEffect(()=>{
+  //   if(ecoval==0){
+  //     setTextBalloon('/images/text7.png')
+  //     setImgId("a7")
+  //   }
+  //   else if(isClick){
+  //     setTextBalloon("images/text5.png")
+  //     setImgId("a5")
+  //   }
+  //   else{
+  //     setTextBalloon("/images/text4.png")
+  //     setImgId("a4")
+  //   }
+  // },[ecoval])
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -83,7 +102,7 @@ function DetailPage(props) {
       .get()
       .then(function (doc) {
         let docs = doc.data();
-       
+
         setImgSrc([]);
         for (var i = 0; i < Object.keys(docs).length; i++) {
           let dic = img_src;
@@ -92,43 +111,49 @@ function DetailPage(props) {
         }
         let tdic = img_src;
         tdic[4] = img_src[2];
-        
       });
   }, []);
 
   var heartClick = function (e) {
-   
     var index = wished.indexOf(idd);
-   
+
     if (!isClick) {
       if (index === -1) {
         wished.push(idd);
       }
-      if(ecoval==0){
-        setTextBalloon('/images/text21.png')
-        setImgId("a1")
-        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},2000)
-      }
-      else{
-        setTextBalloon('/images/text23.png')
-        setImgId("a3")
-        setTimeout(function(){setTextBalloon('/images/text25.png');setImgId("a5")},2000)
+      if (ecoval == 0) {
+        setTextBalloon('/images/text21.png');
+        setImgId('a1');
+        setTimeout(function () {
+          setTextBalloon('/images/text27.png');
+          setImgId('a7');
+        }, 2000);
+      } else {
+        setTextBalloon('/images/text23.png');
+        setImgId('a3');
+        setTimeout(function () {
+          setTextBalloon('/images/text25.png');
+          setImgId('a5');
+        }, 2000);
       }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
       }
-      if(ecoval==0){
-        setTextBalloon('/images/text22.png')
-        setImgId("a2")
-        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},2000)
-        
-      }
-      else{
-        setTextBalloon('/images/text24.png')
-        setImgId("a4")
-        setTimeout(function(){setTextBalloon('/images/text26.png')},2000)
-        setImgId("a6")
+      if (ecoval == 0) {
+        setTextBalloon('/images/text22.png');
+        setImgId('a2');
+        setTimeout(function () {
+          setTextBalloon('/images/text27.png');
+          setImgId('a7');
+        }, 2000);
+      } else {
+        setTextBalloon('/images/text24.png');
+        setImgId('a4');
+        setTimeout(function () {
+          setTextBalloon('/images/text26.png');
+        }, 2000);
+        setImgId('a6');
       }
     }
     setClick(!isClick);
@@ -146,11 +171,11 @@ function DetailPage(props) {
       // var
       // db.collection('users').doc('1').set()
     } else setScore(4);
-   
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
+
     db.collection('products')
       .get()
       .then((snapshot) => {
@@ -160,9 +185,18 @@ function DetailPage(props) {
           let dic = products;
           dic[doc.id] = docs;
           setProducts(dic);
-
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
+            if (typeof room != 'undefined') {
+              setWhere(room);
+            } else {
+              if (cgg == 'tissue' || cgg == 'cushion') setWhere('Living');
+              else if (cgg == 'detergent' || cgg == 'scrubber')
+                setWhere('Kitchen');
+              else if (cgg == 'shampoo' || cgg == 'toothpaste')
+                setWhere('Bathroom');
+              else if (cgg == 'facial' || cgg == 'bag') setWhere('Bedroom');
+            }
             var tmp = Number(doc.id);
 
             if (cgg == 'facial') {
@@ -175,8 +209,12 @@ function DetailPage(props) {
                   break;
                 }
               }
-            } 
-            else if (cgg == 'tissue') {
+            } else if (
+              cgg == 'tissue' ||
+              cgg == 'tissue2' ||
+              cgg == 'tissue3' ||
+              cgg == 'tissue4'
+            ) {
               setELength(tissue_element.length);
               setElements(tissue_element);
               setProductIn(tissue);
@@ -247,8 +285,10 @@ function DetailPage(props) {
                 }
               }
             }
-          }
 
+            //debugger;
+          }
+          /////////get product id, category///////////
           if (doc.data().name === name) {
             setIdd(doc.id);
             setCategory(doc.data().category);
@@ -257,7 +297,6 @@ function DetailPage(props) {
               .get()
               .then(function (doc2) {
                 setStage(doc2.data()['stage']);
-               
               });
             db.collection('users')
               .doc(email)
@@ -270,30 +309,26 @@ function DetailPage(props) {
                 if (docs['wished'].length > 0) {
                   for (var i = 0; i < docs['wished'].length; i++) {
                     tmpScore += products[docs['wished'][i]]['eco'];
-                  
                   }
                   setScore(Math.round(tmpScore / docs['wished'].length));
-                 
                 } else setScore(4);
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
-    if(ecoval==0){
-      setTextBalloon('/images/text27.png')
-      setImgId("a7")
-    }
-    else if(clicked){
-      setTextBalloon("images/text25.png")
-      setImgId("a5")
-    }
-    else{
-      setTextBalloon("/images/text26.png")
-      setImgId("a6")
-    }
+                if (ecoval == 0) {
+                  setTextBalloon('/images/text27.png');
+                  setImgId('a7');
+                } else if (clicked) {
+                  setTextBalloon('images/text25.png');
+                  setImgId('a5');
+                } else {
+                  setTextBalloon('/images/text26.png');
+                  setImgId('a6');
+                }
+              });
+          }
+        });
       });
-        }
-          });
-            });
   }, [product_id, email]);
 
   useEffect(() => {
@@ -305,53 +340,91 @@ function DetailPage(props) {
 
   const mvPage = () => {
     let parentCat =
-      category == 'scrubber' || category == 'detergent'
-        ? 'kitchen'
-        : category == 'tissue' || category == 'cushion'
+      where == 'Living'
         ? 'living'
-        : category == 'shampoo' || category == 'toothpaste'
+        : where == 'Kitchen'
+        ? 'kitchen'
+        : where == 'Bathroom'
         ? 'bath'
-        : category == 'bag' || category == 'facial'
+        : where == 'Bedroom'
         ? 'beauty'
         : '';
     document.location.href = '/category/' + parentCat;
   };
 
+  const mvCat = () => {
+    let gotocategory = category;
+    if (category == 'tissue') {
+      if (where == 'Kitchen') gotocategory = 'tissue2';
+      else if (where == 'Bathroom') gotocategory = 'tissue3';
+      else if (where == 'Bedroom') gotocategory = 'tissue4';
+    }
+    document.location.href = '/category/' + gotocategory;
+  };
+
   return (
     <div>
-      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link> 
-            
-      <img id={imgId} class="slideUp"src={textBalloon}/>
+      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link>
+      {() => {
+        switch (imgId) {
+          case 'a1':
+            <img id="a1" className="slideUp" src={textBalloon} />;
+          case 'a2':
+            <img id="a2" className="slideUp" src={textBalloon} />;
+          case 'a3':
+            <img id="a3" className="slideUp" src={textBalloon} />;
+          case 'a4':
+            <img id="a4" className="slideUp" src={textBalloon} />;
+          case 'a5':
+            <img id="a5" className="slideUp" src={textBalloon} />;
+          case 'a6':
+            <img id="a6" className="slideUp" src={textBalloon} />;
+          case 'a7':
+            <img id="a7" className="slideUp" src={textBalloon} />;
+        }
+      }}
+      <img id={imgId} className="slideUp" src={textBalloon} />
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
-          <b>
-            {category == 'scrubber' || category == 'detergent'
-              ? 'Kitchen'
-              : category == 'tissue' || category == 'cushion'
-              ? 'Living'
-              : category == 'shampoo' || category == 'toothpaste'
-              ? 'Bathroom'
-              : category == 'bag' || category == 'facial'
-              ? 'Bedroom'
-              : ''}
-          </b>
+          <b>{where}</b>
         </text>
         <text id="router-text">
           {' '}
           <span
             height="8px"
-            class="iconify"
+            className="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
           ></span>{' '}
         </text>
-        <text id="router-text">{category}</text>
+        <text id="router-text" className="mv2eachcat" onClick={mvCat}>
+          {category == 'scrubber'
+            ? 'Scrubber'
+            : category == 'detergent'
+            ? 'Detergent'
+            : category == 'tissue' ||
+              category == 'tissue2' ||
+              category == 'tissue3' ||
+              category == 'tissue4'
+            ? 'Tissue'
+            : category == 'cushion'
+            ? 'Cushion'
+            : category == 'shampoo'
+            ? 'Shampoo'
+            : category == 'toothpaste'
+            ? 'Toothpaste'
+            : category == 'bag'
+            ? 'Bag'
+            : category == 'facial'
+            ? 'Facial'
+            : ''}
+        </text>
         <text id="router-text">
           {' '}
           <span
             height="8px"
-            class="iconify"
+            className="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
@@ -360,8 +433,7 @@ function DetailPage(props) {
         <text id="router-text">{name}</text>
       </div>
       <hr className="hr-line" />
-      <div class="whole">
-        
+      <div className="whole">
         <div className="d_companion">
           <a href="/mypage">
             <img
@@ -389,61 +461,115 @@ function DetailPage(props) {
               <div className="icon1">
                 <div className="icon2">
                   <div className="heart1">
-                    <div className="heartHome"onMouseEnter={()=>{console.log("mouse on heart");setHeart(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setHeart(false)}}>
-                    <Heart className="heart" isClick={isClick} onClick={heartClick} />
+                    <div
+                      className="heartHome"
+                      onMouseEnter={() => {
+                        console.log('mouse on heart');
+                        setHeart(true);
+                      }}
+                      onMouseLeave={() => {
+                        console.log('mouse leave heart');
+                        setHeart(false);
+                      }}
+                    >
+                      <Heart
+                        className="heart"
+                        isClick={isClick}
+                        onClick={heartClick}
+                      />
                     </div>
-                    {heart?<div className="hearta"><div>wish</div></div>:<div className="heartb"></div>}
+                    {heart ? (
+                      <div className="hearta">
+                        <div>wish</div>
+                      </div>
+                    ) : (
+                      <div className="heartb"></div>
+                    )}
                   </div>
                   <div className="space"></div>
                   <div className="share1">
                     <div className="shareContainer">
-                    <div
-                    onMouseEnter={()=>{console.log("mouse on heart");setShare(1)}} onMouseLeave={()=>{console.log("mouse leave heart");setShare(0)}}
-                      className="share"
-                      onClick={() => {
-                        navigator.clipboard.writeText(window.location.href);
-                        openModal();
-                        setShare(2);
-                        setTimeout(function(){setShare(0)},1500)
-                      }}
-                    >
-
-                    <img src="/images/copy.png" height="35px"/>
-                    {/* <img src="/images/share.png" height="30px" /> */}
+                      <div
+                        onMouseEnter={() => {
+                          console.log('mouse on heart');
+                          setShare(1);
+                        }}
+                        onMouseLeave={() => {
+                          console.log('mouse leave heart');
+                          setShare(0);
+                        }}
+                        className="share"
+                        onClick={() => {
+                          navigator.clipboard.writeText(window.location.href);
+                          openModal();
+                          setShare(2);
+                          setTimeout(function () {
+                            setShare(0);
+                          }, 1500);
+                        }}
+                      >
+                        <img src="/images/copy.png" height="33px" />
+                      </div>
+                      <Modal
+                        link={window.location.href}
+                        open={modalOpen}
+                        close={closeModal}
+                        header="Modal heading"
+                      >
+                        <main> {props.children} </main>
+                      </Modal>
+                      <div className="space2"></div>
                     </div>
-                    <Modal link={window.location.href} open={ modalOpen } close={ closeModal } header="Modal heading">
-
-                // Modal.js <main> { props.children } </main>에 내용이 입력된다. 
-                리액트 함수형 모달 팝업창입니다.
-                쉽게 만들 수 있어요. 
-                같이 만들어봐요!
-            </Modal>
-                    <div className="space2"></div>
-                    </div>
-                    {share==1?<div className="sharea">share</div>:<div></div>}
+                    {share == 1 ? (
+                      <div className="sharea">share</div>
+                    ) : (
+                      <div></div>
+                    )}
                   </div>
-                <div className="buy1">
-                  <a onClick={() => window.open(link, '_blank')}>
-                    <div className="buy"
-                    onMouseEnter={()=>{console.log("mouse on heart");setBuy(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setBuy(false)}}
-                    >
-                      <span
-                        class="iconify"
-                        data-icon="clarity:shopping-bag-line"
-                        data-inline="false"
-                        height="35px"
-                      ></span>
-                    </div>
-                  </a>
-                  {buy?<div className="buya">buy</div>:<div classname="buyb"></div>}
-
+                  <div className="buy1">
+                    <a onClick={() => window.open(link, '_blank')}>
+                      <div
+                        className="buy"
+                        onMouseEnter={() => {
+                          console.log('mouse on heart');
+                          setBuy(true);
+                        }}
+                        onMouseLeave={() => {
+                          console.log('mouse leave heart');
+                          setBuy(false);
+                        }}
+                      >
+                        <span
+                          class="iconify"
+                          data-icon="clarity:shopping-bag-line"
+                          data-inline="false"
+                          height="35px"
+                        ></span>
+                      </div>
+                    </a>
+                    {buy ? (
+                      <div className="buya">buy</div>
+                    ) : (
+                      <div classname="buyb"></div>
+                    )}
+                  </div>
                 </div>
+                <div className="space3"></div>
+                {share == 1 ? (
+                  <div></div>
+                ) : share == 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="sharec">
+                    Copied to clipboard
+                    <i
+                      class="em em-white_check_mark"
+                      aria-role="presentation"
+                      aria-label="WHITE HEAVY CHECK MARK"
+                    ></i>
+                  </div>
+                )}
               </div>
-              <div className="space3"></div>
-              {share==1?<div></div>:(share==0?<div></div>:
-              <div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
-            </div>
-              
             </div>
             <div className="row3">
               <div className="price">
@@ -577,7 +703,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`+products_in[0][1],
+                      pathname: `/detail/` + products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],
@@ -585,6 +711,7 @@ function DetailPage(props) {
                         link: products_in[0][e_length + 2],
                         ecoval: Number(products_in[0][e_length + 1]),
                         idx: products_in[0][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -600,7 +727,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`+products_in[1][1],
+                      pathname: `/detail/` + products_in[1][1],
                       state: {
                         name: products_in[1][1],
                         price: products_in[1][2],
@@ -608,6 +735,7 @@ function DetailPage(props) {
                         link: products_in[1][e_length + 2],
                         ecoval: Number(products_in[1][e_length + 1]),
                         idx: products_in[1][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -623,7 +751,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`+products_in[2][1],
+                      pathname: `/detail/` + products_in[2][1],
                       state: {
                         name: products_in[2][1],
                         price: products_in[2][2],
@@ -631,6 +759,7 @@ function DetailPage(props) {
                         link: products_in[2][e_length + 2],
                         ecoval: Number(products_in[2][e_length + 1]),
                         idx: products_in[2][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -697,7 +826,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`+products_in[product_id][1],
+                      pathname: `/detail/` + products_in[product_id][1],
                       state: {
                         name: products_in[product_id][1],
                         price: products_in[product_id][2],
@@ -705,6 +834,7 @@ function DetailPage(props) {
                         link: products_in[product_id][e_length + 2],
                         ecoval: Number(products_in[product_id][e_length + 1]),
                         idx: products_in[product_id][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -718,7 +848,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`+products_in[0][1],
+                      pathname: `/detail/` + products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],
@@ -726,6 +856,7 @@ function DetailPage(props) {
                         link: products_in[0][e_length + 2],
                         ecoval: Number(products_in[0][e_length + 1]),
                         idx: products_in[0][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -776,4 +907,3 @@ function DetailPage(props) {
 }
 
 export default DetailPage;
-

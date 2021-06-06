@@ -46,7 +46,7 @@ function MyPage() {
         setEmail(user.email);
       } else {
         setSignIn(false);
-      
+
         setEmail('1');
       }
     });
@@ -90,7 +90,7 @@ function MyPage() {
     if (bukkuk != null && overlayMode != 0) {
       bukkuk.style = 'margin-left: 10%';
     }
-    
+
     db.collection('users')
       .doc(email)
       .get()
@@ -132,21 +132,18 @@ function MyPage() {
         //debugger;
         db.collection('users').doc(email).set(tmpDic);
       });
-      if(ishovering)
-      {
-        var bukkuk = document.getElementsByClassName('companion_gif')[0];
-        if (bukkuk != null) bukkuk.style = 'margin-left: 10%';
-
-      }
+    if (ishovering) {
+      var bukkuk = document.getElementsByClassName('companion_gif')[0];
+      if (bukkuk != null) bukkuk.style = 'margin-left: 10%';
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [printed, wishes, overlayMode]);
 
-
-  const fakefunc=function(){
-      setishovering(true);
-      setFirst(0);
-      setPrinted([]);
-  }
+  const fakefunc = function () {
+    setishovering(true);
+    setFirst(0);
+    setPrinted([]);
+  };
   const mouseEnter = (val) => {
     //console.log('mouse entered to ' + products[val]['name']);
     //console.log('current overlayInfo :::: ', overlayInfo[0]);
@@ -325,8 +322,8 @@ function MyPage() {
           {signIn ? (
             overlayMode == 0 ? (
               <div className="overlayBox">
-                Your Eco Score: {score == 4 ? '2' : score} | {userInfo.comp}'s
-                State: {show_states[score]}
+                {/* Your Eco Score: {score == 4 ? '2' : score} | */}{' '}
+                {userInfo.comp}'s State: {show_states[score]}
               </div>
             ) : overlayMode == 1 ? (
               <div>
@@ -341,7 +338,7 @@ function MyPage() {
                   <div className="showing">
                     <Link
                       to={{
-                        pathname: `/detail/`+products[overlayInfo[0]]['name'],
+                        pathname: `/detail/` + products[overlayInfo[0]]['name'],
                         state: {
                           name: products[overlayInfo[0]]['name'],
                           price: products[overlayInfo[0]]['price'],
@@ -377,7 +374,7 @@ function MyPage() {
                     <div key={val}>
                       <Link
                         to={{
-                          pathname: `/detail/`+products[val]['name'],
+                          pathname: `/detail/` + products[val]['name'],
                           state: {
                             name: products[val]['name'],
                             price: products[val]['price'],
@@ -396,9 +393,9 @@ function MyPage() {
                           ecoval={products[val]['eco']}
                           idx={products[val]}
                           wished={userInfo['wished'].includes(String(val))}
-                            email={email}
-                            id={val}
-                            fakefunc={fakefunc}
+                          email={email}
+                          id={val}
+                          fakefunc={fakefunc}
                         />
                       </Link>
                     </div>
@@ -429,7 +426,7 @@ function MyPage() {
               >
                 <Link
                   to={{
-                    pathname: `/detail/`+products[printed[idx]]['name'],
+                    pathname: `/detail/` + products[printed[idx]]['name'],
                     state: {
                       name: products[printed[idx]]['name'],
                       price: products[printed[idx]]['price'],

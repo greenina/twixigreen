@@ -15,13 +15,15 @@ class Productlist extends React.Component {
             price={price[idx]}
             imgg={imgg[idx]}
             a={a[idx]}
-            ecoval={ecoval[idx]}
+            ecoval={ecoval[idx]} 
             idx={idx}
             wished={wished}
             id={id[idx]}
             email={email}
             jebal={jebal}
+
             room={room}
+
           />
         </div>
       );

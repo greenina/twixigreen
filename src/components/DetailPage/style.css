@@ -80,19 +80,12 @@
   align-items: center;
   /* padding:50px; */
 }
-/* /* #b {
-  background-color: rgba(156, 178, 78, 0.5);
-} */
-/* #a {
-  background-color: rgba(210, 211, 212, 0.5);
-} */
-
 .image {
   margin-left: 15px;
   margin-top: 10px;
 }
 .share {
-  margin-top: 37px;
+  margin-top: 35px;
   margin-left: -12px;
 }
 .buy {
@@ -318,24 +311,29 @@ table {
   height: 10px;
 }
 .hearta {
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 6px;
-  background-color: rgb(202, 200, 200);
+  background-color: rgb(238, 238, 238);
   opacity: 0.8;
   width: 40px;
   margin-left: 30px;
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
   margin-top: 5px;
 }
 
 .sharea {
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 6px;
-  background-color: rgb(202, 200, 200);
+  background-color: rgb(238, 238, 238);
   opacity: 0.8;
-  width: 40px;
-  font-size: 10px;
+  width: 46px;
+  font-size: 13px;
   text-align: center;
-  margin-left: -15px;
+  margin-left: -19px;
+  margin-top: 6px;
 }
 .sharec {
   border-radius: 6px;
@@ -345,14 +343,16 @@ table {
   text-align: center;
   margin-left: 13px;
   color: black;
-  padding: 3px;
+  padding: 6px;
 }
 .buya {
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 6px;
-  background-color: rgb(202, 200, 200);
+  background-color: rgb(238, 238, 238);
   opacity: 0.8;
   width: 35px;
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
   margin-top: 5px;
 }
@@ -369,36 +369,9 @@ table {
 #a7 {
   width: 250px;
   position: fixed;
+  right: 0;
   bottom: 0;
   visibility: hidden;
-}
-#a1 {
-  margin-left: 175vh;
-  margin-bottom: 35vh;
-}
-#a2 {
-  margin-left: 175vh;
-  margin-bottom: 35vh;
-}
-#a3 {
-  margin-left: 175vh;
-  margin-bottom: 25vh;
-}
-#a4 {
-  margin-left: 175vh;
-  margin-bottom: 27vh;
-  height: 80px;
-  width: 250px;
-}
-#a5 {
-  margin-left: 176vh;
-  margin-bottom: 26vh;
-}
-#a6 {
-  margin-left: 175vh;
-  margin-bottom: 27vh;
-}
-#a7 {
-  margin-left: 175vh;
-  margin-bottom: 35vh;
+  margin-right: 2vw;
+  margin-bottom: 32vh;
 }

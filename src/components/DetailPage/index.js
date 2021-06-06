@@ -14,6 +14,7 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+import Modal from '../Modal/Modal';
 
 function DetailPage(props) {
   //const [recArray, setRecArray] = useState([]);
@@ -42,13 +43,8 @@ function DetailPage(props) {
   const [buy, setBuy] = useState(false);
   const [imgId, setImgId] = useState('a1');
   const [where, setWhere] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
 
-  // const [dominant, setDominant] = useState(0);
-  // const [subDominant, setSubDominant] = useState(0);
-  // const [triDominant, setTriDominant] = useState(0);
-  // const [img1, setImg1] = useState('');
-  // const [img2, setImg2] = useState('');
-  // const [img3, setImg3] = useState('');
   const dominant = 0;
 
   const name = props.location.state.name;
@@ -61,6 +57,12 @@ function DetailPage(props) {
   //var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   var avg = function (list) {
     var sum = 0;
@@ -120,17 +122,17 @@ function DetailPage(props) {
         wished.push(idd);
       }
       if (ecoval == 0) {
-        setTextBalloon('/images/text1.jpg');
+        setTextBalloon('/images/text21.png');
         setImgId('a1');
         setTimeout(function () {
-          setTextBalloon('/images/text7.jpg');
+          setTextBalloon('/images/text27.png');
           setImgId('a7');
         }, 2000);
       } else {
-        setTextBalloon('/images/text3.jpg');
+        setTextBalloon('/images/text23.png');
         setImgId('a3');
         setTimeout(function () {
-          setTextBalloon('/images/text5.jpg');
+          setTextBalloon('/images/text25.png');
           setImgId('a5');
         }, 2000);
       }
@@ -139,17 +141,17 @@ function DetailPage(props) {
         wished.splice(index, 1);
       }
       if (ecoval == 0) {
-        setTextBalloon('/images/text2.jpg');
+        setTextBalloon('/images/text22.png');
         setImgId('a2');
         setTimeout(function () {
-          setTextBalloon('/images/text7.jpg');
+          setTextBalloon('/images/text27.png');
+          setImgId('a7');
         }, 2000);
-        setImgId('a7');
       } else {
-        setTextBalloon('/images/text4.jpg');
+        setTextBalloon('/images/text24.png');
         setImgId('a4');
         setTimeout(function () {
-          setTextBalloon('/images/text6.jpg');
+          setTextBalloon('/images/text26.png');
         }, 2000);
         setImgId('a6');
       }
@@ -185,13 +187,15 @@ function DetailPage(props) {
           setProducts(dic);
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
-            if (typeof (room) != "undefined") {
+            if (typeof room != 'undefined') {
               setWhere(room);
-            }else{
-              if (cgg == 'tissue' || cgg == 'cushion') setWhere("Living");
-              else if (cgg == 'detergent' || cgg == 'scrubber') setWhere("Kitchen");
-              else if (cgg == 'shampoo' || cgg == 'toothpaste') setWhere("Bathroom");
-              else if (cgg == 'facial' || cgg == 'bag') setWhere("Bedroom");
+            } else {
+              if (cgg == 'tissue' || cgg == 'cushion') setWhere('Living');
+              else if (cgg == 'detergent' || cgg == 'scrubber')
+                setWhere('Kitchen');
+              else if (cgg == 'shampoo' || cgg == 'toothpaste')
+                setWhere('Bathroom');
+              else if (cgg == 'facial' || cgg == 'bag') setWhere('Bedroom');
             }
             var tmp = Number(doc.id);
 
@@ -312,14 +316,14 @@ function DetailPage(props) {
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
                 if (ecoval == 0) {
-                  setTextBalloon('/images/text7.jpg');
+                  setTextBalloon('/images/text27.png');
                   setImgId('a7');
                 } else if (clicked) {
-                  setTextBalloon('images/text5.jpg');
+                  setTextBalloon('images/text25.png');
                   setImgId('a5');
                 } else {
-                  setTextBalloon('/images/text4.jpg');
-                  setImgId('a4');
+                  setTextBalloon('/images/text26.png');
+                  setImgId('a6');
                 }
               });
           }
@@ -336,13 +340,13 @@ function DetailPage(props) {
 
   const mvPage = () => {
     let parentCat =
-      where == "Living"
+      where == 'Living'
         ? 'living'
-        : where == "Kitchen"
+        : where == 'Kitchen'
         ? 'kitchen'
-        : where == "Bathroom"
+        : where == 'Bathroom'
         ? 'bath'
-        : where == "Bedroom"
+        : where == 'Bedroom'
         ? 'beauty'
         : '';
     document.location.href = '/category/' + parentCat;
@@ -356,7 +360,7 @@ function DetailPage(props) {
       else if (where == 'Bedroom') gotocategory = 'tissue4';
     }
     document.location.href = '/category/' + gotocategory;
-  }
+  };
 
   return (
     <div>
@@ -460,11 +464,11 @@ function DetailPage(props) {
                     <div
                       className="heartHome"
                       onMouseEnter={() => {
-                        //console.log('mouse on heart');
+                        console.log('mouse on heart');
                         setHeart(true);
                       }}
                       onMouseLeave={() => {
-                        //console.log('mouse leave heart');
+                        console.log('mouse leave heart');
                         setHeart(false);
                       }}
                     >
@@ -476,8 +480,7 @@ function DetailPage(props) {
                     </div>
                     {heart ? (
                       <div className="hearta">
-                        <div>add to</div>
-                        <div>wishlist</div>
+                        <div>wish</div>
                       </div>
                     ) : (
                       <div className="heartb"></div>
@@ -488,31 +491,33 @@ function DetailPage(props) {
                     <div className="shareContainer">
                       <div
                         onMouseEnter={() => {
-                          //console.log('mouse on heart');
+                          console.log('mouse on heart');
                           setShare(1);
                         }}
                         onMouseLeave={() => {
-                          //console.log('mouse leave heart');
+                          console.log('mouse leave heart');
                           setShare(0);
                         }}
                         className="share"
                         onClick={() => {
                           navigator.clipboard.writeText(window.location.href);
+                          openModal();
                           setShare(2);
                           setTimeout(function () {
                             setShare(0);
                           }, 1500);
                         }}
                       >
-                        {/* <span 
-                      class="iconify" 
-                      data-icon="mdi:checkbox-multiple-blank-outline" 
-                      data-inline="false"
-                      height="35px"> */}
-                        {/* </span> */}
-                        <img src="/images/copy.png" height="35px" />
-                        {/* <img src="/images/share.png" height="30px" /> */}
+                        <img src="/images/copy.png" height="33px" />
                       </div>
+                      <Modal
+                        link={window.location.href}
+                        open={modalOpen}
+                        close={closeModal}
+                        header="Modal heading"
+                      >
+                        <main> {props.children} </main>
+                      </Modal>
                       <div className="space2"></div>
                     </div>
                     {share == 1 ? (
@@ -526,16 +531,16 @@ function DetailPage(props) {
                       <div
                         className="buy"
                         onMouseEnter={() => {
-                          //console.log('mouse on heart');
+                          console.log('mouse on heart');
                           setBuy(true);
                         }}
                         onMouseLeave={() => {
-                          //console.log('mouse leave heart');
+                          console.log('mouse leave heart');
                           setBuy(false);
                         }}
                       >
                         <span
-                          className="iconify"
+                          class="iconify"
                           data-icon="clarity:shopping-bag-line"
                           data-inline="false"
                           height="35px"
@@ -551,14 +556,14 @@ function DetailPage(props) {
                 </div>
                 <div className="space3"></div>
                 {share == 1 ? (
-                  <div className="sharea"></div>
+                  <div></div>
                 ) : share == 0 ? (
                   <div></div>
                 ) : (
                   <div className="sharec">
                     Copied to clipboard
                     <i
-                      className="em em-white_check_mark"
+                      class="em em-white_check_mark"
                       aria-role="presentation"
                       aria-label="WHITE HEAVY CHECK MARK"
                     ></i>
@@ -698,7 +703,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],
@@ -706,6 +711,7 @@ function DetailPage(props) {
                         link: products_in[0][e_length + 2],
                         ecoval: Number(products_in[0][e_length + 1]),
                         idx: products_in[0][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -721,7 +727,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[1][1],
                       state: {
                         name: products_in[1][1],
                         price: products_in[1][2],
@@ -729,6 +735,7 @@ function DetailPage(props) {
                         link: products_in[1][e_length + 2],
                         ecoval: Number(products_in[1][e_length + 1]),
                         idx: products_in[1][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -744,7 +751,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[2][1],
                       state: {
                         name: products_in[2][1],
                         price: products_in[2][2],
@@ -752,6 +759,7 @@ function DetailPage(props) {
                         link: products_in[2][e_length + 2],
                         ecoval: Number(products_in[2][e_length + 1]),
                         idx: products_in[2][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -818,7 +826,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[product_id][1],
                       state: {
                         name: products_in[product_id][1],
                         price: products_in[product_id][2],
@@ -826,6 +834,7 @@ function DetailPage(props) {
                         link: products_in[product_id][e_length + 2],
                         ecoval: Number(products_in[product_id][e_length + 1]),
                         idx: products_in[product_id][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -839,7 +848,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],
@@ -847,6 +856,7 @@ function DetailPage(props) {
                         link: products_in[0][e_length + 2],
                         ecoval: Number(products_in[0][e_length + 1]),
                         idx: products_in[0][e_length + 3],
+                        room: room,
                       },
                     }}
                   >

@@ -63,10 +63,6 @@ function DetailPage(props) {
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
 
-  var ModuiPopup = require( 'modui-popup' );
-
-  console.log("moduipop",ModuiPopup)
-  console.log("button",Button)
   // useEffect(()=>{
   //   ModuiPopup.open({
   //     target : document.getElementById('text'),
@@ -137,29 +133,29 @@ function DetailPage(props) {
         wished.push(idd);
       }
       if(ecoval==0){
-        setTextBalloon('/images/text1.jpg')
+        setTextBalloon('/images/text21.png')
         setImgId("a1")
-        setTimeout(function(){setTextBalloon('/images/text7.jpg');setImgId("a7")},2000)
+        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},1000)
       }
       else{
-        setTextBalloon('/images/text3.jpg')
+        setTextBalloon('/images/text23.png')
         setImgId("a3")
-        setTimeout(function(){setTextBalloon('/images/text5.jpg');setImgId("a5")},2000)
+        setTimeout(function(){setTextBalloon('/images/text25.png');setImgId("a5")},2000)
       }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
       }
       if(ecoval==0){
-        setTextBalloon('/images/text2.jpg')
+        setTextBalloon('/images/text22.png')
         setImgId("a2")
-        setTimeout(function(){setTextBalloon('/images/text7.jpg')},2000)
-        setImgId("a7")
+        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},2000)
+        
       }
       else{
-        setTextBalloon('/images/text4.jpg')
+        setTextBalloon('/images/text24.png')
         setImgId("a4")
-        setTimeout(function(){setTextBalloon('/images/text6.jpg')},2000)
+        setTimeout(function(){setTextBalloon('/images/text26.png')},2000)
         setImgId("a6")
       }
     }
@@ -316,15 +312,15 @@ function DetailPage(props) {
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
                 if(ecoval==0){
-      setTextBalloon('/images/text7.jpg')
+      setTextBalloon('/images/text27.png')
       setImgId("a7")
     }
     else if(clicked){
-      setTextBalloon("images/text5.jpg")
+      setTextBalloon("images/text25.png")
       setImgId("a5")
     }
     else{
-      setTextBalloon("/images/text4.jpg")
+      setTextBalloon("/images/text24.png")
       setImgId("a4")
     }
               });
@@ -446,7 +442,7 @@ function DetailPage(props) {
                     <div className="heartHome"onMouseEnter={()=>{console.log("mouse on heart");setHeart(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setHeart(false)}}>
                     <Heart className="heart" isClick={isClick} onClick={heartClick} />
                     </div>
-                    {heart?<div className="hearta"><div>add to</div><div>wishlist</div></div>:<div className="heartb"></div>}
+                    {heart?<div className="hearta"><div>wish</div></div>:<div className="heartb"></div>}
                   </div>
                   <div className="space"></div>
                   <div className="share1">

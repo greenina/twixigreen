@@ -362,12 +362,14 @@ table {
   visibility: hidden;
 }
 #a1{
-  margin-left: 175vh;
+  right:0;
+  bottom:0;
+  margin-right: -175vh;
   margin-bottom: 35vh;
 }
 #a2{
   margin-left: 175vh;
-  margin-bottom: 35vh;
+  margin-bottom: 25vh;
 }
 #a3{
   margin-left: 175vh;
@@ -375,9 +377,9 @@ table {
 }
 #a4{
   margin-left: 175vh;
-  margin-bottom: 27vh;
-  height: 80px;
-  width: 250px;
+  margin-bottom: 40vh;
+  /* height: 80px;
+  width: 250px; */
 }
 #a5{
   margin-left: 176vh;
@@ -385,10 +387,10 @@ table {
 }
 #a6{
   margin-left: 175vh;
-  margin-bottom: 27vh;
+  margin-bottom: 23vh;
 }
 #a7{
   margin-left: 175vh;
-  margin-bottom: 35vh;
+  margin-bottom: 25vh;
 }
 

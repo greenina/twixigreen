@@ -410,7 +410,7 @@ function DetailPage(props) {
                     <img src="/images/copy.png" height="35px"/>
                     {/* <img src="/images/share.png" height="30px" /> */}
                     </div>
-                    <Modal open={ modalOpen } close={ closeModal } header="Modal heading">
+                    <Modal link={window.location.href}open={ modalOpen } close={ closeModal } header="Modal heading">
 
                 // Modal.js <main> { props.children } </main>에 내용이 입력된다. 
                 리액트 함수형 모달 팝업창입니다.

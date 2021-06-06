@@ -136,7 +136,7 @@ class Product extends Component {
       <header>
         <Link
           to={{
-            pathname: `/detail/`,
+            pathname: `/detail/`+name,
             state: {
               name: this.props.name,
               price: this.props.price,

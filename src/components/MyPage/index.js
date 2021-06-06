@@ -341,7 +341,7 @@ function MyPage() {
                   <div className="showing">
                     <Link
                       to={{
-                        pathname: `/detail/`,
+                        pathname: `/detail/`+products[overlayInfo[0]]['name'],
                         state: {
                           name: products[overlayInfo[0]]['name'],
                           price: products[overlayInfo[0]]['price'],
@@ -377,7 +377,7 @@ function MyPage() {
                     <div key={val}>
                       <Link
                         to={{
-                          pathname: `/detail/`,
+                          pathname: `/detail/`+products[val]['name'],
                           state: {
                             name: products[val]['name'],
                             price: products[val]['price'],
@@ -429,7 +429,7 @@ function MyPage() {
               >
                 <Link
                   to={{
-                    pathname: `/detail/`,
+                    pathname: `/detail/`+products[printed[idx]]['name'],
                     state: {
                       name: products[printed[idx]]['name'],
                       price: products[printed[idx]]['price'],

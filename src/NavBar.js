@@ -4,6 +4,7 @@ import { db, firebaseApp } from './firebase';
 import { useEffect, useState } from 'react';
 import MyPage from './components/MyPage';
 
+
 function NavBar() {
 
   const mv2main = () => {
@@ -11,7 +12,6 @@ function NavBar() {
   };
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
-
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {

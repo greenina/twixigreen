@@ -1,3 +1,22 @@
+.linkcopy{
+    display: flex;
+    flex-direction: row;
+}
+.copybtn{
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #7a98b3;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-left: 10px;
+}
+.linkbox{
+    border:2px solid rgb(143, 143, 143);
+    height : 20px;
+    display: inline-block;
+    padding:5px;
+    border-radius: 5px;
+}
 .modal {
     display: none;
     position: fixed;
@@ -23,12 +42,52 @@
     animation: modal-show .3s;
     overflow: hidden;
 }
-.modal > section > header {
+/* .modal > section > header {
     position: relative;
     padding: 16px 64px 16px 16px;
     background-color: #f1f1f1;
     font-weight: 700;
     align-items: center;
+} */
+.head{
+    display: flex;
+    flex-direction: column;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.space1{
+    height: 30px;
+}
+.space2{
+    height: 10px;
+}
+.check{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.close2{
+    position: absolute;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    color: #999;
+    background-color: transparent;
+    visibility: hidden
+}
+.close1{
+    position: absolute;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    color: #999;
+    background-color: transparent;
+}
+.confirm{
+    font-size: 25px;
+    text-align: center;
 }
 .modal > section > header button {
     position: absolute;
@@ -50,13 +109,16 @@
     padding: 12px 16px;
     text-align: right;
 }
-.modal > section > footer button {
+.close {
     padding: 6px 12px;
-    color: #fff;
-    background-color: #7a98b3;
-    border-radius: 5px;
-    font-size: 13px;
+    font-size: 15px;
+    opacity: 0.8;
+    margin-top: 20px;
+    width: 50px;
+    height: 30px;
+    float: right;
 }
+
 .modal.openModal {
     display: flex;
     align-items: center;

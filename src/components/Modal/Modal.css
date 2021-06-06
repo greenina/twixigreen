@@ -79,7 +79,7 @@
 }
 .close1{
     position: absolute;
-    float: right;
+    float: left;
     font-size: 21px;
     font-weight: 700;
     color: #999;

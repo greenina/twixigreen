@@ -4,7 +4,6 @@ import { db, firebaseApp } from './firebase';
 import { useEffect, useState } from 'react';
 import MyPage from './components/MyPage';
 
-
 function NavBar() {
 
   const mv2main = () => {

@@ -21,7 +21,10 @@ const Modal = ( props ) => {
                         <div className="head">
                             {copied?
                             <button className="close2" > &times; </button>:
-                            <button className="close1" onClick={close}> &times; </button>}
+
+                                <button className="close1" onClick={close}> &times; </button>
+                           
+                            }
 
                             {copied?
                             <img className="check"src="/images/greencheck.png" width="80px"/>:

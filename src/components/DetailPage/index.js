@@ -697,7 +697,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/`+products_in[product_id][1],
                       state: {
                         name: products_in[product_id][1],
                         price: products_in[product_id][2],

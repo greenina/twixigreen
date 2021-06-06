@@ -311,7 +311,7 @@ function DetailPage(props) {
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
-                if(ecoval==0){
+    if(ecoval==0){
       setTextBalloon('/images/text27.png')
       setImgId("a7")
     }
@@ -320,8 +320,8 @@ function DetailPage(props) {
       setImgId("a5")
     }
     else{
-      setTextBalloon("/images/text24.png")
-      setImgId("a4")
+      setTextBalloon("/images/text26.png")
+      setImgId("a6")
     }
               });
           }

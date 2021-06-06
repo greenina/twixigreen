@@ -358,39 +358,38 @@ table {
 #a1,#a2,#a3,#a4,#a5,#a6,#a7{
   width: 250px;
   position: fixed;
-  bottom: 0;
+  right:0;
+  bottom:0;
   visibility: hidden;
 }
 #a1{
-  right:0;
-  bottom:0;
-  margin-right: -175vh;
-  margin-bottom: 35vh;
+  margin-right: 1vh;
+  margin-bottom: 23vh;
 }
 #a2{
-  margin-left: 175vh;
+  margin-right: 1vh;
   margin-bottom: 25vh;
 }
 #a3{
-  margin-left: 175vh;
+  margin-right: 1vh;
   margin-bottom: 25vh;
 }
 #a4{
-  margin-left: 175vh;
+  margin-right: 1vh;
   margin-bottom: 40vh;
   /* height: 80px;
   width: 250px; */
 }
 #a5{
-  margin-left: 176vh;
+  margin-right: 1vh;
   margin-bottom: 26vh;
 }
 #a6{
-  margin-left: 175vh;
+  margin-right: 1vh;
   margin-bottom: 23vh;
 }
 #a7{
-  margin-left: 175vh;
+  margin-right: 1vh;
   margin-bottom: 25vh;
 }
 

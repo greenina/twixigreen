@@ -357,14 +357,14 @@ class CategoryPage extends React.Component {
 
   mvPage = () => {
     document.getElementById('vegan').checked = false;
-    document.getElementById('ap').checked =false;
+    document.getElementById('ap').checked = false;
     document.getElementById('harm').checked = false;
     document.getElementById('ecoonly').checked = false;
-    document.getElementById('product1').checked =false;
+    document.getElementById('product1').checked = false;
     document.getElementById('product2').checked = false;
     if (!(cgg == 'tissue' || cgg == 'cushion' || cgg == 'living')) {
       document.getElementById('product3').checked = false;
-    };
+    }
     this.datarefresh();
     // let parentCat =
     //   this.state.room == "Living"
@@ -405,9 +405,7 @@ class CategoryPage extends React.Component {
         <div>
           <div className="router">
             <text id="router-text" className="mv2cat" onClick={this.mvPage}>
-              <b>
-                {this.state.room}
-              </b>
+              <b>{this.state.room}</b>
             </text>
             <text id="router-text">
               {' '}
@@ -526,6 +524,14 @@ class CategoryPage extends React.Component {
             </div>
           )}
           <div className="fixed_container">
+            <text className="tmi">
+              {' '}
+              Need help to figure out which one is{' '}
+              <text className="greenn">GREEN</text>?
+            </text>
+            <button id="onesight" className="inaglance" onClick={this.onesight}>
+              In a Glance
+            </button>
             <div className="checkbox1kk">
               <span class="checkin">
                 <label for="ecoonly" className="f_name">
@@ -579,13 +585,6 @@ class CategoryPage extends React.Component {
                 ></input>
                 <label className="labels" for="harm"></label>
               </span>
-              <button
-                id="onesight"
-                className="inaglance"
-                onClick={this.onesight}
-              >
-                In a Glance
-              </button>
             </div>
           </div>
         </div>

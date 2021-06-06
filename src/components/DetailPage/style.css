@@ -24,11 +24,13 @@
 }
 
 .mv2cat:hover {
+  -webkit-transition: all 0.8s ease;
   color: #00a900;
   cursor: pointer;
 }
 
 .mv2eachcat:hover {
+  -webkit-transition: all 0.8s ease;
   color: #616161;
   cursor: pointer;
 }
@@ -85,10 +87,12 @@
   margin-top: 10px;
 }
 .share {
+  z-index: 5;
   margin-top: 35px;
   margin-left: -12px;
 }
 .buy {
+  z-index: 5;
   margin-top: 33px;
 }
 .recommendations {
@@ -164,13 +168,16 @@ table {
   margin-left: -50px;
 }
 .heart:hover {
+  -webkit-transition: all 0.5s ease;
   opacity: 0.5;
 }
 .share:hover {
+  -webkit-transition: all 0.5s ease;
   opacity: 0.5;
 }
 
 .buy:hover {
+  -webkit-transition: all 0.5s ease;
   opacity: 0.5;
 }
 
@@ -290,6 +297,7 @@ table {
 }
 .heartHome {
   /* background-color: #00a900; */
+  z-index: 5;
   width: 70px;
   height: 70px;
 }
@@ -320,7 +328,7 @@ table {
   margin-left: 30px;
   font-size: 13px;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .sharea {
@@ -374,4 +382,5 @@ table {
   visibility: hidden;
   margin-right: 2vw;
   margin-bottom: 32vh;
+  user-select: none;
 }

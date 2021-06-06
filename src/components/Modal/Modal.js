@@ -45,17 +45,15 @@ const Modal = (props) => {
               <div className="green">
                 <div className="confirm">Copied to clipboard</div>
 
-                <Button
+                <button
                   className="close"
                   onClick={() => {
                     close();
                     setCopied(false);
                   }}
-                  variant="contained"
-                  color="primary"
                 >
-                  OK
-                </Button>
+                  <div>OK</div>
+                </button>
               </div>
             ) : (
               <div className="linkcopy">
@@ -67,7 +65,7 @@ const Modal = (props) => {
                     navigator.clipboard.writeText(window.location.href);
                   }}
                 >
-                  <div>Copy</div>
+                  <div>COPY</div>
                 </button>
               </div>
             )}

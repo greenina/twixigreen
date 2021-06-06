@@ -323,8 +323,8 @@ function MyPage() {
           {signIn ? (
             overlayMode == 0 ? (
               <div className="overlayBox">
-                Your Eco Score: {score == 4 ? '2' : score} | {userInfo.comp}'s
-                State: {show_states[score]}
+                {/* Your Eco Score: {score == 4 ? '2' : score} | */}{' '}
+                {userInfo.comp}'s State: {show_states[score]}
               </div>
             ) : overlayMode == 1 ? (
               <div>

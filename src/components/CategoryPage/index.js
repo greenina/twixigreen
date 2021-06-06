@@ -17,7 +17,6 @@ var products = [];
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
-
     cgg = props.match.params.cg;
     this.state = {
       name: [],
@@ -49,6 +48,7 @@ class CategoryPage extends React.Component {
   jebal(v) {
     this.bukkuk();
   }
+
   bukkuk() {
     console.log('bukkuk');
     db.collection('companion').doc('bukkuk').get().then(this.bukkukthen);
@@ -63,6 +63,7 @@ class CategoryPage extends React.Component {
       signIn = false;
     }
 
+
     this.setState(() => ({
       email: email,
     }));
@@ -72,7 +73,9 @@ class CategoryPage extends React.Component {
   wishthen(doc) {
     // eslint-disable-next-line no-lone-blocks
 
+
     let docs = doc.data();
+
     this.setState(() => ({
       wishlist: docs['wished'],
     }));
@@ -104,6 +107,7 @@ class CategoryPage extends React.Component {
     }
     dic[4] = dic[2];
     this.setState((prv) => ({ img_src: dic }));
+
   }
   onesight() {
     var elements = document.getElementsByClassName('productbox');
@@ -324,9 +328,11 @@ class CategoryPage extends React.Component {
             }));
         });
 
+
         var sum = 0;
         var i;
         for (i = 0; i < this.state.id.length; i++) {
+
           if (this.state.wishlist.includes('' + this.state.id[i])) {
             this.setState((prevState) => ({
               wished: [...prevState.wished, true],
@@ -336,6 +342,7 @@ class CategoryPage extends React.Component {
               wished: [...prevState.wished, false],
             }));
         }
+
 
         var tmpScore = 0;
         if (this.state.wishlist.length == 0)
@@ -352,6 +359,7 @@ class CategoryPage extends React.Component {
             score: Math.round(tmpScore / this.state.wishlist.length),
           }));
         }
+
       });
   }
 
@@ -381,6 +389,7 @@ class CategoryPage extends React.Component {
 
   componentWillMount() {
     this.bukkuk();
+
   }
   render() {
     // this.bukkuk();
@@ -604,7 +613,9 @@ class CategoryPage extends React.Component {
                 id={this.state.id}
                 email={this.state.email}
                 jebal={this.jebal}
+
                 room={this.state.room}
+
               ></Productlist>
             </div>
             <div>

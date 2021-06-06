@@ -6,11 +6,13 @@ import './style.css';
 //import $ from 'jquery';
 import DetailPage from '../DetailPage';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+
 import {
   SettingsInputAntennaTwoTone,
   TrendingUpOutlined,
 } from '@material-ui/icons';
 var email = '1';
+
 
 class Product extends Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class Product extends Component {
       ecoval: 1,
       wished: this.props.wished,
       idx: this.props.idx,
+
       room: this.props.room,
     };
 
@@ -108,6 +111,7 @@ class Product extends Component {
       }));
   }
 
+
   me() {
     // console.log('on');
     //   console.log(this.state.ecoval);
@@ -126,8 +130,10 @@ class Product extends Component {
   }
 
   render() {
+
     var { name, price, imgg, a, ecoval, wished, idx, id, email, room } =
       this.props;
+
     return (
       <header>
         <Link
@@ -140,7 +146,9 @@ class Product extends Component {
               link: this.props.a,
               ecoval: this.props.ecoval,
               idx: this.props.idx,
+
               room: this.props.room,
+
             },
           }}
         >
@@ -160,7 +168,9 @@ class Product extends Component {
                 height="175px"
               ></img>
             </div>
+
             {this.props.wished[idx] === true ? (
+
               <img
                 className="heart"
                 src="https://ifh.cc/g/d7BZO6.png"

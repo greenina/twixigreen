@@ -369,36 +369,39 @@ table {
 #a7 {
   width: 250px;
   position: fixed;
-  bottom: 0;
+  right:0;
+  bottom:0;
   visibility: hidden;
 }
-#a1 {
-  margin-left: 175vh;
-  margin-bottom: 35vh;
+
+#a1{
+  margin-right: 1vh;
+  margin-bottom: 23vh;
 }
-#a2 {
-  margin-left: 175vh;
-  margin-bottom: 35vh;
-}
-#a3 {
-  margin-left: 175vh;
+#a2{
+  margin-right: 1vh;
   margin-bottom: 25vh;
 }
-#a4 {
-  margin-left: 175vh;
-  margin-bottom: 27vh;
-  height: 80px;
-  width: 250px;
+#a3{
+  margin-right: 1vh;
+  margin-bottom: 25vh;
 }
-#a5 {
-  margin-left: 176vh;
+#a4{
+  margin-right: 1vh;
+  margin-bottom: 40vh;
+  /* height: 80px;
+  width: 250px; */
+}
+#a5{
+  margin-right: 1vh;
   margin-bottom: 26vh;
 }
-#a6 {
-  margin-left: 175vh;
-  margin-bottom: 27vh;
+#a6{
+  margin-right: 1vh;
+  margin-bottom: 23vh;
 }
-#a7 {
-  margin-left: 175vh;
-  margin-bottom: 35vh;
+#a7{
+  margin-right: 1vh;
+  margin-bottom: 25vh;
+
 }

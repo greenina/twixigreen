@@ -1,10 +1,11 @@
+
 import './style.css';
 import './animation.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
-//import RecProduct from '../RecProduct';
-//import { Button } from '@material-ui/core';
+import RecProduct from '../RecProduct';
+import { Button } from '@material-ui/core';
 import { facials_element, facials } from './product_array';
 import { tissue_element, tissue } from './product_array';
 import { toothpaste_element, toothpaste } from './product_array';
@@ -14,21 +15,24 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+// import ModuiPopup  from 'modui-popup';
+
 
 function DetailPage(props) {
-  //const [recArray, setRecArray] = useState([]);
+ 
+  const [recArray, setRecArray] = useState([]);
   const [wished, setWished] = useState([]);
   const [category, setCategory] = useState();
   const [products, setProducts] = useState({});
   const [img_src, setImgSrc] = useState({});
   const [score, setScore] = useState(0);
-  //const [console2, setConsole2] = useState();
-  //const [console3, setConsole3] = useState(0);
-  //const [bukkuk, setBukkuk] = useState([]);
+  const [console2, setConsole2] = useState();
+  const [console3, setConsole3] = useState(0);
+  const [bukkuk, setBukkuk] = useState([]);
   const [stage, setStage] = useState([]);
   const [status, setStatus] = useState();
   const [isClick, setClick] = useState();
-  //const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const [idd, setIdd] = useState();
   const [product_id, setProductId] = useState(0);
   const [e_length, setELength] = useState(0);
@@ -36,12 +40,11 @@ function DetailPage(props) {
   const [products_in, setProductIn] = useState([]);
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
-  const [textBalloon, setTextBalloon] = useState('');
-  const [heart, setHeart] = useState(false);
-  const [share, setShare] = useState(0);
-  const [buy, setBuy] = useState(false);
-  const [imgId, setImgId] = useState('a1');
-  const [where, setWhere] = useState('');
+  const [textBalloon, setTextBalloon] = useState("")
+  const [heart, setHeart] = useState(false)
+  const [share, setShare] = useState(0)
+  const [buy, setBuy] = useState(false)
+  const [imgId, setImgId] = useState("a1")
 
   // const [dominant, setDominant] = useState(0);
   // const [subDominant, setSubDominant] = useState(0);
@@ -57,10 +60,19 @@ function DetailPage(props) {
   const link = props.location.state.link;
   const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
-  const room = props.location.state.room;
-  //var value = '';
+  var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
+
+  // useEffect(()=>{
+  //   ModuiPopup.open({
+  //     target : document.getElementById('text'),
+  //     position : 'right center',
+  //     contents : 'This is a popup balloon.'
+  //   });
+  // },[])
+
+
 
   var avg = function (list) {
     var sum = 0;
@@ -100,7 +112,7 @@ function DetailPage(props) {
       .get()
       .then(function (doc) {
         let docs = doc.data();
-
+       
         setImgSrc([]);
         for (var i = 0; i < Object.keys(docs).length; i++) {
           let dic = img_src;
@@ -109,49 +121,43 @@ function DetailPage(props) {
         }
         let tdic = img_src;
         tdic[4] = img_src[2];
+        
       });
   }, []);
 
   var heartClick = function (e) {
+   
     var index = wished.indexOf(idd);
-
+   
     if (!isClick) {
       if (index === -1) {
         wished.push(idd);
       }
-      if (ecoval == 0) {
-        setTextBalloon('/images/text1.jpg');
-        setImgId('a1');
-        setTimeout(function () {
-          setTextBalloon('/images/text7.jpg');
-          setImgId('a7');
-        }, 2000);
-      } else {
-        setTextBalloon('/images/text3.jpg');
-        setImgId('a3');
-        setTimeout(function () {
-          setTextBalloon('/images/text5.jpg');
-          setImgId('a5');
-        }, 2000);
+      if(ecoval==0){
+        setTextBalloon('/images/text21.png')
+        setImgId("a1")
+        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},1000)
+      }
+      else{
+        setTextBalloon('/images/text23.png')
+        setImgId("a3")
+        setTimeout(function(){setTextBalloon('/images/text25.png');setImgId("a5")},2000)
       }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
       }
-      if (ecoval == 0) {
-        setTextBalloon('/images/text2.jpg');
-        setImgId('a2');
-        setTimeout(function () {
-          setTextBalloon('/images/text7.jpg');
-        }, 2000);
-        setImgId('a7');
-      } else {
-        setTextBalloon('/images/text4.jpg');
-        setImgId('a4');
-        setTimeout(function () {
-          setTextBalloon('/images/text6.jpg');
-        }, 2000);
-        setImgId('a6');
+      if(ecoval==0){
+        setTextBalloon('/images/text22.png')
+        setImgId("a2")
+        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},2000)
+        
+      }
+      else{
+        setTextBalloon('/images/text24.png')
+        setImgId("a4")
+        setTimeout(function(){setTextBalloon('/images/text26.png')},2000)
+        setImgId("a6")
       }
     }
     setClick(!isClick);
@@ -169,11 +175,12 @@ function DetailPage(props) {
       // var
       // db.collection('users').doc('1').set()
     } else setScore(4);
+   
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
+   
     db.collection('products')
       .get()
       .then((snapshot) => {
@@ -183,16 +190,11 @@ function DetailPage(props) {
           let dic = products;
           dic[doc.id] = docs;
           setProducts(dic);
+
+          
+
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
-            if (typeof (room) != "undefined") {
-              setWhere(room);
-            }else{
-              if (cgg == 'tissue' || cgg == 'cushion') setWhere("Living");
-              else if (cgg == 'detergent' || cgg == 'scrubber') setWhere("Kitchen");
-              else if (cgg == 'shampoo' || cgg == 'toothpaste') setWhere("Bathroom");
-              else if (cgg == 'facial' || cgg == 'bag') setWhere("Bedroom");
-            }
             var tmp = Number(doc.id);
 
             if (cgg == 'facial') {
@@ -205,12 +207,7 @@ function DetailPage(props) {
                   break;
                 }
               }
-            } else if (
-              cgg == 'tissue' ||
-              cgg == 'tissue2' ||
-              cgg == 'tissue3' ||
-              cgg == 'tissue4'
-            ) {
+            } else if (cgg == 'tissue') {
               setELength(tissue_element.length);
               setElements(tissue_element);
               setProductIn(tissue);
@@ -282,6 +279,7 @@ function DetailPage(props) {
               }
             }
 
+          
             //debugger;
           }
           /////////get product id, category///////////
@@ -293,6 +291,7 @@ function DetailPage(props) {
               .get()
               .then(function (doc2) {
                 setStage(doc2.data()['stage']);
+               
               });
             db.collection('users')
               .doc(email)
@@ -305,22 +304,26 @@ function DetailPage(props) {
                 if (docs['wished'].length > 0) {
                   for (var i = 0; i < docs['wished'].length; i++) {
                     tmpScore += products[docs['wished'][i]]['eco'];
+                  
                   }
                   setScore(Math.round(tmpScore / docs['wished'].length));
+                 
                 } else setScore(4);
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
-                if (ecoval == 0) {
-                  setTextBalloon('/images/text7.jpg');
-                  setImgId('a7');
-                } else if (clicked) {
-                  setTextBalloon('images/text5.jpg');
-                  setImgId('a5');
-                } else {
-                  setTextBalloon('/images/text4.jpg');
-                  setImgId('a4');
-                }
+    if(ecoval==0){
+      setTextBalloon('/images/text27.png')
+      setImgId("a7")
+    }
+    else if(clicked){
+      setTextBalloon("images/text25.png")
+      setImgId("a5")
+    }
+    else{
+      setTextBalloon("/images/text26.png")
+      setImgId("a6")
+    }
               });
           }
         });
@@ -336,91 +339,70 @@ function DetailPage(props) {
 
   const mvPage = () => {
     let parentCat =
-      where == "Living"
-        ? 'living'
-        : where == "Kitchen"
+      category == 'scrubber' || category == 'detergent'
         ? 'kitchen'
-        : where == "Bathroom"
+        : category == 'tissue' || category == 'cushion'
+        ? 'living'
+        : category == 'shampoo' || category == 'toothpaste'
         ? 'bath'
-        : where == "Bedroom"
+        : category == 'bag' || category == 'facial'
         ? 'beauty'
         : '';
     document.location.href = '/category/' + parentCat;
   };
 
-  const mvCat = () => {
-    let gotocategory = category;
-    if (category == 'tissue') {
-      if (where == 'Kitchen') gotocategory = 'tissue2';
-      else if (where == 'Bathroom') gotocategory = 'tissue3';
-      else if (where == 'Bedroom') gotocategory = 'tissue4';
-    }
-    document.location.href = '/category/' + gotocategory;
-  }
-
   return (
     <div>
       <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link>
-      {() => {
-        switch (imgId) {
-          case 'a1':
-            <img id="a1" className="slideUp" src={textBalloon} />;
-          case 'a2':
-            <img id="a2" className="slideUp" src={textBalloon} />;
-          case 'a3':
-            <img id="a3" className="slideUp" src={textBalloon} />;
-          case 'a4':
-            <img id="a4" className="slideUp" src={textBalloon} />;
-          case 'a5':
-            <img id="a5" className="slideUp" src={textBalloon} />;
-          case 'a6':
-            <img id="a6" className="slideUp" src={textBalloon} />;
-          case 'a7':
-            <img id="a7" className="slideUp" src={textBalloon} />;
+      {()=>{
+        switch(imgId){
+          case "a1":
+            <img id="a1" class="slideUp"src={textBalloon}/>
+          case "a2":
+            <img id="a2" class="slideUp"src={textBalloon}/>
+          case "a3":
+            <img id="a3" class="slideUp"src={textBalloon}/>
+          case "a4":
+            <img id="a4" class="slideUp"src={textBalloon}/>
+          case "a5":
+            <img id="a5" class="slideUp"src={textBalloon}/>
+          case "a6":
+            <img id="a6" class="slideUp"src={textBalloon}/>
+          case "a7":
+            <img id="a7" class="slideUp"src={textBalloon}/>
         }
       }}
-      <img id={imgId} className="slideUp" src={textBalloon} />
+      <img id={imgId} class="slideUp"src={textBalloon}/>
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
-          <b>{where}</b>
+          <b>
+            {category == 'scrubber' || category == 'detergent'
+              ? 'Kitchen'
+              : category == 'tissue' || category == 'cushion'
+              ? 'Living'
+              : category == 'shampoo' || category == 'toothpaste'
+              ? 'Bathroom'
+              : category == 'bag' || category == 'facial'
+              ? 'Bedroom'
+              : ''}
+          </b>
         </text>
         <text id="router-text">
           {' '}
           <span
             height="8px"
-            className="iconify"
+            class="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
           ></span>{' '}
         </text>
-        <text id="router-text" className="mv2eachcat" onClick={mvCat}>
-          {category == 'scrubber'
-            ? 'Scrubber'
-            : category == 'detergent'
-            ? 'Detergent'
-            : category == 'tissue' ||
-              category == 'tissue2' ||
-              category == 'tissue3' ||
-              category == 'tissue4'
-            ? 'Tissue'
-            : category == 'cushion'
-            ? 'Cushion'
-            : category == 'shampoo'
-            ? 'Shampoo'
-            : category == 'toothpaste'
-            ? 'Toothpaste'
-            : category == 'bag'
-            ? 'Bag'
-            : category == 'facial'
-            ? 'Facial'
-            : ''}
-        </text>
+        <text id="router-text">{category}</text>
         <text id="router-text">
           {' '}
           <span
             height="8px"
-            className="iconify"
+            class="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
@@ -429,7 +411,8 @@ function DetailPage(props) {
         <text id="router-text">{name}</text>
       </div>
       <hr className="hr-line" />
-      <div className="whole">
+      <div class="whole">
+        
         <div className="d_companion">
           <a href="/mypage">
             <img
@@ -457,114 +440,57 @@ function DetailPage(props) {
               <div className="icon1">
                 <div className="icon2">
                   <div className="heart1">
-                    <div
-                      className="heartHome"
-                      onMouseEnter={() => {
-                        //console.log('mouse on heart');
-                        setHeart(true);
-                      }}
-                      onMouseLeave={() => {
-                        //console.log('mouse leave heart');
-                        setHeart(false);
-                      }}
-                    >
-                      <Heart
-                        className="heart"
-                        isClick={isClick}
-                        onClick={heartClick}
-                      />
+                    <div className="heartHome"onMouseEnter={()=>{console.log("mouse on heart");setHeart(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setHeart(false)}}>
+                    <Heart className="heart" isClick={isClick} onClick={heartClick} />
                     </div>
-                    {heart ? (
-                      <div className="hearta">
-                        <div>add to</div>
-                        <div>wishlist</div>
-                      </div>
-                    ) : (
-                      <div className="heartb"></div>
-                    )}
+                    {heart?<div className="hearta"><div>wish</div></div>:<div className="heartb"></div>}
                   </div>
                   <div className="space"></div>
                   <div className="share1">
                     <div className="shareContainer">
-                      <div
-                        onMouseEnter={() => {
-                          //console.log('mouse on heart');
-                          setShare(1);
-                        }}
-                        onMouseLeave={() => {
-                          //console.log('mouse leave heart');
-                          setShare(0);
-                        }}
-                        className="share"
-                        onClick={() => {
-                          navigator.clipboard.writeText(window.location.href);
-                          setShare(2);
-                          setTimeout(function () {
-                            setShare(0);
-                          }, 1500);
-                        }}
-                      >
-                        {/* <span 
+                    <div
+                    onMouseEnter={()=>{console.log("mouse on heart");setShare(1)}} onMouseLeave={()=>{console.log("mouse leave heart");setShare(0)}}
+                      className="share"
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        setShare(2);
+                        setTimeout(function(){setShare(0)},1500)
+                      }}
+                    >
+                      {/* <span 
                       class="iconify" 
                       data-icon="mdi:checkbox-multiple-blank-outline" 
                       data-inline="false"
                       height="35px"> */}
-                        {/* </span> */}
-                        <img src="/images/copy.png" height="35px" />
-                        {/* <img src="/images/share.png" height="30px" /> */}
-                      </div>
-                      <div className="space2"></div>
+                      {/* </span> */}
+                      <img src="/images/copy.png" height="35px"/>
+                    {/* <img src="/images/share.png" height="30px" /> */}
                     </div>
-                    {share == 1 ? (
-                      <div className="sharea">share</div>
-                    ) : (
-                      <div></div>
-                    )}
+                    <div className="space2"></div>
+                    </div>
+                    {share==1?<div className="sharea">share</div>:<div></div>}
                   </div>
-                  <div className="buy1">
-                    <a onClick={() => window.open(link, '_blank')}>
-                      <div
-                        className="buy"
-                        onMouseEnter={() => {
-                          //console.log('mouse on heart');
-                          setBuy(true);
-                        }}
-                        onMouseLeave={() => {
-                          //console.log('mouse leave heart');
-                          setBuy(false);
-                        }}
-                      >
-                        <span
-                          className="iconify"
-                          data-icon="clarity:shopping-bag-line"
-                          data-inline="false"
-                          height="35px"
-                        ></span>
-                      </div>
-                    </a>
-                    {buy ? (
-                      <div className="buya">buy</div>
-                    ) : (
-                      <div classname="buyb"></div>
-                    )}
-                  </div>
+                <div className="buy1">
+                  <a onClick={() => window.open(link, '_blank')}>
+                    <div className="buy"
+                    onMouseEnter={()=>{console.log("mouse on heart");setBuy(true)}} onMouseLeave={()=>{console.log("mouse leave heart");setBuy(false)}}
+                    >
+                      <span
+                        class="iconify"
+                        data-icon="clarity:shopping-bag-line"
+                        data-inline="false"
+                        height="35px"
+                      ></span>
+                    </div>
+                  </a>
+                  {buy?<div className="buya">buy</div>:<div classname="buyb"></div>}
+
                 </div>
-                <div className="space3"></div>
-                {share == 1 ? (
-                  <div className="sharea"></div>
-                ) : share == 0 ? (
-                  <div></div>
-                ) : (
-                  <div className="sharec">
-                    Copied to clipboard
-                    <i
-                      className="em em-white_check_mark"
-                      aria-role="presentation"
-                      aria-label="WHITE HEAVY CHECK MARK"
-                    ></i>
-                  </div>
-                )}
               </div>
+              <div className="space3"></div>
+              {share==1?<div className="sharea"></div>:(share==0?<div></div>:<div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
+            </div>
+              
             </div>
             <div className="row3">
               <div className="price">
@@ -897,3 +823,4 @@ function DetailPage(props) {
 }
 
 export default DetailPage;
+

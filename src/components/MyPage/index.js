@@ -7,7 +7,6 @@ import CurProduct from '../CurProduct';
 import RecProduct from '../RecProduct';
 import Tippy from 'react-tooltip';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 function MyPage() {
   // const [img_num, setImgNum] = useState(0);
@@ -26,7 +25,7 @@ function MyPage() {
   const [email, setEmail] = useState('1');
   const [comp, setComp] = useState('Bukkuk');
   //const [mail,setMail] = useState('1')
-  const mail = useSelector((state) => state.user.user);
+
   var del_idx = [];
   var timer;
   var delay = 1000;

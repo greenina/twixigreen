@@ -2,7 +2,6 @@ import './style.css';
 import { db, firebaseApp } from '../../firebase';
 import React, { useEffect, useState } from 'react';
 import Tippy from 'react-tooltip';
-import { useSelector, useDispatch } from 'react-redux';
 //import Switch from './Switch';
 
 function MainPage() {
@@ -18,7 +17,7 @@ function MainPage() {
 
   let states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
   var timer;
-  var dispatch = useDispatch();
+
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {

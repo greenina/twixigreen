@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { db, firebaseApp } from '../../firebase';
-import { useSelector, useDispatch } from 'react-redux';
-import setUser from '../../reducers/user';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -58,8 +56,6 @@ function Register() {
   const [mode, setMode] = useState(false);
   const [error, setError] = useState('');
   const [uid, setUid] = useState(null);
-  const mail = useSelector((state) => state.user.user);
-  const [a, setA] = useState(mail);
   const [comp, setComp] = useState('');
   const [img, setImg] = useState([]);
   let history = useHistory();

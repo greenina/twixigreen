@@ -313,22 +313,26 @@ table {
   height: 10px;
 }
 .hearta{
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 6px;
   background-color: rgb(202, 200, 200);
   opacity: 0.8;
   width: 40px;
   margin-left: 30px;
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
   margin-top: 5px;
 }
 
 .sharea{
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 6px;
   background-color: rgb(202, 200, 200);
   opacity: 0.8;
   width: 40px;
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
   margin-left: -15px;
 }
@@ -343,11 +347,13 @@ table {
   padding: 3px;
 }
 .buya{
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 6px;
   background-color: rgb(202, 200, 200);
   opacity: 0.8;
   width: 35px;
-  font-size: 10px;
+  font-size: 13px;
   text-align: center;
   margin-top: 5px;
 }

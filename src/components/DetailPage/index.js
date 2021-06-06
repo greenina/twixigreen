@@ -3,8 +3,6 @@ import './animation.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
-import RecProduct from '../RecProduct';
-import { Button } from '@material-ui/core';
 import { facials_element, facials } from './product_array';
 import { tissue_element, tissue } from './product_array';
 import { toothpaste_element, toothpaste } from './product_array';
@@ -14,24 +12,19 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
-// import ModuiPopup  from 'modui-popup';
+import Modal from '../Modal/Modal';
 
 
 function DetailPage(props) {
  
-  const [recArray, setRecArray] = useState([]);
   const [wished, setWished] = useState([]);
   const [category, setCategory] = useState();
   const [products, setProducts] = useState({});
   const [img_src, setImgSrc] = useState({});
   const [score, setScore] = useState(0);
-  const [console2, setConsole2] = useState();
-  const [console3, setConsole3] = useState(0);
-  const [bukkuk, setBukkuk] = useState([]);
   const [stage, setStage] = useState([]);
   const [status, setStatus] = useState();
   const [isClick, setClick] = useState();
-  const [userInfo, setUserInfo] = useState({});
   const [idd, setIdd] = useState();
   const [product_id, setProductId] = useState(0);
   const [e_length, setELength] = useState(0);
@@ -44,33 +37,24 @@ function DetailPage(props) {
   const [share, setShare] = useState(0)
   const [buy, setBuy] = useState(false)
   const [imgId, setImgId] = useState("a1")
+  const [ modalOpen, setModalOpen ] = useState(false);
+  
 
-  // const [dominant, setDominant] = useState(0);
-  // const [subDominant, setSubDominant] = useState(0);
-  // const [triDominant, setTriDominant] = useState(0);
-  // const [img1, setImg1] = useState('');
-  // const [img2, setImg2] = useState('');
-  // const [img3, setImg3] = useState('');
   const dominant = 0;
 
   const name = props.location.state.name;
   const price = props.location.state.price;
   const img = props.location.state.imgg;
   const link = props.location.state.link;
-  const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
-  var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
-
-  // useEffect(()=>{
-  //   ModuiPopup.open({
-  //     target : document.getElementById('text'),
-  //     position : 'right center',
-  //     contents : 'This is a popup balloon.'
-  //   });
-  // },[])
-
+  const openModal = () => {
+    setModalOpen(true);
+  }
+  const closeModal = () => {
+    setModalOpen(false);
+  }
 
 
   var avg = function (list) {
@@ -80,20 +64,7 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
-  // useEffect(()=>{
-  //   if(ecoval==0){
-  //     setTextBalloon('/images/text7.png')
-  //     setImgId("a7")
-  //   }
-  //   else if(isClick){
-  //     setTextBalloon("images/text5.png")
-  //     setImgId("a5")
-  //   }
-  //   else{
-  //     setTextBalloon("/images/text4.png")
-  //     setImgId("a4")
-  //   }
-  // },[ecoval])
+
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -135,7 +106,7 @@ function DetailPage(props) {
       if(ecoval==0){
         setTextBalloon('/images/text21.png')
         setImgId("a1")
-        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},1000)
+        setTimeout(function(){setTextBalloon('/images/text27.png');setImgId("a7")},2000)
       }
       else{
         setTextBalloon('/images/text23.png')
@@ -178,8 +149,7 @@ function DetailPage(props) {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-   
+    window.scrollTo(0, 0); 
     db.collection('products')
       .get()
       .then((snapshot) => {
@@ -189,8 +159,6 @@ function DetailPage(props) {
           let dic = products;
           dic[doc.id] = docs;
           setProducts(dic);
-
-          
 
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
@@ -206,7 +174,8 @@ function DetailPage(props) {
                   break;
                 }
               }
-            } else if (cgg == 'tissue') {
+            } 
+            else if (cgg == 'tissue') {
               setELength(tissue_element.length);
               setElements(tissue_element);
               setProductIn(tissue);
@@ -277,11 +246,8 @@ function DetailPage(props) {
                 }
               }
             }
-
-          
-            //debugger;
           }
-          /////////get product id, category///////////
+
           if (doc.data().name === name) {
             setIdd(doc.id);
             setCategory(doc.data().category);
@@ -323,10 +289,10 @@ function DetailPage(props) {
       setTextBalloon("/images/text26.png")
       setImgId("a6")
     }
-              });
-          }
-        });
       });
+        }
+          });
+            });
   }, [product_id, email]);
 
   useEffect(() => {
@@ -352,25 +318,8 @@ function DetailPage(props) {
 
   return (
     <div>
-      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link>
-      {()=>{
-        switch(imgId){
-          case "a1":
-            <img id="a1" class="slideUp"src={textBalloon}/>
-          case "a2":
-            <img id="a2" class="slideUp"src={textBalloon}/>
-          case "a3":
-            <img id="a3" class="slideUp"src={textBalloon}/>
-          case "a4":
-            <img id="a4" class="slideUp"src={textBalloon}/>
-          case "a5":
-            <img id="a5" class="slideUp"src={textBalloon}/>
-          case "a6":
-            <img id="a6" class="slideUp"src={textBalloon}/>
-          case "a7":
-            <img id="a7" class="slideUp"src={textBalloon}/>
-        }
-      }}
+      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link> 
+            
       <img id={imgId} class="slideUp"src={textBalloon}/>
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
@@ -452,19 +401,22 @@ function DetailPage(props) {
                       className="share"
                       onClick={() => {
                         navigator.clipboard.writeText(window.location.href);
+                        openModal();
                         setShare(2);
                         setTimeout(function(){setShare(0)},1500)
                       }}
                     >
-                      {/* <span 
-                      class="iconify" 
-                      data-icon="mdi:checkbox-multiple-blank-outline" 
-                      data-inline="false"
-                      height="35px"> */}
-                      {/* </span> */}
-                      <img src="/images/copy.png" height="35px"/>
+
+                    <img src="/images/copy.png" height="35px"/>
                     {/* <img src="/images/share.png" height="30px" /> */}
                     </div>
+                    <Modal open={ modalOpen } close={ closeModal } header="Modal heading">
+
+                // Modal.js <main> { props.children } </main>에 내용이 입력된다. 
+                리액트 함수형 모달 팝업창입니다.
+                쉽게 만들 수 있어요. 
+                같이 만들어봐요!
+            </Modal>
                     <div className="space2"></div>
                     </div>
                     {share==1?<div className="sharea">share</div>:<div></div>}
@@ -487,7 +439,8 @@ function DetailPage(props) {
                 </div>
               </div>
               <div className="space3"></div>
-              {share==1?<div className="sharea"></div>:(share==0?<div></div>:<div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
+              {share==1?<div></div>:(share==0?<div></div>:
+              <div className="sharec">Copied to clipboard<i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i></div>)}
             </div>
               
             </div>

@@ -61,7 +61,6 @@
   position: absolute;
   margin-top: -50px;
   margin-left: 186px;
-  
 }
 
 .myheart__ {
@@ -71,16 +70,10 @@
 }
 
 .myheart__2 {
-
   position: absolute;
   margin-top: -2.8vw;
   margin-left: 4.2vw;
 }
-
-    position: absolute;
-    margin-top: -40px;
-    margin-left: 70px;
-  }
 
 .showing {
   position: fixed;

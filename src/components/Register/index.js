@@ -312,13 +312,13 @@ function Register() {
       </Container>
       </div>
       <div className="register_comp">
-        <div className="textballoon">
+        {/* <div className="textballoon">
           <img className="registertext"src="/images/registertext.png"/>
           <div className="texts">
             {name!=""?<div >Welcome {name}</div>:<div></div>}
             {comp!=""?<div >My name is {comp}</div>:<div><div >I am your companion</div><div>Would you name me?</div></div>}
           </div>
-        </div>
+        </div> */}
         <img  width="300px" src="/images/bukkuk.gif" />
       </div>
       

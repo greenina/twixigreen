@@ -6,10 +6,34 @@
   width: 500px;
   flex-direction: row;
 }
+.registertext{
+  width: 250px;
+  height: 180px;
+  position: absolute;
+  top: 0px;
+  left: 10%;
+
+}
+.textballoon{
+  position: relative;
+  text-align: left;
+  height: 120px;
+}
+.texts{
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  /* transform: translate(-50%, -50%);  */
+  font-family: 'Annie Use Your Telescope', cursive;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
 
 .register_comp {
   position: fixed;
-  margin-top: 33vh;
+  margin-top: 21vh;
   margin-left: 25vw;
 }
 

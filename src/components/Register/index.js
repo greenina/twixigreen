@@ -209,7 +209,10 @@ function Register() {
 
   return (
     <div className="no-drag">
+      <link rel="preconnect" href="https://fonts.gstatic.com"/>
+      <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet"></link>
       <div className="root">
+        
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -309,8 +312,13 @@ function Register() {
       </Container>
       </div>
       <div className="register_comp">
-        {name!=""?<div>Welcome {name}</div>:<div></div>}
-        {comp!=""?<div>My name is {comp}</div>:<div><div>I am your companion</div><div>Would you name me?</div></div>}
+        <div className="textballoon">
+          <img className="registertext"src="/images/registertext.png"/>
+          <div className="texts">
+            {name!=""?<div >Welcome {name}</div>:<div></div>}
+            {comp!=""?<div >My name is {comp}</div>:<div><div >I am your companion</div><div>Would you name me?</div></div>}
+          </div>
+        </div>
         <img  width="300px" src="/images/bukkuk.gif" />
       </div>
       

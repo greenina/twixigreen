@@ -1,15 +1,20 @@
-.root {
+.root2 {
   /* display: flex; */
   position: fixed;
   margin-left: 45vw;
-  margin-top: 20vh;
+  margin-top: 3vh;
   width: 500px;
   flex-direction: row;
 }
 
 .register_comp {
   position: fixed;
-  margin-top: 33vh;
+  margin-top: 13vh;
+  margin-left: 28vw;
+}
+.register_img {
+  position: fixed;
+  margin-top: 20vh;
   margin-left: 25vw;
 }
 
@@ -23,4 +28,8 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+.selfIntro {
+  text-align: center;
+  width: 200px;
 }

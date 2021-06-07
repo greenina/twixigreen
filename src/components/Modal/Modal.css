@@ -5,8 +5,11 @@
 .linkbox {
   border: 2px solid rgb(143, 143, 143);
   margin-left: 5px;
-  width: 325px;
+  width: 320px;
   height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: inline-block;
   padding: 5px;
   border-radius: 5px;
@@ -61,6 +64,10 @@
   display: block;
   margin-right: auto;
   margin-left: auto;
+  user-select: none;
+}
+.blockmouse {
+  user-select: none;
 }
 .close2 {
   position: absolute;
@@ -84,6 +91,7 @@
 .confirm {
   font-size: 25px;
   text-align: center;
+  user-select: none;
 }
 .modal > section > header button {
   position: absolute;

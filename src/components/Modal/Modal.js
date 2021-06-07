@@ -30,7 +30,7 @@ const Modal = (props) => {
                   width="80px"
                 />
               ) : (
-                <div>
+                <div className="blockmouse">
                   <img
                     className="check"
                     src="/images/graycheck.png"

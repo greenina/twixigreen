@@ -209,119 +209,129 @@ function Register() {
 
   return (
     <div className="no-drag">
-      <link rel="preconnect" href="https://fonts.gstatic.com"/>
-      <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet"></link>
-      <div className="root">
-        
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <form className={classes.form} noValidate>
-            <Grid item xs={12} sm={60}>
-              <Input
-                className="input_login"
-                onChange={changeEmail}
-                placeholder="email *"
-              />
-            </Grid>
-            <Grid item xs={12} sm={60}>
-              <Input
-                className="input_login"
-                type={values.showPassword ? 'text' : 'password'}
-                onChange={handlePasswordChange('password')}
-                value={values.password}
-                placeholder="password(at least 6 characters) *"
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={60}>
-              <Input
-                className="input_login"
-                type={values2.showPassword2 ? 'text' : 'password'}
-                onChange={handlePasswordChange2('password')}
-                value={values2.password}
-                placeholder="password confirm *"
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleClickShowPassword2}
-                      onMouseDown={handleMouseDownPassword2}
-                    >
-                      {values2.showPassword2 ? (
-                        <Visibility />
-                      ) : (
-                        <VisibilityOff />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </Grid>
-            {/* {mode?<div></div>:<div></div>} */}
-            {mode ? (
-              <div>pwd matches</div>
-            ) : (
-              <div className="red">pwd doesn't match</div>
-            )}
-            <Grid item xs={12} sm={60}>
-              <Input
-                className="input_login"
-                onChange={changeName}
-                placeholder="name *"
-              />
-            </Grid>
-            <Grid item xs={12} sm={60}>
-              <Input
-                className="input_login"
-                onChange={changeComp}
-                placeholder="companion name *"
-              />
-            </Grid>
-            <Grid item xs={12} sm={60}>
-              <MyButton
-                className="submit"
-                onClick={submitHandler}
-                color="secondary"
-                className={classes.submit}
-                fullWidth
-              >
-                sign up
-              </MyButton>
-            </Grid>
-
-            <Grid container>
-              <Grid item>
-                <Link onClick={goLogin} className="signin">{'Already have an account? Sign In'}</Link>
+      <div className="root2">
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5">
+              Sign up
+            </Typography>
+            <form className={classes.form} noValidate>
+              <Grid item xs={12} sm={60}>
+                <Input
+                  className="input_login"
+                  onChange={changeEmail}
+                  placeholder="email *"
+                />
               </Grid>
-            </Grid>
-            {error}
-          </form>
-        </div>
-      </Container>
+              <Grid item xs={12} sm={60}>
+                <Input
+                  className="input_login"
+                  type={values.showPassword ? 'text' : 'password'}
+                  onChange={handlePasswordChange('password')}
+                  value={values.password}
+                  placeholder="password(at least 6 characters) *"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </Grid>
+              <Grid item xs={12} sm={60}>
+                <Input
+                  className="input_login"
+                  type={values2.showPassword2 ? 'text' : 'password'}
+                  onChange={handlePasswordChange2('password')}
+                  value={values2.password}
+                  placeholder="password confirm *"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword2}
+                        onMouseDown={handleMouseDownPassword2}
+                      >
+                        {values2.showPassword2 ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </Grid>
+              {/* {mode?<div></div>:<div></div>} */}
+              {mode ? (
+                <div>pwd matches</div>
+              ) : (
+                <div className="red">pwd doesn't match</div>
+              )}
+              <Grid item xs={12} sm={60}>
+                <Input
+                  className="input_login"
+                  onChange={changeName}
+                  placeholder="name *"
+                />
+              </Grid>
+              <Grid item xs={12} sm={60}>
+                <Input
+                  className="input_login"
+                  onChange={changeComp}
+                  placeholder="companion name *"
+                />
+              </Grid>
+              <Grid item xs={12} sm={60}>
+                <MyButton
+                  className="submit"
+                  onClick={submitHandler}
+                  color="secondary"
+                  className={classes.submit}
+                  fullWidth
+                >
+                  sign up
+                </MyButton>
+              </Grid>
+
+              <Grid container>
+                <Grid item>
+                  <Link onClick={goLogin} className="signin">
+                    {'Already have an account? Sign In'}
+                  </Link>
+                </Grid>
+              </Grid>
+              {error}
+            </form>
+          </div>
+        </Container>
       </div>
       <div className="register_comp">
-        {/* <div className="textballoon">
-          <img className="registertext"src="/images/registertext.png"/>
-          <div className="texts">
-            {name!=""?<div >Welcome {name}</div>:<div></div>}
-            {comp!=""?<div >My name is {comp}</div>:<div><div >I am your companion</div><div>Would you name me?</div></div>}
+        {name != '' ? (
+          <div className="selfIntro">Welcome {name}</div>
+        ) : (
+          <div className="selfIntro">What's your name?</div>
+        )}
+        {comp != '' ? (
+          <div className="selfIntro">My name is {comp}</div>
+        ) : (
+          <div className="selfIntro">
+            <div>I will be your companion</div>
+            <div>on your eco-friendly journey</div>
+            <div>Would you name me?</div>
           </div>
-        </div> */}
-        <img  width="300px" src="/images/bukkuk.gif" />
+        )}
       </div>
-      
+
+      <img className="register_img" width="300px" src="/images/bukkuk.gif" />
     </div>
   );
 }

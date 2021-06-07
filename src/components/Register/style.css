@@ -1,0 +1,26 @@
+.root {
+  /* display: flex; */
+  position: fixed;
+  margin-left: 45vw;
+  margin-top: 20vh;
+  width: 500px;
+  flex-direction: row;
+}
+
+.register_comp {
+  position: fixed;
+  margin-top: 33vh;
+  margin-left: 25vw;
+}
+
+.signin {
+  cursor: pointer;
+}
+
+.no-drag {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

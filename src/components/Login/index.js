@@ -1,12 +1,9 @@
 import './style.css';
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { db, firebaseApp } from '../../firebase';
 import { useHistory } from 'react-router-dom';
-import setUser from '../../reducers/user'; //action creator
-import user from '../../reducers/user';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -63,8 +60,6 @@ function Login() {
   const [success, setSuccess] = useState();
   const [error, setError] = useState('');
   let history = useHistory();
-  const selector = useSelector((store) => store.user.user);
-  const dispatch = useDispatch();
 
   const [values, setValues] = React.useState({
     password: '',
@@ -81,6 +76,10 @@ function Login() {
     setPwd(event.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') { signinHandler(); }
+  };
+
   var changeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -92,8 +91,8 @@ function Login() {
   };
 
   const signinHandler = () => {
-    console.log('email', email);
-    console.log('pwd', pwd);
+    //console.log('email', email);
+    //console.log('pwd', pwd);
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, pwd)
@@ -113,7 +112,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className = "no-drag">
       <div className="explain">
         <div>
           {' '}
@@ -148,6 +147,7 @@ function Login() {
                   className="input_login"
                   type={values.showPassword ? 'text' : 'password'}
                   onChange={handlePasswordChange('password')}
+                  onKeyPress={handleKeyPress}
                   value={values.password}
                   placeholder="password *"
                   endAdornment={
@@ -180,7 +180,7 @@ function Login() {
 
               <Grid container>
                 <Grid item>
-                  <Link onClick={goRegister}>
+                  <Link onClick={goRegister} className="signup">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

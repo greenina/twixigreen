@@ -1,9 +1,10 @@
 import './style.css';
+import './animation.css';
 import React, { useState, useEffect } from 'react';
 import Heart from 'react-animated-heart';
 import { db, firebaseApp } from '../../firebase';
-import RecProduct from '../RecProduct';
-import { Button } from '@material-ui/core';
+//import RecProduct from '../RecProduct';
+//import { Button } from '@material-ui/core';
 import { facials_element, facials } from './product_array';
 import { tissue_element, tissue } from './product_array';
 import { toothpaste_element, toothpaste } from './product_array';
@@ -13,22 +14,22 @@ import { detergent_element, detergent } from './product_array';
 import { cushion_element, cushion } from './product_array';
 import { shampoo_element, shampoo } from './product_array';
 import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
+import Modal from '../Modal/Modal';
 
 function DetailPage(props) {
-  //console.log("props",props)
-  const [recArray, setRecArray] = useState([]);
+  //const [recArray, setRecArray] = useState([]);
   const [wished, setWished] = useState([]);
   const [category, setCategory] = useState();
   const [products, setProducts] = useState({});
   const [img_src, setImgSrc] = useState({});
   const [score, setScore] = useState(0);
-  const [console2, setConsole2] = useState();
-  const [console3, setConsole3] = useState(0);
-  const [bukkuk, setBukkuk] = useState([]);
+  //const [console2, setConsole2] = useState();
+  //const [console3, setConsole3] = useState(0);
+  //const [bukkuk, setBukkuk] = useState([]);
   const [stage, setStage] = useState([]);
   const [status, setStatus] = useState();
   const [isClick, setClick] = useState();
-  const [userInfo, setUserInfo] = useState({});
+  //const [userInfo, setUserInfo] = useState({});
   const [idd, setIdd] = useState();
   const [product_id, setProductId] = useState(0);
   const [e_length, setELength] = useState(0);
@@ -36,12 +37,14 @@ function DetailPage(props) {
   const [products_in, setProductIn] = useState([]);
   const [signIn, setSignIn] = useState(false);
   const [email, setEmail] = useState('1');
-  // const [dominant, setDominant] = useState(0);
-  // const [subDominant, setSubDominant] = useState(0);
-  // const [triDominant, setTriDominant] = useState(0);
-  // const [img1, setImg1] = useState('');
-  // const [img2, setImg2] = useState('');
-  // const [img3, setImg3] = useState('');
+  const [textBalloon, setTextBalloon] = useState('');
+  const [heart, setHeart] = useState(false);
+  const [share, setShare] = useState(0);
+  const [buy, setBuy] = useState(false);
+  const [imgId, setImgId] = useState('a1');
+  const [where, setWhere] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+
   const dominant = 0;
 
   const name = props.location.state.name;
@@ -50,9 +53,17 @@ function DetailPage(props) {
   const link = props.location.state.link;
   const idx = props.location.state.idx;
   const ecoval = props.location.state.ecoval;
-  var value = '';
+  const room = props.location.state.room;
+  //var value = '';
   var cgg = '';
   var states = ['adult_bad', 'adult_normal', 'adult_good', 'adult_dance'];
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   var avg = function (list) {
     var sum = 0;
     for (var i = 0; i < list.length; i++) {
@@ -60,6 +71,20 @@ function DetailPage(props) {
     }
     return sum / list.length;
   };
+  // useEffect(()=>{
+  //   if(ecoval==0){
+  //     setTextBalloon('/images/text7.png')
+  //     setImgId("a7")
+  //   }
+  //   else if(isClick){
+  //     setTextBalloon("images/text5.png")
+  //     setImgId("a5")
+  //   }
+  //   else{
+  //     setTextBalloon("/images/text4.png")
+  //     setImgId("a4")
+  //   }
+  // },[ecoval])
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(function (user) {
@@ -77,7 +102,7 @@ function DetailPage(props) {
       .get()
       .then(function (doc) {
         let docs = doc.data();
-        // console.log('link', link);
+
         setImgSrc([]);
         for (var i = 0; i < Object.keys(docs).length; i++) {
           let dic = img_src;
@@ -86,22 +111,49 @@ function DetailPage(props) {
         }
         let tdic = img_src;
         tdic[4] = img_src[2];
-        // console.log('companion img source list', img_src);
       });
   }, []);
 
   var heartClick = function (e) {
-    // console.log('heartIdd', idd);
     var index = wished.indexOf(idd);
-    // console.log('index', index);
-    ////
+
     if (!isClick) {
       if (index === -1) {
         wished.push(idd);
       }
+      if (ecoval == 0) {
+        setTextBalloon('/images/text21.png');
+        setImgId('a1');
+        setTimeout(function () {
+          setTextBalloon('/images/text27.png');
+          setImgId('a7');
+        }, 2000);
+      } else {
+        setTextBalloon('/images/text23.png');
+        setImgId('a3');
+        setTimeout(function () {
+          setTextBalloon('/images/text25.png');
+          setImgId('a5');
+        }, 2000);
+      }
     } else {
       if (index !== -1) {
         wished.splice(index, 1);
+      }
+      if (ecoval == 0) {
+        setTextBalloon('/images/text22.png');
+        setImgId('a2');
+        setTimeout(function () {
+          setTextBalloon('/images/text27.png');
+          setImgId('a7');
+        }, 2000);
+      } else {
+        setTextBalloon('/images/text24.png');
+        setImgId('a4');
+        setTimeout(function () {
+          setTextBalloon('/images/text26.png');
+        }, 2000);
+        setImgId('a6');
       }
     }
     setClick(!isClick);
@@ -119,12 +171,11 @@ function DetailPage(props) {
       // var
       // db.collection('users').doc('1').set()
     } else setScore(4);
-    console.log("user's eco score", Math.round(tmpScore / wished.length));
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log('db get');
+
     db.collection('products')
       .get()
       .then((snapshot) => {
@@ -134,11 +185,18 @@ function DetailPage(props) {
           let dic = products;
           dic[doc.id] = docs;
           setProducts(dic);
-
-          // console.log('products check', products);
-
           if (dic[doc.id]['name'] == name) {
             cgg = products[doc.id]['category'];
+            if (typeof room != 'undefined') {
+              setWhere(room);
+            } else {
+              if (cgg == 'tissue' || cgg == 'cushion') setWhere('Living');
+              else if (cgg == 'detergent' || cgg == 'scrubber')
+                setWhere('Kitchen');
+              else if (cgg == 'shampoo' || cgg == 'toothpaste')
+                setWhere('Bathroom');
+              else if (cgg == 'facial' || cgg == 'bag') setWhere('Bedroom');
+            }
             var tmp = Number(doc.id);
 
             if (cgg == 'facial') {
@@ -151,7 +209,12 @@ function DetailPage(props) {
                   break;
                 }
               }
-            } else if (cgg == 'tissue') {
+            } else if (
+              cgg == 'tissue' ||
+              cgg == 'tissue2' ||
+              cgg == 'tissue3' ||
+              cgg == 'tissue4'
+            ) {
               setELength(tissue_element.length);
               setElements(tissue_element);
               setProductIn(tissue);
@@ -223,9 +286,6 @@ function DetailPage(props) {
               }
             }
 
-            console.log('::::::', elements, products_in);
-            console.log('category', cgg, 'product_id', product_id);
-            console.log(products_in[product_id]);
             //debugger;
           }
           /////////get product id, category///////////
@@ -237,7 +297,6 @@ function DetailPage(props) {
               .get()
               .then(function (doc2) {
                 setStage(doc2.data()['stage']);
-                console.log('::::::::', doc2.data()['stage']);
               });
             db.collection('users')
               .doc(email)
@@ -250,17 +309,22 @@ function DetailPage(props) {
                 if (docs['wished'].length > 0) {
                   for (var i = 0; i < docs['wished'].length; i++) {
                     tmpScore += products[docs['wished'][i]]['eco'];
-                    console.log('tmpScore', tmpScore);
                   }
                   setScore(Math.round(tmpScore / docs['wished'].length));
-                  console.log(
-                    "user's eco score",
-                    Math.round(tmpScore / docs['wished'].length)
-                  );
                 } else setScore(4);
 
                 var clicked = !!(docs['wished'].indexOf(doc.id) + 1);
                 setClick(clicked);
+                if (ecoval == 0) {
+                  setTextBalloon('/images/text27.png');
+                  setImgId('a7');
+                } else if (clicked) {
+                  setTextBalloon('images/text25.png');
+                  setImgId('a5');
+                } else {
+                  setTextBalloon('/images/text26.png');
+                  setImgId('a6');
+                }
               });
           }
         });
@@ -276,50 +340,91 @@ function DetailPage(props) {
 
   const mvPage = () => {
     let parentCat =
-      category == 'scrubber' || category == 'detergent'
-        ? 'kitchen'
-        : category == 'tissue' || category == 'cushion'
+      where == 'Living'
         ? 'living'
-        : category == 'shampoo' || category == 'toothpaste'
+        : where == 'Kitchen'
+        ? 'kitchen'
+        : where == 'Bathroom'
         ? 'bath'
-        : category == 'bag' || category == 'facial'
+        : where == 'Bedroom'
         ? 'beauty'
         : '';
     document.location.href = '/category/' + parentCat;
   };
 
+  const mvCat = () => {
+    let gotocategory = category;
+    if (category == 'tissue') {
+      if (where == 'Kitchen') gotocategory = 'tissue2';
+      else if (where == 'Bathroom') gotocategory = 'tissue3';
+      else if (where == 'Bedroom') gotocategory = 'tissue4';
+    }
+    document.location.href = '/category/' + gotocategory;
+  };
+
   return (
     <div>
+      <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet"></link>
+      {() => {
+        switch (imgId) {
+          case 'a1':
+            <img id="a1" className="slideUp" src={textBalloon} />;
+          case 'a2':
+            <img id="a2" className="slideUp" src={textBalloon} />;
+          case 'a3':
+            <img id="a3" className="slideUp" src={textBalloon} />;
+          case 'a4':
+            <img id="a4" className="slideUp" src={textBalloon} />;
+          case 'a5':
+            <img id="a5" className="slideUp" src={textBalloon} />;
+          case 'a6':
+            <img id="a6" className="slideUp" src={textBalloon} />;
+          case 'a7':
+            <img id="a7" className="slideUp" src={textBalloon} />;
+        }
+      }}
+      <img id={imgId} className="slideUp" src={textBalloon} />
       <div className="router">
         <text id="router-text" className="mv2cat" onClick={mvPage}>
-          <b>
-            {category == 'scrubber' || category == 'detergent'
-              ? 'Kitchen'
-              : category == 'tissue' || category == 'cushion'
-              ? 'Living'
-              : category == 'shampoo' || category == 'toothpaste'
-              ? 'Bathroom'
-              : category == 'bag' || category == 'facial'
-              ? 'Bedroom'
-              : ''}
-          </b>
+          <b>{where}</b>
         </text>
         <text id="router-text">
           {' '}
           <span
             height="8px"
-            class="iconify"
+            className="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
           ></span>{' '}
         </text>
-        <text id="router-text">{category}</text>
+        <text id="router-text" className="mv2eachcat" onClick={mvCat}>
+          {category == 'scrubber'
+            ? 'Scrubber'
+            : category == 'detergent'
+            ? 'Detergent'
+            : category == 'tissue' ||
+              category == 'tissue2' ||
+              category == 'tissue3' ||
+              category == 'tissue4'
+            ? 'Tissue'
+            : category == 'cushion'
+            ? 'Cushion'
+            : category == 'shampoo'
+            ? 'Shampoo'
+            : category == 'toothpaste'
+            ? 'Toothpaste'
+            : category == 'bag'
+            ? 'Bag'
+            : category == 'facial'
+            ? 'Facial'
+            : ''}
+        </text>
         <text id="router-text">
           {' '}
           <span
             height="8px"
-            class="iconify"
+            className="iconify"
             data-icon="whh:bigger"
             data-inline="false"
             padding-bottom="5px"
@@ -328,7 +433,7 @@ function DetailPage(props) {
         <text id="router-text">{name}</text>
       </div>
       <hr className="hr-line" />
-      <div class="whole">
+      <div className="whole">
         <div className="d_companion">
           <a href="/mypage">
             <img
@@ -353,28 +458,118 @@ function DetailPage(props) {
           <div className="info">
             <div className="row1">
               <h1 className="product_name">{name}</h1>
-              <Heart className="heart" isClick={isClick} onClick={heartClick} />
-              <div
-                className="share"
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  // console.log('copy');
-                  alert('copied');
-                }}
-              >
-                <img src="/images/share.png" height="30px" />
-              </div>
-
-              <a onClick={() => window.open(link, '_blank')}>
-                <div className="buy">
-                  <span
-                    class="iconify"
-                    data-icon="clarity:shopping-bag-line"
-                    data-inline="false"
-                    height="35px"
-                  ></span>
+              <div className="icon1">
+                <div className="icon2">
+                  <div className="heart1">
+                    <div
+                      className="heartHome"
+                      onMouseEnter={() => {
+                        console.log('mouse on heart');
+                        setHeart(true);
+                      }}
+                      onMouseLeave={() => {
+                        console.log('mouse leave heart');
+                        setHeart(false);
+                      }}
+                    >
+                      <Heart
+                        className="heart"
+                        isClick={isClick}
+                        onClick={heartClick}
+                      />
+                    </div>
+                    {heart ? (
+                      <div className="hearta">
+                        <div>wish</div>
+                      </div>
+                    ) : (
+                      <div className="heartb"></div>
+                    )}
+                  </div>
+                  <div className="space"></div>
+                  <div className="share1">
+                    <div className="shareContainer">
+                      <div
+                        onMouseEnter={() => {
+                          console.log('mouse on heart');
+                          setShare(1);
+                        }}
+                        onMouseLeave={() => {
+                          console.log('mouse leave heart');
+                          setShare(0);
+                        }}
+                        className="share"
+                        onClick={() => {
+                          navigator.clipboard.writeText(window.location.href);
+                          openModal();
+                          setShare(2);
+                          setTimeout(function () {
+                            setShare(0);
+                          }, 1500);
+                        }}
+                      >
+                        <img src="/images/copy.png" height="33px" />
+                      </div>
+                      <Modal
+                        link={window.location.href}
+                        open={modalOpen}
+                        close={closeModal}
+                        header="Modal heading"
+                      >
+                        <main> {props.children} </main>
+                      </Modal>
+                      <div className="space2"></div>
+                    </div>
+                    {share == 1 ? (
+                      <div className="sharea">share</div>
+                    ) : (
+                      <div></div>
+                    )}
+                  </div>
+                  <div className="buy1">
+                    <a onClick={() => window.open(link, '_blank')}>
+                      <div
+                        className="buy"
+                        onMouseEnter={() => {
+                          console.log('mouse on heart');
+                          setBuy(true);
+                        }}
+                        onMouseLeave={() => {
+                          console.log('mouse leave heart');
+                          setBuy(false);
+                        }}
+                      >
+                        <span
+                          class="iconify"
+                          data-icon="clarity:shopping-bag-line"
+                          data-inline="false"
+                          height="35px"
+                        ></span>
+                      </div>
+                    </a>
+                    {buy ? (
+                      <div className="buya">buy</div>
+                    ) : (
+                      <div classname="buyb"></div>
+                    )}
+                  </div>
                 </div>
-              </a>
+                <div className="space3"></div>
+                {share == 1 ? (
+                  <div></div>
+                ) : share == 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="sharec">
+                    Copied to clipboard
+                    <i
+                      class="em em-white_check_mark"
+                      aria-role="presentation"
+                      aria-label="WHITE HEAVY CHECK MARK"
+                    ></i>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="row3">
               <div className="price">
@@ -394,7 +589,6 @@ function DetailPage(props) {
                     a range of pollutants, and substantial environmental
                     safeguards are needed.
                   </div>
-
                   <div className="image">
                     <img
                       src="/images/setting.png"
@@ -509,7 +703,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],
@@ -517,6 +711,7 @@ function DetailPage(props) {
                         link: products_in[0][e_length + 2],
                         ecoval: Number(products_in[0][e_length + 1]),
                         idx: products_in[0][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -532,7 +727,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[1][1],
                       state: {
                         name: products_in[1][1],
                         price: products_in[1][2],
@@ -540,6 +735,7 @@ function DetailPage(props) {
                         link: products_in[1][e_length + 2],
                         ecoval: Number(products_in[1][e_length + 1]),
                         idx: products_in[1][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -555,7 +751,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[2][1],
                       state: {
                         name: products_in[2][1],
                         price: products_in[2][2],
@@ -563,6 +759,7 @@ function DetailPage(props) {
                         link: products_in[2][e_length + 2],
                         ecoval: Number(products_in[2][e_length + 1]),
                         idx: products_in[2][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -629,7 +826,7 @@ function DetailPage(props) {
                 <div>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[product_id][1],
                       state: {
                         name: products_in[product_id][1],
                         price: products_in[product_id][2],
@@ -637,6 +834,7 @@ function DetailPage(props) {
                         link: products_in[product_id][e_length + 2],
                         ecoval: Number(products_in[product_id][e_length + 1]),
                         idx: products_in[product_id][e_length + 3],
+                        room: room,
                       },
                     }}
                   >
@@ -650,7 +848,7 @@ function DetailPage(props) {
                   </Link>
                   <Link
                     to={{
-                      pathname: `/detail/`,
+                      pathname: `/detail/` + products_in[0][1],
                       state: {
                         name: products_in[0][1],
                         price: products_in[0][2],
@@ -658,6 +856,7 @@ function DetailPage(props) {
                         link: products_in[0][e_length + 2],
                         ecoval: Number(products_in[0][e_length + 1]),
                         idx: products_in[0][e_length + 3],
+                        room: room,
                       },
                     }}
                   >

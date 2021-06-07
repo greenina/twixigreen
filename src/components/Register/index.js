@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { db, firebaseApp } from '../../firebase';
-import { useSelector, useDispatch } from 'react-redux';
-import setUser from '../../reducers/user';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -58,8 +56,6 @@ function Register() {
   const [mode, setMode] = useState(false);
   const [error, setError] = useState('');
   const [uid, setUid] = useState(null);
-  const mail = useSelector((state) => state.user.user);
-  const [a, setA] = useState(mail);
   const [comp, setComp] = useState('');
   const [img, setImg] = useState([]);
   let history = useHistory();
@@ -78,7 +74,7 @@ function Register() {
   };
 
   var goLogin = () => {
-    history.replace('login');
+    history.replace('');
   };
 
   var submitHandler = () => {
@@ -212,7 +208,8 @@ function Register() {
   };
 
   return (
-    <div className="recruit">
+    <div className="no-drag">
+      <div className="root">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -233,7 +230,7 @@ function Register() {
                 type={values.showPassword ? 'text' : 'password'}
                 onChange={handlePasswordChange('password')}
                 value={values.password}
-                placeholder="password *"
+                placeholder="password(at least 6 characters) *"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -303,13 +300,20 @@ function Register() {
 
             <Grid container>
               <Grid item>
-                <Link href="/">{'Already have an account? Sign In'}</Link>
+                <Link onClick={goLogin} className="signin">{'Already have an account? Sign In'}</Link>
               </Grid>
             </Grid>
             {error}
           </form>
         </div>
       </Container>
+      </div>
+      <div className="register_comp">
+        {name!=""?<div>Welcome {name}</div>:<div></div>}
+        {comp!=""?<div>My name is {comp}</div>:<div><div>I am your companion</div><div>Would you name me?</div></div>}
+        <img  width="300px" src="/images/bukkuk.gif" />
+      </div>
+      
     </div>
   );
 }

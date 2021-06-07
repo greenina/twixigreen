@@ -9,14 +9,16 @@ import Register from './components/Register';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 
-
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/main" exact component={MainPage} />
         <Route path="/category/:cg" exact component={CategoryPage} />
+
         <Route path="/detail" exact component={DetailPage} />
+
+        <Route path="/detail/:name" exact component={DetailPage} />
         <Route path="/register" exact component={Register} />
         <Route path="/" exact component={Login} />
         {/* <Route path="/detail/:name/:price/:img/:link" component={DetailPage} /> */}

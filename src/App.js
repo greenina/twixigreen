@@ -15,7 +15,9 @@ function App() {
       <Switch>
         <Route path="/main" exact component={MainPage} />
         <Route path="/category/:cg" exact component={CategoryPage} />
+
         <Route path="/detail" exact component={DetailPage} />
+
         <Route path="/detail/:name" exact component={DetailPage} />
         <Route path="/register" exact component={Register} />
         <Route path="/" exact component={Login} />

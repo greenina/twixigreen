@@ -17,7 +17,6 @@ var products = [];
 class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
-
     cgg = props.match.params.cg;
     this.state = {
       name: [],

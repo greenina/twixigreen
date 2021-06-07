@@ -209,7 +209,7 @@ function Register() {
 
   return (
     <div className="no-drag">
-      <div className="root">
+      <div className="root2">
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>

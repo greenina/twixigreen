@@ -77,7 +77,9 @@ function Login() {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') { signinHandler(); }
+    if (e.key === 'Enter') {
+      signinHandler();
+    }
   };
 
   var changeEmail = (e) => {
@@ -112,20 +114,7 @@ function Login() {
   };
 
   return (
-    <div className = "no-drag">
-      <div className="explain">
-        <div>
-          {' '}
-          ** This step is taken to prevent data from overlapping in the DB when
-          multiple people are testing simultaneously.
-        </div>
-        <div>
-          {' '}
-          It is not related to the core test of our prototype, but we ask you to
-          proceed to experience the proper test flow. **
-        </div>
-      </div>
-
+    <div className="no-drag">
       <img className="login_comp" width="300px" src="/images/bukkuk.gif" />
       <div className="root">
         <Container component="main" maxWidth="xs">
@@ -188,6 +177,18 @@ function Login() {
             </form>
           </div>
         </Container>
+      </div>
+      <div className="explain">
+        <div>
+          {' '}
+          ** This step is taken to prevent data from overlapping in the DB when
+          multiple people are testing simultaneously.
+        </div>
+        <div>
+          {' '}
+          It is not related to the core test of our prototype, but we ask you to
+          proceed to experience the proper test flow. **
+        </div>
       </div>
     </div>
   );

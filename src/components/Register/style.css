@@ -1,20 +1,20 @@
-.root {
+.root2 {
   /* display: flex; */
   position: fixed;
   margin-left: 45vw;
-  margin-top: 10vh;
+  margin-top: 3vh;
   width: 500px;
   flex-direction: row;
 }
 
 .register_comp {
   position: fixed;
-  margin-top: 20vh;
+  margin-top: 13vh;
   margin-left: 28vw;
 }
 .register_img {
   position: fixed;
-  margin-top: 27vh;
+  margin-top: 20vh;
   margin-left: 25vw;
 }
 
